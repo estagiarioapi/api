@@ -6,6 +6,12 @@ import { promises as fs } from 'fs';
 
 const existingAssistantId = 'asst_k3hihCq0BbmquqRptSf8J858';
 const existingVectorStoreId = 'vs_VkV662jbqd9Rigx9SQIB3hdA';
+const token_wpp =
+  'EAARMCGe1MUcBO8h2PNsWYJWuBugGWIRHTDR3d1OhJLSSxqTWEvNXAWOfhkWSVjFVTIQZCJvNYEoNhelFfE4ixAwdCZCPDq7vpdeZBe9ZCMTWWZCOjjWhgvFjW7DW9wjg4hZCZCrGhpknLGpW5WVGDhWjYhfG9I2wFOnS9ZAJB9PQFZBgkdXdxIkZBk6ZB1WAHlI0waI5YCLV1UqkaJ8BZAriZByoZD';
+const access_token =
+  'Bearer EAARMCGe1MUcBO8RgJhuHUz54VdgIMFKXBjpluUJphn8mjFHQK0mRk6af4TukP5rWeDPmJGOtS1uS2j0ZA2HInbRZAB80my8iM5Gv7G6atRZCq9YYnIMeO5aXej0ybyLwf3XKOqTZCCGb4gZAib4yZAZBP3xps8fgmOaTqYZAndZB72aa5ksePHRDi5wIZApkkvSOwXlNrXrNqPWwjlBT5prwzt';
+const openai_key =
+  'Bearer sk-proj-Az96Q8yXAonC8lEBq0mLT3BlbkFJcWClrLaidIdCQYJiBpZA';
 
 @Injectable()
 export class WebhookService {
@@ -44,6 +50,19 @@ export class WebhookService {
             sender_number: sender,
           }),
         };
+      } else if (message.text) {
+        const { responseMessage, sender } = await this.processText(
+          message,
+          senderNumber,
+        );
+        return {
+          statusCode: 200,
+          body: JSON.stringify({
+            message: 'Text message processed successfully',
+            response_message: responseMessage,
+            sender_number: sender,
+          }),
+        };
       } else {
         throw new Error('Unsupported message type');
       }
@@ -59,6 +78,16 @@ export class WebhookService {
     }
   }
 
+  async processText(message: any, sender: string) {
+    const text = message.text.body;
+
+    // Implement your logic to process the text message here.
+    // For demonstration purposes, let's just echo the message.
+    const responseMessage = `Received your message: "${text}"`;
+
+    return { responseMessage, sender };
+  }
+
   async uploadFileAndGetFileId(filePath: string, fileName: string) {
     const fileBuffer = await fs.readFile(filePath);
     const form = new FormData();
@@ -71,7 +100,7 @@ export class WebhookService {
 
     const response = await axios.post('https://api.openai.com/v1/files', form, {
       headers: {
-        Authorization: process.env.OPENAI_KEY,
+        Authorization: openai_key,
         'OpenAI-Beta': 'assistants=v2',
         ...form.getHeaders(),
       },
@@ -87,7 +116,7 @@ export class WebhookService {
       { file_id: fileId },
       {
         headers: {
-          Authorization: process.env.OPENAI_API_KEY,
+          Authorization: openai_key,
           'Content-Type': 'application/json',
           'OpenAI-Beta': 'assistants=v2',
         },
@@ -122,7 +151,7 @@ export class WebhookService {
       {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: process.env.OPENAI_API_KEY,
+          Authorization: openai_key,
           'OpenAI-Beta': 'assistants=v2',
         },
       },
@@ -139,7 +168,7 @@ export class WebhookService {
       {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: process.env.OPENAI_API_KEY,
+          Authorization: openai_key,
           'OpenAI-Beta': 'assistants=v2',
         },
       },
@@ -162,7 +191,7 @@ export class WebhookService {
       form,
       {
         headers: {
-          Authorization: process.env.OPENAI_API_KEY,
+          Authorization: openai_key,
           ...form.getHeaders(),
         },
       },
@@ -173,51 +202,54 @@ export class WebhookService {
   }
 
   async processDocument(message: any, sender: string) {
-    const documentId = message.document.id;
-    const fileName = message.document.filename;
-    const mimeType = message.document.mime_type;
+    try {
+      const documentId = message.document.id;
+      const fileName = message.document.filename;
+      const mimeType = message.document.mime_type;
+      if (
+        mimeType !==
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+      ) {
+        throw new Error(
+          `Unsupported file type: ${mimeType}. Only DOCX files are supported.`,
+        );
+      }
 
-    if (
-      mimeType !==
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-    ) {
-      throw new Error(
-        `Unsupported file type: ${mimeType}. Only DOCX files are supported.`,
+      const urlDownload = `https://graph.facebook.com/v14.0/${documentId}`;
+      const documentResponse = await axios.get(urlDownload, {
+        headers: { Authorization: access_token },
+      });
+      const documentData = documentResponse.data;
+      const fileUrl = documentData.url;
+      const fileResponse = await axios.get(fileUrl, {
+        headers: { Authorization: access_token },
+        responseType: 'arraybuffer',
+      });
+
+      const buffer = fileResponse.data;
+      const filePath = `/tmp/${fileName}`;
+      await fs.writeFile(filePath, Buffer.from(buffer));
+
+      // Step 1: Upload the file to OpenAI and get the file_id
+      const fileId = await this.uploadFileAndGetFileId(filePath, fileName);
+
+      // Step 2: Add the file to the existing vector store
+      await this.addFileToVectorStore(fileId, existingVectorStoreId);
+
+      // Step 3: Create a thread with the file attached
+      const threadId = await this.createThreadWithFile(
+        fileId,
+        'Please analyze the document.',
+        existingVectorStoreId,
       );
+
+      // Step 4: Run the thread
+      const runId = await this.runThread(threadId, existingAssistantId);
+
+      return { threadId, runId, sender };
+    } catch (error) {
+      console.error(error);
     }
-
-    const urlDownload = `https://graph.facebook.com/v14.0/${documentId}`;
-    const documentResponse = await axios.get(urlDownload, {
-      headers: { Authorization: process.env.ACCESS_TOKEN },
-    });
-    const documentData = documentResponse.data;
-    const fileUrl = documentData.url;
-    const fileResponse = await axios.get(fileUrl, {
-      headers: { Authorization: process.env.ACCESS_TOKEN },
-      responseType: 'arraybuffer',
-    });
-
-    const buffer = fileResponse.data;
-    const filePath = `/tmp/${fileName}`;
-    await fs.writeFile(filePath, Buffer.from(buffer));
-
-    // Step 1: Upload the file to OpenAI and get the file_id
-    const fileId = await this.uploadFileAndGetFileId(filePath, fileName);
-
-    // Step 2: Add the file to the existing vector store
-    await this.addFileToVectorStore(fileId, existingVectorStoreId);
-
-    // Step 3: Create a thread with the file attached
-    const threadId = await this.createThreadWithFile(
-      fileId,
-      'Please analyze the document.',
-      existingVectorStoreId,
-    );
-
-    // Step 4: Run the thread
-    const runId = await this.runThread(threadId, existingAssistantId);
-
-    return { threadId, runId, sender };
   }
 
   async processAudio(message: any, sender: string) {
@@ -227,14 +259,14 @@ export class WebhookService {
 
     const urlDownload = `https://graph.facebook.com/v14.0/${audioId}`;
     const audioResponse = await axios.get(urlDownload, {
-      headers: { Authorization: process.env.ACCESS_TOKEN },
+      headers: { Authorization: access_token },
     });
 
     const audioData = audioResponse.data;
     const fileUrl = audioData.url;
 
     const fileResponse = await axios.get(fileUrl, {
-      headers: { Authorization: process.env.ACCESS_TOKEN },
+      headers: { Authorization: access_token },
       responseType: 'arraybuffer',
     });
 
@@ -249,15 +281,14 @@ export class WebhookService {
 
   async handler(event: any) {
     try {
-      const body = JSON.parse(event.body);
-      const message = body.entry[0].changes[0].value.messages[0];
+      const message = event.entry[0].changes[0].value.messages[0];
       const senderNumber = message.from;
-
       if (message.document) {
         const { threadId, runId, sender } = await this.processDocument(
           message,
           senderNumber,
         );
+        console.log(threadId, runId, sender);
         return {
           statusCode: 200,
           body: JSON.stringify({
@@ -277,6 +308,19 @@ export class WebhookService {
           body: JSON.stringify({
             message: 'Audio processed and transcribed successfully',
             transcript: transcript,
+            sender_number: sender,
+          }),
+        };
+      } else if (message.text) {
+        const { responseMessage, sender } = await this.processText(
+          message,
+          senderNumber,
+        );
+        return {
+          statusCode: 200,
+          body: JSON.stringify({
+            message: 'Text message processed successfully',
+            response_message: responseMessage,
             sender_number: sender,
           }),
         };

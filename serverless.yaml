@@ -1,0 +1,29 @@
+org: estagiario
+app: serverless-estagiario
+service: serverless-estagiario
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  logs:
+    restApi: false
+
+functions:
+  main:
+    handler: dist/main.handler
+    events:
+      - http:
+          method: ANY
+          path: /
+      - http:
+          method: ANY
+          path: '{proxy+}'
+      - http:
+          method: POST
+          path: webhook
+      - http:
+          method: GET
+          path: webhook    
