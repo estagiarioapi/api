@@ -1,13 +1,12 @@
-import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
 import FormData from 'form-data';
 import { promises as fs } from 'fs';
+import { FluxoService } from 'src/fluxo/fluxo.service';
 
 const existingAssistantId = 'asst_k3hihCq0BbmquqRptSf8J858';
 const existingVectorStoreId = 'vs_VkV662jbqd9Rigx9SQIB3hdA';
-const token_wpp =
-  'EAARMCGe1MUcBO8h2PNsWYJWuBugGWIRHTDR3d1OhJLSSxqTWEvNXAWOfhkWSVjFVTIQZCJvNYEoNhelFfE4ixAwdCZCPDq7vpdeZBe9ZCMTWWZCOjjWhgvFjW7DW9wjg4hZCZCrGhpknLGpW5WVGDhWjYhfG9I2wFOnS9ZAJB9PQFZBgkdXdxIkZBk6ZB1WAHlI0waI5YCLV1UqkaJ8BZAriZByoZD';
+
 const access_token =
   'Bearer EAARMCGe1MUcBO8RgJhuHUz54VdgIMFKXBjpluUJphn8mjFHQK0mRk6af4TukP5rWeDPmJGOtS1uS2j0ZA2HInbRZAB80my8iM5Gv7G6atRZCq9YYnIMeO5aXej0ybyLwf3XKOqTZCCGb4gZAib4yZAZBP3xps8fgmOaTqYZAndZB72aa5ksePHRDi5wIZApkkvSOwXlNrXrNqPWwjlBT5prwzt';
 const openai_key =
@@ -15,7 +14,16 @@ const openai_key =
 
 @Injectable()
 export class WebhookService {
-  constructor(private readonly httpService: HttpService) {}
+  private entryPointsMenu = [
+    'oi',
+    'ola',
+    'menu',
+    'bom dia',
+    'boa tarde',
+    'ola, estagiario',
+  ];
+
+  constructor(private fluxoService: FluxoService) {}
 
   async processMessage(event: any): Promise<any> {
     try {
@@ -51,15 +59,12 @@ export class WebhookService {
           }),
         };
       } else if (message.text) {
-        const { responseMessage, sender } = await this.processText(
-          message,
-          senderNumber,
-        );
+        const { text, sender } = await this.processText(message, senderNumber);
         return {
           statusCode: 200,
           body: JSON.stringify({
             message: 'Text message processed successfully',
-            response_message: responseMessage,
+            response_message: text,
             sender_number: sender,
           }),
         };
@@ -81,11 +86,7 @@ export class WebhookService {
   async processText(message: any, sender: string) {
     const text = message.text.body;
 
-    // Implement your logic to process the text message here.
-    // For demonstration purposes, let's just echo the message.
-    const responseMessage = `Received your message: "${text}"`;
-
-    return { responseMessage, sender };
+    return { text, sender };
   }
 
   async uploadFileAndGetFileId(filePath: string, fileName: string) {
@@ -255,7 +256,6 @@ export class WebhookService {
   async processAudio(message: any, sender: string) {
     const audioId = message.audio.id;
     const fileName = `${audioId}.mp3`;
-    const mimeType = message.audio.mime_type;
 
     const urlDownload = `https://graph.facebook.com/v14.0/${audioId}`;
     const audioResponse = await axios.get(urlDownload, {
@@ -312,15 +312,17 @@ export class WebhookService {
           }),
         };
       } else if (message.text) {
-        const { responseMessage, sender } = await this.processText(
-          message,
-          senderNumber,
-        );
+        const { text, sender } = await this.processText(message, senderNumber);
+
+        if (this.detectMenu(text)) {
+          return this.fluxoService.sendInteractiveMessage(sender);
+        }
+
         return {
           statusCode: 200,
           body: JSON.stringify({
             message: 'Text message processed successfully',
-            response_message: responseMessage,
+            response_message: text,
             sender_number: sender,
           }),
         };
@@ -337,5 +339,15 @@ export class WebhookService {
         }),
       };
     }
+  }
+
+  private detectMenu(message: string): boolean {
+    return this.entryPointsMenu.some((e) =>
+      message
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .includes(e),
+    );
   }
 }
