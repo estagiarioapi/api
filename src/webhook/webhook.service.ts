@@ -6,9 +6,8 @@ import { FluxoService } from 'src/fluxo/fluxo.service';
 
 const existingAssistantId = 'asst_k3hihCq0BbmquqRptSf8J858';
 const existingVectorStoreId = 'vs_VkV662jbqd9Rigx9SQIB3hdA';
-
 const access_token =
-  'Bearer EAARMCGe1MUcBO8RgJhuHUz54VdgIMFKXBjpluUJphn8mjFHQK0mRk6af4TukP5rWeDPmJGOtS1uS2j0ZA2HInbRZAB80my8iM5Gv7G6atRZCq9YYnIMeO5aXej0ybyLwf3XKOqTZCCGb4gZAib4yZAZBP3xps8fgmOaTqYZAndZB72aa5ksePHRDi5wIZApkkvSOwXlNrXrNqPWwjlBT5prwzt';
+  'Bearer EAARMCGe1MUcBOzNDrytFoDd0aad954W7PocOQa10C8cxGsB35ZBlx71Mt5Dmyl8PhCN68FffPOuAhrXIGQtZAAr8Q9Cf3fpOsoCtGah2ZBVHAU5n8aTVQCR3d9hTsQbccnBpKVVXYR7ZCOnrocsJIiBAIBAPayRqrRMGShoxYTHZBVeA6JJnnHcXjTwCZBe0dcOKuLVuHUKlI6JBsKI1sZD';
 const openai_key =
   'Bearer sk-proj-Az96Q8yXAonC8lEBq0mLT3BlbkFJcWClrLaidIdCQYJiBpZA';
 
@@ -259,14 +258,20 @@ export class WebhookService {
 
     const urlDownload = `https://graph.facebook.com/v14.0/${audioId}`;
     const audioResponse = await axios.get(urlDownload, {
-      headers: { Authorization: access_token },
+      headers: {
+        Authorization:
+          'Bearer EAARMCGe1MUcBOzNDrytFoDd0aad954W7PocOQa10C8cxGsB35ZBlx71Mt5Dmyl8PhCN68FffPOuAhrXIGQtZAAr8Q9Cf3fpOsoCtGah2ZBVHAU5n8aTVQCR3d9hTsQbccnBpKVVXYR7ZCOnrocsJIiBAIBAPayRqrRMGShoxYTHZBVeA6JJnnHcXjTwCZBe0dcOKuLVuHUKlI6JBsKI1sZD',
+      },
     });
 
     const audioData = audioResponse.data;
     const fileUrl = audioData.url;
 
     const fileResponse = await axios.get(fileUrl, {
-      headers: { Authorization: access_token },
+      headers: {
+        Authorization:
+          'Bearer EAARMCGe1MUcBOzNDrytFoDd0aad954W7PocOQa10C8cxGsB35ZBlx71Mt5Dmyl8PhCN68FffPOuAhrXIGQtZAAr8Q9Cf3fpOsoCtGah2ZBVHAU5n8aTVQCR3d9hTsQbccnBpKVVXYR7ZCOnrocsJIiBAIBAPayRqrRMGShoxYTHZBVeA6JJnnHcXjTwCZBe0dcOKuLVuHUKlI6JBsKI1sZD',
+      },
       responseType: 'arraybuffer',
     });
 
@@ -303,6 +308,7 @@ export class WebhookService {
           message,
           senderNumber,
         );
+        console.log(transcript, sender);
         return {
           statusCode: 200,
           body: JSON.stringify({
