@@ -1,65 +1,62 @@
-import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
-import { AxiosResponse } from 'axios';
-import { firstValueFrom } from 'rxjs';
+import axios from 'axios';
 
 @Injectable()
 export class FluxoService {
-  constructor(private httpService: HttpService) { }
+  constructor() {}
 
-  async sendInteractiveMessage(phoneNumber: string): Promise<AxiosResponse<any>> {
+  async sendInteractiveMessage(phoneNumber) {
     const message = {
-      "recipient_type": "individual",
-      "to": phoneNumber,
-      "messaging_product": "whatsapp",
-      "type": "interactive",
-      "interactive": {
-        "type": "list",
-        "body": {
-          "text": "Olá chefe, como posso te ajudar?"
+      recipient_type: 'individual',
+      to: '554688146202',
+      messaging_product: 'whatsapp',
+      type: 'interactive',
+      interactive: {
+        type: 'list',
+        body: {
+          text: 'Olá chefe, como posso te ajudar?',
         },
-        "action": {
-          "button": "Funcionalidades",
-          "sections": [
+        action: {
+          button: 'Funcionalidades',
+          sections: [
             {
-              "title": "",
-              "rows": [
+              title: '',
+              rows: [
                 {
-                  "id": "1",
-                  "title": "Auxiliar Jurídico"
+                  id: '1',
+                  title: 'Auxiliar Jurídico',
                 },
                 {
-                  "id": "2",
-                  "title": "Notificação Extrajudicial"
+                  id: '2',
+                  title: 'Notif. Extrajudicial',
                 },
                 {
-                  "id": "3",
-                  "title": "Peças Processuais"
+                  id: '3',
+                  title: 'Peças Processuais',
                 },
                 {
-                  "id": "4",
-                  "title": "Contratos"
-                }
-              ]
-            }
-          ]
-        }
-      }
+                  id: '4',
+                  title: 'Contratos',
+                },
+              ],
+            },
+          ],
+        },
+      },
     };
 
     try {
       const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
       const headers = {
-        'Authorization': 'Bearer EAARMCGe1MUcBOzNDrytFoDd0aad954W7PocOQa10C8cxGsB35ZBlx71Mt5Dmyl8PhCN68FffPOuAhrXIGQtZAAr8Q9Cf3fpOsoCtGah2ZBVHAU5n8aTVQCR3d9hTsQbccnBpKVVXYR7ZCOnrocsJIiBAIBAPayRqrRMGShoxYTHZBVeA6JJnnHcXjTwCZBe0dcOKuLVuHUKlI6JBsKI1sZD',
-        'Content-Type': 'application/json'
+        Authorization:
+          'Bearer EAARMCGe1MUcBO2khquDWAFbZAx7cwKGPbK96IlVIPFIUQXPvFNdwL9gIclSAzcyBcB0bxMtp0s1UWRTLtp1oxPSZAB7knwgKUVc2TSUVNMkGgwQrewZAYZAzdpq9bHrbcFHUZCNg9UR82oqNBNQYx5G20PHSWNA1LIQVLcECtYXgO100IQJsg96KA3tVnGepbH4HMYNc7uAgCqsrDI7wZD',
+        'Content-Type': 'application/json',
       };
-      const response = await firstValueFrom(
-        this.httpService.post(url, message, { headers })
-      );
-      return response.data
+      const response = await axios.post(url, message, { headers });
+      return response.status === 200;
     } catch (error) {
       console.error('Error sending message:', error);
-      throw error;
+      return false;
     }
   }
 }

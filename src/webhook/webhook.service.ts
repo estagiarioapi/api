@@ -7,7 +7,7 @@ import { FluxoService } from 'src/fluxo/fluxo.service';
 const existingAssistantId = 'asst_k3hihCq0BbmquqRptSf8J858';
 const existingVectorStoreId = 'vs_VkV662jbqd9Rigx9SQIB3hdA';
 const access_token =
-  'Bearer EAARMCGe1MUcBOzNDrytFoDd0aad954W7PocOQa10C8cxGsB35ZBlx71Mt5Dmyl8PhCN68FffPOuAhrXIGQtZAAr8Q9Cf3fpOsoCtGah2ZBVHAU5n8aTVQCR3d9hTsQbccnBpKVVXYR7ZCOnrocsJIiBAIBAPayRqrRMGShoxYTHZBVeA6JJnnHcXjTwCZBe0dcOKuLVuHUKlI6JBsKI1sZD';
+  'Bearer EAARMCGe1MUcBO2khquDWAFbZAx7cwKGPbK96IlVIPFIUQXPvFNdwL9gIclSAzcyBcB0bxMtp0s1UWRTLtp1oxPSZAB7knwgKUVc2TSUVNMkGgwQrewZAYZAzdpq9bHrbcFHUZCNg9UR82oqNBNQYx5G20PHSWNA1LIQVLcECtYXgO100IQJsg96KA3tVnGepbH4HMYNc7uAgCqsrDI7wZD';
 const openai_key =
   'Bearer sk-proj-Az96Q8yXAonC8lEBq0mLT3BlbkFJcWClrLaidIdCQYJiBpZA';
 
