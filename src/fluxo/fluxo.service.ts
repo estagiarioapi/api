@@ -8,7 +8,7 @@ export class FluxoService {
   async sendInteractiveMessage(phoneNumber) {
     const message = {
       recipient_type: 'individual',
-      to: '554688146202',
+      to: phoneNumber,
       messaging_product: 'whatsapp',
       type: 'interactive',
       interactive: {
