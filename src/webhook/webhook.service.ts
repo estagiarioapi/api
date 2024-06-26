@@ -288,6 +288,7 @@ export class WebhookService {
     try {
       const message = event.entry[0].changes[0].value.messages[0];
       const senderNumber = message.from;
+      console.log(message);
       if (message.document) {
         const { threadId, runId, sender } = await this.processDocument(
           message,
@@ -332,6 +333,11 @@ export class WebhookService {
             sender_number: sender,
           }),
         };
+      } else if (message.interactive) {
+        const menu = message.interactive.list_reply.id;
+        console.log('menu:', menu);
+
+        return this.fluxoService.sendInteractiveMenu(menu, senderNumber);
       } else {
         throw new Error('Unsupported message type');
       }
