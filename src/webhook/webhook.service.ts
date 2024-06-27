@@ -335,7 +335,6 @@ export class WebhookService {
         };
       } else if (message.interactive) {
         const menu = message.interactive.list_reply.id;
-        console.log('menu:', menu);
 
         return this.fluxoService.sendInteractiveMenu(menu, senderNumber);
       } else {

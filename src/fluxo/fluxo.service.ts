@@ -1,10 +1,14 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import axios from 'axios';
+import { FluxoContratoService } from './contratos/fluxo.contratos.service';
 import { FluxoPecaService } from './pecas/fluxo.peca.service';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 @Injectable()
 export class FluxoService {
-  constructor(private fluxoPecaService: FluxoPecaService) {}
+  constructor(
+    private fluxoPecaService: FluxoPecaService,
+    private fluxoContratoService: FluxoContratoService,
+  ) {}
 
   async sendInteractiveMessage(phoneNumber: string) {
     if (!phoneNumber) {
@@ -52,7 +56,7 @@ export class FluxoService {
     try {
       const headers = {
         Authorization:
-          'Bearer EAARMCGe1MUcBO2khquDWAFbZAx7cwKGPbK96IlVIPFIUQXPvFNdwL9gIclSAzcyBcB0bxMtp0s1UWRTLtp1oxPSZAB7knwgKUVc2TSUVNMkGgwQrewZAYZAzdpq9bHrbcFHUZCNg9UR82oqNBNQYx5G20PHSWNA1LIQVLcECtYXgO100IQJsg96KA3tVnGepbH4HMYNc7uAgCqsrDI7wZD',
+          'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
@@ -79,6 +83,8 @@ export class FluxoService {
       return this.sendContratosMenu(phoneNumber);
     } else if (['5', '6', '7', '8', '9', '10', '11', '12'].includes(menuId)) {
       return this.sendPecasProcessuaisDireitosMenu(phoneNumber, menuId);
+    } else if (['13', '14', '15', '16', '17', '18'].includes(menuId)) {
+      return this.sendContratosMenuTipo(phoneNumber, menuId);
     }
   }
   async sendAuxiliarJuridicoMenu(phoneNumber: string) {
@@ -98,7 +104,7 @@ export class FluxoService {
     ];
     const headers = {
       Authorization:
-        'Bearer EAARMCGe1MUcBO2khquDWAFbZAx7cwKGPbK96IlVIPFIUQXPvFNdwL9gIclSAzcyBcB0bxMtp0s1UWRTLtp1oxPSZAB7knwgKUVc2TSUVNMkGgwQrewZAYZAzdpq9bHrbcFHUZCNg9UR82oqNBNQYx5G20PHSWNA1LIQVLcECtYXgO100IQJsg96KA3tVnGepbH4HMYNc7uAgCqsrDI7wZD',
+        'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -136,12 +142,13 @@ export class FluxoService {
 
     const headers = {
       Authorization:
-        'Bearer EAARMCGe1MUcBO2khquDWAFbZAx7cwKGPbK96IlVIPFIUQXPvFNdwL9gIclSAzcyBcB0bxMtp0s1UWRTLtp1oxPSZAB7knwgKUVc2TSUVNMkGgwQrewZAYZAzdpq9bHrbcFHUZCNg9UR82oqNBNQYx5G20PHSWNA1LIQVLcECtYXgO100IQJsg96KA3tVnGepbH4HMYNc7uAgCqsrDI7wZD',
+        'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
       'Content-Type': 'application/json',
     };
 
     for (const message of messages) {
       const messagePayload = {
+        messaging_product: 'whatsapp',
         recipient_type: 'individual',
         to: phoneNumber,
         type: 'text',
@@ -219,7 +226,7 @@ export class FluxoService {
     try {
       const headers = {
         Authorization:
-          'Bearer EAARMCGe1MUcBO2khquDWAFbZAx7cwKGPbK96IlVIPFIUQXPvFNdwL9gIclSAzcyBcB0bxMtp0s1UWRTLtp1oxPSZAB7knwgKUVc2TSUVNMkGgwQrewZAYZAzdpq9bHrbcFHUZCNg9UR82oqNBNQYx5G20PHSWNA1LIQVLcECtYXgO100IQJsg96KA3tVnGepbH4HMYNc7uAgCqsrDI7wZD',
+          'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
@@ -254,6 +261,92 @@ export class FluxoService {
       return this.fluxoPecaService.sendPecaDireitoPrevidenciario(phoneNumber);
     }
   }
-
-  async sendContratosMenu(senderNumber: string) {}
+  async sendPecasProcessuais(phoneNumber: string, menuId: string) {}
+  async sendContratosMenu(phoneNumber: string) {
+    if (!phoneNumber) {
+      throw new BadRequestException('Favor fornecer o numero do usuário');
+    }
+    const message = {
+      recipient_type: 'individual',
+      to: phoneNumber,
+      messaging_product: 'whatsapp',
+      type: 'interactive',
+      interactive: {
+        type: 'list',
+        body: {
+          text: 'Você selecionou a funcionalidade de *Contratos*. Agora escolha o tipo de contrato que você quer redigir.',
+        },
+        action: {
+          button: 'Escolha o contrato',
+          sections: [
+            {
+              title: '',
+              rows: [
+                {
+                  id: '13',
+                  title: 'Civis',
+                },
+                {
+                  id: '14',
+                  title: 'Imobiliários',
+                },
+                {
+                  id: '15',
+                  title: 'Empresariais',
+                },
+                {
+                  id: '16',
+                  title: 'Agrários',
+                },
+                {
+                  id: '17',
+                  title: 'Culturais',
+                },
+                {
+                  id: '18',
+                  title: 'Inst. Para Advocacia',
+                  description: 'Instrumentos para Advocacia',
+                },
+              ],
+            },
+          ],
+        },
+      },
+    };
+    try {
+      const headers = {
+        Authorization:
+          'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
+        'Content-Type': 'application/json',
+      };
+      const response = await axios.post(url, message, { headers });
+      return response.status === 200;
+    } catch (error) {
+      console.error('Error sending message:', error);
+      return false;
+    }
+  }
+  async sendContratosMenuTipo(phoneNumber: string, menuId: string) {
+    if (!menuId) {
+      throw new BadRequestException('Favor fornecer o menu');
+    }
+    if (!phoneNumber) {
+      throw new BadRequestException('Favor fornecer o numero do usuário');
+    }
+    if (menuId === '13') {
+      return this.fluxoContratoService.sendContratosCivis(phoneNumber);
+    } else if (menuId === '14') {
+      return this.fluxoContratoService.sendContratosImobiliarios(phoneNumber);
+    } else if (menuId === '15') {
+      return this.fluxoContratoService.sendContratosEmpresariais(phoneNumber);
+    } else if (menuId === '16') {
+      return this.fluxoContratoService.sendContratosAgrarios(phoneNumber);
+    } else if (menuId === '17') {
+      return this.fluxoContratoService.sendContratosCulturais(phoneNumber);
+    } else if (menuId === '18') {
+      return this.fluxoContratoService.sendContratosDeInstrumentosParaAdvocacia(
+        phoneNumber,
+      );
+    }
+  }
 }
