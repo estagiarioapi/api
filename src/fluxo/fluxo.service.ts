@@ -1,14 +1,25 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import axios from 'axios';
 import { FluxoContratoService } from './contratos/fluxo.contratos.service';
-import { FluxoPecaService } from './pecas/fluxo.peca.service';
+import { FluxoDireitoPecaService } from './pecas/fluxo.direito.peca.service';
+import { PeticaoInicialService } from './pecas/fluxo.peticao.inicial.service';
+import { PeticaoIntermediariaService } from './pecas/fluxo.peticao.intermed.service';
+import { RecursoService } from './pecas/fluxo.recurso.service';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
+const peticoesIniciais = ['85', '86', '89', '90', '91', '92', '93', '94', '95', '96', '97', '98', '99', '100'
+  , '101', '102', '103', '104', '105', '106', '107', '108', '109', '110', '111', '112', '113',
+  '114', '115', '116', '117', '118', '119', '120', '121', '122', '123', '124', '125', '126', '127',
+  '128', '129', '130', '131', '132', '133', '134', '135', '136', '137', '138', '139', '140', '141'
+]
 @Injectable()
 export class FluxoService {
   constructor(
-    private fluxoPecaService: FluxoPecaService,
+    private fluxoPecaService: FluxoDireitoPecaService,
     private fluxoContratoService: FluxoContratoService,
-  ) {}
+    private peticaoInicialService: PeticaoInicialService,
+    private peticaoIntermedService: PeticaoIntermediariaService,
+    private recursoService: RecursoService
+  ) { }
 
   async sendInteractiveMessage(phoneNumber: string) {
     if (!phoneNumber) {
@@ -85,6 +96,12 @@ export class FluxoService {
       return this.sendPecasProcessuaisDireitosMenu(phoneNumber, menuId);
     } else if (['13', '14', '15', '16', '17', '18'].includes(menuId)) {
       return this.sendContratosMenuTipo(phoneNumber, menuId);
+    } else if (['62', '65', '68', '71', '74', '77', '80', '83'].includes(menuId)) {
+      return this.sendPetiçõesIniciais(phoneNumber, menuId)
+    } else if (['63', '66', '69', '72', '75', '78', '81', '84']) {
+      return this.sendPeticoesIntermediarias(phoneNumber, menuId)
+    } else if (['64', '67', '70', '73', '76', '79', '82', '85']) {
+      return this.sendRecursos(phoneNumber, menuId)
     }
   }
   async sendAuxiliarJuridicoMenu(phoneNumber: string) {
@@ -261,7 +278,81 @@ export class FluxoService {
       return this.fluxoPecaService.sendPecaDireitoPrevidenciario(phoneNumber);
     }
   }
-  async sendPecasProcessuais(phoneNumber: string, menuId: string) {}
+  async sendPetiçõesIniciais(phoneNumber: string, menuId: string) {
+    if (!menuId) {
+      throw new BadRequestException('Favor fornecer o menu');
+    }
+    if (!phoneNumber) {
+      throw new BadRequestException('Favor fornecer o numero do usuário');
+    }
+    if (menuId === '62') {
+      return this.peticaoInicialService.sendDireitoCivil(phoneNumber)
+    } else if (menuId === '65') {
+      return this.peticaoInicialService.sendDireitoEmpresarial(phoneNumber)
+    } else if (menuId === '68') {
+      return this.peticaoInicialService.sendDireitoPenal(phoneNumber)
+    } else if (menuId === '71') {
+      return this.peticaoInicialService.sendDireitoConstitucional(phoneNumber)
+    } else if (menuId === '74') {
+      return this.peticaoInicialService.sendDireitoDoTrabalho(phoneNumber)
+    } else if (menuId === '77') {
+      return this.peticaoInicialService.sendDireitoTributario(phoneNumber)
+    } else if (menuId === '80') {
+      return this.peticaoInicialService.sendDireitoAdministrativo(phoneNumber)
+    } else if (menuId === '83') {
+      return this.peticaoInicialService.sendDireitoPrevidenciario(phoneNumber)
+    }
+  }
+  async sendPeticoesIntermediarias(phoneNumber: string, menuId: string) {
+    if (!menuId) {
+      throw new BadRequestException('Favor fornecer o menu');
+    }
+    if (!phoneNumber) {
+      throw new BadRequestException('Favor fornecer o numero do usuário');
+    }
+    if (menuId === '63') {
+      return this.peticaoIntermedService.sendDireitoCivil(phoneNumber)
+    } else if (menuId === '66') {
+      return this.peticaoIntermedService.sendDireitoEmpresarial(phoneNumber)
+    } else if (menuId === '69') {
+      return this.peticaoIntermedService.sendDireitoPenal(phoneNumber)
+    } else if (menuId === '72') {
+      return this.peticaoIntermedService.sendDireitoConstitucional(phoneNumber)
+    } else if (menuId === '75') {
+      return this.peticaoIntermedService.sendDireitoDoTrabalho(phoneNumber)
+    } else if (menuId === '78') {
+      return this.peticaoIntermedService.sendDireitoTributario(phoneNumber)
+    } else if (menuId === '81') {
+      return this.peticaoIntermedService.sendDireitoAdministrativo(phoneNumber)
+    } else if (menuId === '84') {
+      return this.peticaoIntermedService.sendDireitoPrevidenciario(phoneNumber)
+    }
+  }
+  async sendRecursos(phoneNumber: string, menuId: string) {
+    if (!menuId) {
+      throw new BadRequestException('Favor fornecer o menu');
+    }
+    if (!phoneNumber) {
+      throw new BadRequestException('Favor fornecer o numero do usuário');
+    }
+    if (menuId === '64') {
+      return this.recursoService.sendDireitoCivil(phoneNumber)
+    } else if (menuId === '67') {
+      return this.recursoService.sendDireitoEmpresarial(phoneNumber)
+    } else if (menuId === '70') {
+      return this.recursoService.sendDireitoPenal(phoneNumber)
+    } else if (menuId === '73') {
+      return this.recursoService.sendDireitoConstitucional(phoneNumber)
+    } else if (menuId === '76') {
+      return this.recursoService.sendDireitoDoTrabalho(phoneNumber)
+    } else if (menuId === '78') {
+      return this.recursoService.sendDireitoTributario(phoneNumber)
+    } else if (menuId === '82') {
+      return this.recursoService.sendDireitoAdministrativo(phoneNumber)
+    } else if (menuId === '85') {
+      return this.recursoService.sendDireitoPrevidenciario(phoneNumber)
+    }
+  }
   async sendContratosMenu(phoneNumber: string) {
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
