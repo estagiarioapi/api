@@ -5,11 +5,26 @@ import { FluxoDireitoPecaService } from './pecas/fluxo.direito.peca.service';
 import { PeticaoInicialService } from './pecas/fluxo.peticao.inicial.service';
 import { PeticaoIntermediariaService } from './pecas/fluxo.peticao.intermed.service';
 import { RecursoService } from './pecas/fluxo.recurso.service';
+import { PecasDireitosService } from './pecas/direitos/pecas.direitos.service';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 const peticoesIniciais = ['85', '86', '89', '90', '91', '92', '93', '94', '95', '96', '97', '98', '99', '100'
   , '101', '102', '103', '104', '105', '106', '107', '108', '109', '110', '111', '112', '113',
   '114', '115', '116', '117', '118', '119', '120', '121', '122', '123', '124', '125', '126', '127',
   '128', '129', '130', '131', '132', '133', '134', '135', '136', '137', '138', '139', '140', '141'
+]
+
+const peticoesIntermediarias = [
+  '142', '143', '144', '145', '146', '147', '148', '149', '150', '151', '152', '153', '154', '155', '156',
+  '157', '158', '159', '160', '161', '162', '163', '164', '165', '166', '167', '168', '169',
+  '170', '171', '172', '173', '174', '175', '176', '177', '178', '179', '180', '181', '182',
+  '183', '184', '185', '186', '187', '188', '189', '190', '191'
+]
+
+const recursos = [
+  '192', '193', '194', '195', '196', '197', '198', '199', '200', '201', '202', '203', '204', '205', '206',
+  '207', '208', '209', '210', '211', '212', '213', '214', '215', '216', '217', '218', '219',
+  '220', '221', '222', '223', '224', '225', '226', '227', '228', '229', '230', '231', '232',
+  '233', '234', '235', '236', '237', '238', '239', '240', '241', '242', '243', '244', '245', '246', '247'
 ]
 @Injectable()
 export class FluxoService {
@@ -18,7 +33,8 @@ export class FluxoService {
     private fluxoContratoService: FluxoContratoService,
     private peticaoInicialService: PeticaoInicialService,
     private peticaoIntermedService: PeticaoIntermediariaService,
-    private recursoService: RecursoService
+    private recursoService: RecursoService,
+    private pecasService: PecasDireitosService
   ) { }
 
   async sendInteractiveMessage(phoneNumber: string) {
@@ -98,10 +114,16 @@ export class FluxoService {
       return this.sendContratosMenuTipo(phoneNumber, menuId);
     } else if (['62', '65', '68', '71', '74', '77', '80', '83'].includes(menuId)) {
       return this.sendPetiçõesIniciais(phoneNumber, menuId)
-    } else if (['63', '66', '69', '72', '75', '78', '81', '84']) {
+    } else if (['63', '66', '69', '72', '75', '78', '81', '84'].includes(menuId)) {
       return this.sendPeticoesIntermediarias(phoneNumber, menuId)
-    } else if (['64', '67', '70', '73', '76', '79', '82', '85']) {
+    } else if (['64', '67', '70', '73', '76', '79', '82', '85'].includes(menuId)) {
       return this.sendRecursos(phoneNumber, menuId)
+    } else if (peticoesIniciais.includes(menuId)) {
+      return this.pecasService.sendPeticaoInicial()
+    } else if (peticoesIntermediarias.includes(menuId)) {
+      return this.pecasService.sendPeticaoIntermediaria()
+    } else if (recursos.includes(menuId)) {
+      return this.pecasService.sendRecurso()
     }
   }
   async sendAuxiliarJuridicoMenu(phoneNumber: string) {

@@ -554,17 +554,17 @@ export class RecursoService {
                                     title: 'Recurso Especial',
                                 },
                                 {
-                                    id: '244',
+                                    id: '245',
                                     title: 'Recurso Extraord.',
                                     description: 'Recurso extraordinário'
                                 },
                                 {
-                                    id: '244',
+                                    id: '246',
                                     title: 'A. em Rec. E. / Ext.',
                                     description: 'Agravo em recurso especial ou extraordinário'
                                 },
                                 {
-                                    id: '244',
+                                    id: '247',
                                     title: 'Embargos de Diverg.',
                                     description: 'Embargos de divergência'
                                 }
