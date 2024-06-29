@@ -1,10 +1,12 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import axios from 'axios';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
+const auth =
+  'EAARMCGe1MUcBO94QEcOVEIAhTrdcGIIePzZC4L4yHs2Vg2GjRxkshxW7xc4iOwWeju64MhOYK7TKDKGVYOwUlf26OtLtAksxerWfxZA1RltKBADw0wnkwVM9Tc6ObynJvTwHwYhYVsLSKjjCPX95aYggrVWHHJ9cheAHl5GOB3fkG4ZCI5UUDvzf5wS9a1EGsVZAoUYtZAHrRE1ZAIeMoZD';
 
 @Injectable()
 export class RecursosTributariosService {
-  constructor() { }
+  constructor() {}
 
   async sendApelacao(phoneNumber: string) {
     if (!phoneNumber) {
@@ -19,8 +21,7 @@ export class RecursosTributariosService {
       },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
+      Authorization: auth,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -57,8 +58,7 @@ export class RecursosTributariosService {
       },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
+      Authorization: auth,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -95,8 +95,7 @@ export class RecursosTributariosService {
       },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
+      Authorization: auth,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -133,8 +132,7 @@ export class RecursosTributariosService {
       },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
+      Authorization: auth,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -171,8 +169,7 @@ export class RecursosTributariosService {
       },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
+      Authorization: auth,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -209,8 +206,7 @@ export class RecursosTributariosService {
       },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
+      Authorization: auth,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -247,8 +243,7 @@ export class RecursosTributariosService {
       },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
+      Authorization: auth,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -285,8 +280,7 @@ export class RecursosTributariosService {
       },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
+      Authorization: auth,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -323,8 +317,7 @@ export class RecursosTributariosService {
       },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
+      Authorization: auth,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {

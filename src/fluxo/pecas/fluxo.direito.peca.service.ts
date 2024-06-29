@@ -1,10 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
+const auth =
+  'Bearer EAARMCGe1MUcBO94QEcOVEIAhTrdcGIIePzZC4L4yHs2Vg2GjRxkshxW7xc4iOwWeju64MhOYK7TKDKGVYOwUlf26OtLtAksxerWfxZA1RltKBADw0wnkwVM9Tc6ObynJvTwHwYhYVsLSKjjCPX95aYggrVWHHJ9cheAHl5GOB3fkG4ZCI5UUDvzf5wS9a1EGsVZAoUYtZAHrRE1ZAIeMoZD';
 
 @Injectable()
 export class FluxoDireitoPecaService {
-  constructor() { }
+  constructor() {}
   async sendPecaDireitoCivil(phoneNumber: string) {
     const message = {
       recipient_type: 'individual',
@@ -43,8 +45,7 @@ export class FluxoDireitoPecaService {
 
     try {
       const headers = {
-        Authorization:
-          'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
+        Authorization: auth,
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
@@ -92,8 +93,7 @@ export class FluxoDireitoPecaService {
 
     try {
       const headers = {
-        Authorization:
-          'Bearer EAARMCGe1MUcBO2khquDWAFbZAx7cwKGPbK96IlVIPFIUQXPvFNdwL9gIclSAzcyBcB0bxMtp0s1UWRTLtp1oxPSZAB7knwgKUVc2TSUVNMkGgwQrewZAYZAzdpq9bHrbcFHUZCNg9UR82oqNBNQYx5G20PHSWNA1LIQVLcECtYXgO100IQJsg96KA3tVnGepbH4HMYNc7uAgCqsrDI7wZD',
+        Authorization: auth,
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
@@ -141,8 +141,7 @@ export class FluxoDireitoPecaService {
 
     try {
       const headers = {
-        Authorization:
-          'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
+        Authorization: auth,
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
@@ -190,8 +189,7 @@ export class FluxoDireitoPecaService {
 
     try {
       const headers = {
-        Authorization:
-          'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
+        Authorization: auth,
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
@@ -239,8 +237,7 @@ export class FluxoDireitoPecaService {
 
     try {
       const headers = {
-        Authorization:
-          'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
+        Authorization: auth,
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
@@ -288,8 +285,7 @@ export class FluxoDireitoPecaService {
 
     try {
       const headers = {
-        Authorization:
-          'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
+        Authorization: auth,
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
@@ -337,8 +333,7 @@ export class FluxoDireitoPecaService {
 
     try {
       const headers = {
-        Authorization:
-          'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
+        Authorization: auth,
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
@@ -386,8 +381,7 @@ export class FluxoDireitoPecaService {
 
     try {
       const headers = {
-        Authorization:
-          'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
+        Authorization: auth,
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
