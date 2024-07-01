@@ -3,13 +3,9 @@ import axios from 'axios';
 import FormData from 'form-data';
 import { promises as fs } from 'fs';
 import { FluxoService } from 'src/fluxo/fluxo.service';
-
 const existingAssistantId = 'asst_k3hihCq0BbmquqRptSf8J858';
 const existingVectorStoreId = 'vs_VkV662jbqd9Rigx9SQIB3hdA';
-const access_token =
-  'Bearer EAARMCGe1MUcBO2khquDWAFbZAx7cwKGPbK96IlVIPFIUQXPvFNdwL9gIclSAzcyBcB0bxMtp0s1UWRTLtp1oxPSZAB7knwgKUVc2TSUVNMkGgwQrewZAYZAzdpq9bHrbcFHUZCNg9UR82oqNBNQYx5G20PHSWNA1LIQVLcECtYXgO100IQJsg96KA3tVnGepbH4HMYNc7uAgCqsrDI7wZD';
-const openai_key =
-  'Bearer sk-proj-Az96Q8yXAonC8lEBq0mLT3BlbkFJcWClrLaidIdCQYJiBpZA';
+
 
 @Injectable()
 export class WebhookService {
@@ -21,14 +17,17 @@ export class WebhookService {
     'boa tarde',
     'ola, estagiario',
   ];
-
-  constructor(private fluxoService: FluxoService) {}
+  constructor(private fluxoService: FluxoService) { }
 
   async processMessage(event: any): Promise<any> {
     try {
       const body = JSON.parse(event.body);
       const message = body.entry[0].changes[0].value.messages[0];
       const senderNumber = message.from;
+
+      if (!body || !body.entry || !body.entry[0] || !body.entry[0].changes || !body.entry[0].changes[0] || !body.entry[0].changes[0].value || !body.entry[0].changes[0].value.messages) {
+        throw new Error('Invalid message format');
+      }
 
       if (message.document) {
         const { threadId, runId, sender } = await this.processDocument(
@@ -100,7 +99,7 @@ export class WebhookService {
 
     const response = await axios.post('https://api.openai.com/v1/files', form, {
       headers: {
-        Authorization: openai_key,
+        Authorization: process.env.OPENAI_KEY,
         'OpenAI-Beta': 'assistants=v2',
         ...form.getHeaders(),
       },
@@ -116,7 +115,7 @@ export class WebhookService {
       { file_id: fileId },
       {
         headers: {
-          Authorization: openai_key,
+          Authorization: process.env.OPENAI_KEY,
           'Content-Type': 'application/json',
           'OpenAI-Beta': 'assistants=v2',
         },
@@ -151,7 +150,7 @@ export class WebhookService {
       {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: openai_key,
+          Authorization: process.env.OPENAI_KEY,
           'OpenAI-Beta': 'assistants=v2',
         },
       },
@@ -168,7 +167,7 @@ export class WebhookService {
       {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: openai_key,
+          Authorization: process.env.OPENAI_KEY,
           'OpenAI-Beta': 'assistants=v2',
         },
       },
@@ -191,7 +190,7 @@ export class WebhookService {
       form,
       {
         headers: {
-          Authorization: openai_key,
+          Authorization: process.env.OPENAI_KEY,
           ...form.getHeaders(),
         },
       },
@@ -217,12 +216,12 @@ export class WebhookService {
 
       const urlDownload = `https://graph.facebook.com/v14.0/${documentId}`;
       const documentResponse = await axios.get(urlDownload, {
-        headers: { Authorization: access_token },
+        headers: { Authorization: process.env.ACCESS_TOKEN },
       });
       const documentData = documentResponse.data;
       const fileUrl = documentData.url;
       const fileResponse = await axios.get(fileUrl, {
-        headers: { Authorization: access_token },
+        headers: { Authorization: process.env.ACCESS_TOKEN },
         responseType: 'arraybuffer',
       });
 
@@ -259,8 +258,7 @@ export class WebhookService {
     const urlDownload = `https://graph.facebook.com/v14.0/${audioId}`;
     const audioResponse = await axios.get(urlDownload, {
       headers: {
-        Authorization:
-          'Bearer EAARMCGe1MUcBOzNDrytFoDd0aad954W7PocOQa10C8cxGsB35ZBlx71Mt5Dmyl8PhCN68FffPOuAhrXIGQtZAAr8Q9Cf3fpOsoCtGah2ZBVHAU5n8aTVQCR3d9hTsQbccnBpKVVXYR7ZCOnrocsJIiBAIBAPayRqrRMGShoxYTHZBVeA6JJnnHcXjTwCZBe0dcOKuLVuHUKlI6JBsKI1sZD',
+        Authorization: process.env.ACCESS_TOKEN
       },
     });
 
@@ -269,8 +267,7 @@ export class WebhookService {
 
     const fileResponse = await axios.get(fileUrl, {
       headers: {
-        Authorization:
-          'Bearer EAARMCGe1MUcBOzNDrytFoDd0aad954W7PocOQa10C8cxGsB35ZBlx71Mt5Dmyl8PhCN68FffPOuAhrXIGQtZAAr8Q9Cf3fpOsoCtGah2ZBVHAU5n8aTVQCR3d9hTsQbccnBpKVVXYR7ZCOnrocsJIiBAIBAPayRqrRMGShoxYTHZBVeA6JJnnHcXjTwCZBe0dcOKuLVuHUKlI6JBsKI1sZD',
+        Authorization: process.env.ACCESS_TOKEN
       },
       responseType: 'arraybuffer',
     });

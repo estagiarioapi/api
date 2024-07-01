@@ -1,12 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
-const auth =
-  'Bearer EAARMCGe1MUcBO94QEcOVEIAhTrdcGIIePzZC4L4yHs2Vg2GjRxkshxW7xc4iOwWeju64MhOYK7TKDKGVYOwUlf26OtLtAksxerWfxZA1RltKBADw0wnkwVM9Tc6ObynJvTwHwYhYVsLSKjjCPX95aYggrVWHHJ9cheAHl5GOB3fkG4ZCI5UUDvzf5wS9a1EGsVZAoUYtZAHrRE1ZAIeMoZD';
 
 @Injectable()
 export class PeticaoInicialService {
-  constructor() {}
+  constructor() { }
   async sendDireitoCivil(phoneNumber: string) {
     const message = {
       recipient_type: 'individual',
@@ -78,7 +76,7 @@ export class PeticaoInicialService {
     };
     try {
       const headers = {
-        Authorization: auth,
+        Authorization: process.env.ACCESS_TOKEN,
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
@@ -154,7 +152,7 @@ export class PeticaoInicialService {
     };
     try {
       const headers = {
-        Authorization: auth,
+        Authorization: process.env.ACCESS_TOKEN,
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
@@ -206,7 +204,7 @@ export class PeticaoInicialService {
     };
     try {
       const headers = {
-        Authorization: auth,
+        Authorization: process.env.ACCESS_TOKEN,
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
@@ -272,7 +270,7 @@ export class PeticaoInicialService {
     };
     try {
       const headers = {
-        Authorization: auth,
+        Authorization: process.env.ACCESS_TOKEN,
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
@@ -326,7 +324,7 @@ export class PeticaoInicialService {
     };
     try {
       const headers = {
-        Authorization: auth,
+        Authorization: process.env.ACCESS_TOKEN,
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
@@ -396,7 +394,7 @@ export class PeticaoInicialService {
     };
     try {
       const headers = {
-        Authorization: auth,
+        Authorization: process.env.ACCESS_TOKEN,
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
@@ -463,7 +461,7 @@ export class PeticaoInicialService {
     };
     try {
       const headers = {
-        Authorization: auth,
+        Authorization: process.env.ACCESS_TOKEN,
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
@@ -545,7 +543,7 @@ export class PeticaoInicialService {
     };
     try {
       const headers = {
-        Authorization: auth,
+        Authorization: process.env.ACCESS_TOKEN,
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });

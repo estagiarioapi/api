@@ -203,8 +203,6 @@ const pecasProcessuaisDireitosMenu = [
   '11',
   '12',
 ];
-const auth =
-  'Bearer EAARMCGe1MUcBO94QEcOVEIAhTrdcGIIePzZC4L4yHs2Vg2GjRxkshxW7xc4iOwWeju64MhOYK7TKDKGVYOwUlf26OtLtAksxerWfxZA1RltKBADw0wnkwVM9Tc6ObynJvTwHwYhYVsLSKjjCPX95aYggrVWHHJ9cheAHl5GOB3fkG4ZCI5UUDvzf5wS9a1EGsVZAoUYtZAHrRE1ZAIeMoZD';
 @Injectable()
 export class FluxoService {
   constructor(
@@ -214,7 +212,7 @@ export class FluxoService {
     private peticaoIntermedService: PeticaoIntermediariaService,
     private recursoService: RecursoService,
     private pecasService: PecasDireitosService,
-  ) {}
+  ) { }
 
   async sendInteractiveMessage(phoneNumber: string) {
     if (!phoneNumber) {
@@ -261,7 +259,7 @@ export class FluxoService {
 
     try {
       const headers = {
-        Authorization: auth,
+        Authorization: process.env.ACCESS_TOKEN,
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
@@ -320,7 +318,7 @@ export class FluxoService {
       },
     ];
     const headers = {
-      Authorization: auth,
+      Authorization: process.env.ACCESS_TOKEN,
 
       'Content-Type': 'application/json',
     };
@@ -358,7 +356,7 @@ export class FluxoService {
     ];
 
     const headers = {
-      Authorization: auth,
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
 
@@ -441,7 +439,7 @@ export class FluxoService {
 
     try {
       const headers = {
-        Authorization: auth,
+        Authorization: process.env.ACCESS_TOKEN,
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
@@ -604,7 +602,7 @@ export class FluxoService {
     };
     try {
       const headers = {
-        Authorization: auth,
+        Authorization: process.env.ACCESS_TOKEN,
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });

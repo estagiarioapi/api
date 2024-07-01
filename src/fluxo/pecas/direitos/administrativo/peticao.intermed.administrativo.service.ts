@@ -1,11 +1,10 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import axios from 'axios';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
-const auth =
-  'Bearer EAARMCGe1MUcBO94QEcOVEIAhTrdcGIIePzZC4L4yHs2Vg2GjRxkshxW7xc4iOwWeju64MhOYK7TKDKGVYOwUlf26OtLtAksxerWfxZA1RltKBADw0wnkwVM9Tc6ObynJvTwHwYhYVsLSKjjCPX95aYggrVWHHJ9cheAHl5GOB3fkG4ZCI5UUDvzf5wS9a1EGsVZAoUYtZAHrRE1ZAIeMoZD';
+
 @Injectable()
 export class PeticaoIntermediariaAdministrativoService {
-  constructor() {}
+  constructor() { }
 
   async sendContestacao(phoneNumber: string) {
     if (!phoneNumber) {
@@ -20,7 +19,7 @@ export class PeticaoIntermediariaAdministrativoService {
       },
     ];
     const headers = {
-      Authorization: auth,
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -57,7 +56,7 @@ export class PeticaoIntermediariaAdministrativoService {
       },
     ];
     const headers = {
-      Authorization: auth,
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -94,7 +93,7 @@ export class PeticaoIntermediariaAdministrativoService {
       },
     ];
     const headers = {
-      Authorization: auth,
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -131,7 +130,7 @@ export class PeticaoIntermediariaAdministrativoService {
       },
     ];
     const headers = {
-      Authorization: auth,
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -168,7 +167,7 @@ export class PeticaoIntermediariaAdministrativoService {
       },
     ];
     const headers = {
-      Authorization: auth,
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -205,7 +204,7 @@ export class PeticaoIntermediariaAdministrativoService {
       },
     ];
     const headers = {
-      Authorization: auth,
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {

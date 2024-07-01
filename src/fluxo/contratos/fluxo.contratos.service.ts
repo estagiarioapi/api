@@ -4,7 +4,7 @@ const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 
 @Injectable()
 export class FluxoContratoService {
-  constructor() {}
+  constructor() { }
   async sendContratosCivis(phoneNumber: string) {
     console.log('passou:', phoneNumber);
     const message = {
@@ -55,8 +55,7 @@ export class FluxoContratoService {
     };
     try {
       const headers = {
-        Authorization:
-          'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
+        Authorization: process.env.ACCESS_TOKEN,
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
@@ -127,9 +126,8 @@ export class FluxoContratoService {
     };
     try {
       const headers = {
-        Authorization:
-          'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
-        'Content-Type': 'application/json',
+        Authorization: process.env.ACCESS_TOKEN
+        , 'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
       return response.status === 200;
@@ -200,9 +198,7 @@ export class FluxoContratoService {
     };
     try {
       const headers = {
-        Authorization:
-          'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
-        'Content-Type': 'application/json',
+        Authorization: process.env.ACCESS_TOKEN, 'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
       return response.status === 200;
@@ -263,9 +259,7 @@ export class FluxoContratoService {
     };
     try {
       const headers = {
-        Authorization:
-          'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
-        'Content-Type': 'application/json',
+        Authorization: process.env.ACCESS_TOKEN, 'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
       return response.status === 200;
@@ -336,9 +330,7 @@ export class FluxoContratoService {
     };
     try {
       const headers = {
-        Authorization:
-          'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
-        'Content-Type': 'application/json',
+        Authorization: process.env.ACCESS_TOKEN, 'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
       return response.status === 200;
@@ -405,9 +397,7 @@ export class FluxoContratoService {
     };
     try {
       const headers = {
-        Authorization:
-          'Bearer EAARMCGe1MUcBO5JU9aM8jA7Dtw0fMfKRR1m1b8DfEX8wfu9iw2rE730Le4mdDDTxgn25rEcVcTApGwodCT7XzbBo9J9ZB4KVcBlcLxCcZBDlY9ZBSZAOhmyEau1cofcgkxAOmBW3uEEkSX2DsswSpi1PmunY5ZBzFYQbAB2BZBM0HLqcuvfYwP5jnOVIM02ySa3xR4m5LtJ595uXQpCeQZD',
-        'Content-Type': 'application/json',
+        Authorization: process.env.ACCESS_TOKEN, 'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
       return response.status === 200;

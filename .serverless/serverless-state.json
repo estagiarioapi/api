@@ -10,6 +10,10 @@
       "logs": {
         "restApi": false
       },
+      "environment": {
+        "ACCESS_TOKEN": "Bearer EAARMCGe1MUcBO2khquDWAFbZAx7cwKGPbK96IlVIPFIUQXPvFNdwL9gIclSAzcyBcB0bxMtp0s1UWRTLtp1oxPSZAB7knwgKUVc2TSUVNMkGgwQrewZAYZAzdpq9bHrbcFHUZCNg9UR82oqNBNQYx5G20PHSWNA1LIQVLcECtYXgO100IQJsg96KA3tVnGepbH4HMYNc7uAgCqsrDI7wZD",
+        "OPENAI_KEY": "Bearer sk-proj-Az96Q8yXAonC8lEBq0mLT3BlbkFJcWClrLaidIdCQYJiBpZA"
+      },
       "stage": "dev",
       "region": "us-east-1",
       "versionFunctions": true,
@@ -223,13 +227,19 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverless-estagiario/dev/1719640629863-2024-06-29T05:57:09.863Z/serverless-estagiario.zip"
+                "S3Key": "serverless/serverless-estagiario/dev/1719856805597-2024-07-01T18:00:05.597Z/serverless-estagiario.zip"
               },
               "Handler": "s_main.handler",
               "Runtime": "nodejs20.x",
               "FunctionName": "serverless-estagiario-dev-main",
               "MemorySize": 1024,
               "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "ACCESS_TOKEN": "Bearer EAARMCGe1MUcBO2khquDWAFbZAx7cwKGPbK96IlVIPFIUQXPvFNdwL9gIclSAzcyBcB0bxMtp0s1UWRTLtp1oxPSZAB7knwgKUVc2TSUVNMkGgwQrewZAYZAzdpq9bHrbcFHUZCNg9UR82oqNBNQYx5G20PHSWNA1LIQVLcECtYXgO100IQJsg96KA3tVnGepbH4HMYNc7uAgCqsrDI7wZD",
+                  "OPENAI_KEY": "Bearer sk-proj-Az96Q8yXAonC8lEBq0mLT3BlbkFJcWClrLaidIdCQYJiBpZA"
+                }
+              },
               "Role": {
                 "Fn::GetAtt": [
                   "IamRoleLambdaExecution",
@@ -241,14 +251,14 @@
               "MainLogGroup"
             ]
           },
-          "MainLambdaVersionU3I5YfJNZy3MCX4s1L6cnpFvJxSaNw3VLUYZNK7Q": {
+          "MainLambdaVersionzzwHa0G3o3llFkUzYAAvPYc6FwwhUGMF62dQNc8A": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "MainLambdaFunction"
               },
-              "CodeSha256": "gaccprV1OT029AcmS87hH6VDuNH6psA87OQ+mGVvfIo="
+              "CodeSha256": "jRAYG8vm5bKRDw5/IxjBRQAhBNGI9xSP8rA4x5oRAJ0="
             }
           },
           "ApiGatewayRestApi": {
@@ -480,7 +490,7 @@
               "MainLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1719640609468": {
+          "ApiGatewayDeployment1719856779501": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -556,7 +566,7 @@
           "MainLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "MainLambdaVersionU3I5YfJNZy3MCX4s1L6cnpFvJxSaNw3VLUYZNK7Q"
+              "Ref": "MainLambdaVersionzzwHa0G3o3llFkUzYAAvPYc6FwwhUGMF62dQNc8A"
             },
             "Export": {
               "Name": "sls-serverless-estagiario-dev-MainLambdaFunctionQualifiedArn"
@@ -717,7 +727,7 @@
         "timeout": 6,
         "runtime": "nodejs20.x",
         "vpc": {},
-        "versionLogicalId": "MainLambdaVersionU3I5YfJNZy3MCX4s1L6cnpFvJxSaNw3VLUYZNK7Q"
+        "versionLogicalId": "MainLambdaVersionzzwHa0G3o3llFkUzYAAvPYc6FwwhUGMF62dQNc8A"
       }
     },
     "configValidationMode": "warn",
@@ -726,6 +736,7 @@
       "org": "estagiario",
       "app": "serverless-estagiario",
       "service": "serverless-estagiario",
+      "useDotenv": true,
       "plugins": {
         "$ref": "$[\"service\"][\"plugins\"]"
       },
@@ -743,10 +754,10 @@
     "isDashboardAppPreconfigured": true,
     "orgUid": "388e10d8-ee1a-47ed-8f4d-f589cd4741e5",
     "appUid": "GGFl2VKqNhq1mmB3lK",
-    "artifact": "C:\\Users\\Otavio\\Documents\\GitHub\\api\\.serverless\\serverless-estagiario.zip"
+    "artifact": "C:\\Users\\ddeli\\OneDrive\\Documentos\\Git\\api\\.serverless\\serverless-estagiario.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/serverless-estagiario/dev/1719640629863-2024-06-29T05:57:09.863Z",
+    "artifactDirectoryName": "serverless/serverless-estagiario/dev/1719856805597-2024-07-01T18:00:05.597Z",
     "artifact": "serverless-estagiario.zip"
   }
 }

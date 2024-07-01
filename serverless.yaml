@@ -2,6 +2,8 @@ org: estagiario
 app: serverless-estagiario
 service: serverless-estagiario
 
+useDotenv: true
+
 plugins:
   - serverless-offline
 
@@ -10,6 +12,9 @@ provider:
   runtime: nodejs20.x
   logs:
     restApi: false
+  environment:
+    ACCESS_TOKEN: ${env:ACCESS_TOKEN}
+    OPENAI_KEY: ${env:OPENAI_KEY}
 
 functions:
   main:
