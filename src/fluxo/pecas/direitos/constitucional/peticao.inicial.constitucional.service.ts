@@ -7,6 +7,7 @@ export class PeticaoInicialConstitucionalService {
   constructor() { }
 
   async sendMandadoDeSeguranca(phoneNumber: string) {
+    const assistant_id = 'asst_dzAbz90bmKWq1ogM2AaJ60xI'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -44,6 +45,7 @@ export class PeticaoInicialConstitucionalService {
   }
 
   async sendAcaoPopular(phoneNumber: string) {
+    const assistant_id = 'asst_nBIuikuKAlO8WW5PVzol9G0B'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -81,6 +83,7 @@ export class PeticaoInicialConstitucionalService {
   }
 
   async sendMandadoInjuncaoColetivo(phoneNumber: string) {
+    const assistant_id = 'asst_oIoHKcFSTaeBx0QN079Ah8aF'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -118,6 +121,7 @@ export class PeticaoInicialConstitucionalService {
   }
 
   async sendAcaoCivilPublica(phoneNumber: string) {
+    const assistant_id = 'asst_mLBlJaMlTK02L2iaO9NXDQWB'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -155,6 +159,7 @@ export class PeticaoInicialConstitucionalService {
   }
 
   async sendHabeasData(phoneNumber: string) {
+    const assistant_id = 'asst_Z4sfY0hRdQKD7FOmV8PEn4YQ'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -192,6 +197,7 @@ export class PeticaoInicialConstitucionalService {
   }
 
   async sendMandadoDeSegurançaColetivo(phoneNumber: string) {
+    const assistant_id = 'asst_o3r9hg3GZv1k4qO4bwVYZYAY'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -229,6 +235,7 @@ export class PeticaoInicialConstitucionalService {
   }
 
   async sendReclamacaoConstitucional(phoneNumber: string) {
+    const assistant_id = 'asst_rdUApTBuUc2sE4otZgckwygK'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }

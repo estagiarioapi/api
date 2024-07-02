@@ -7,6 +7,7 @@ export class PeticaoInicialPenalService {
   constructor() { }
 
   async sendQueixaCrime(phoneNumber: string) {
+    const assistant_id = 'asst_pVHEFT2HPLbLSqlDG82w4hNP'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -44,6 +45,7 @@ export class PeticaoInicialPenalService {
   }
 
   async sendHabeasCorpus(phoneNumber: string) {
+    const assistant_id = 'asst_0v0KUCPXbsUZCh8k1ITrHwBN'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -81,6 +83,7 @@ export class PeticaoInicialPenalService {
   }
 
   async sendRevisaoCriminal(phoneNumber: string) {
+    const assistant_id = 'asst_Nqlhb28gQMsgTMHW8Adu2RNK'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -118,6 +121,7 @@ export class PeticaoInicialPenalService {
   }
 
   async sendRelaxamentoDePrisao(phoneNumber: string) {
+    const assistant_id = 'asst_my5trJ3qLYKCEhxOsQVixZCV'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }

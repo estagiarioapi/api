@@ -7,6 +7,7 @@ export class PeticaoIntermediariaPenalService {
   constructor() { }
 
   async sendRepostaAcusacao(phoneNumber: string) {
+    const assistant_id = 'asst_Cn6UN7CvL7H6e9D26NA9Uo7j'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -44,6 +45,7 @@ export class PeticaoIntermediariaPenalService {
   }
 
   async sendMemoriais(phoneNumber: string) {
+    const assistant_id = 'asst_S1C1hTUOyQtekcOnfmiyfo70'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }

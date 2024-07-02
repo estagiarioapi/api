@@ -6,6 +6,7 @@ export class RecursosAdministrativoService {
   constructor() { }
 
   async sendApelacao(phoneNumber: string) {
+    const assistant_id = 'asst_PLSdSVnfmFq5D9PNXFfcBjFY'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -43,6 +44,7 @@ export class RecursosAdministrativoService {
   }
 
   async sendRecursoOrdinario(phoneNumber: string) {
+    const assistant_id = 'asst_LgoOJ1CnZC2zgnxiOCdapmrK'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -80,6 +82,7 @@ export class RecursosAdministrativoService {
   }
 
   async sendAgravoInstrumento(phoneNumber: string) {
+    const assistant_id = 'asst_ScK6CuMCV7WvyK36IaRzFQ6b'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -117,6 +120,7 @@ export class RecursosAdministrativoService {
   }
 
   async sendAgravoInterno(phoneNumber: string) {
+    const assistant_id = 'asst_3hJWiPd7DRSMWAhnwVkZ9nUc'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -154,6 +158,7 @@ export class RecursosAdministrativoService {
   }
 
   async sendRecursoExtraordinario(phoneNumber: string) {
+    const assistant_id = 'asst_kbEbgniVAw8O4O2tSK3FBLUl'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -191,6 +196,7 @@ export class RecursosAdministrativoService {
   }
 
   async sendRecursoEspecialExtraordinario(phoneNumber: string) {
+    const assistant_id = 'asst_DmNqn6T03tUD7DBGQwdzsK3f'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -228,6 +234,7 @@ export class RecursosAdministrativoService {
   }
 
   async sendRecursoEspecial(phoneNumber: string) {
+    const assistant_id = 'asst_TCe89Rkzd3e8SZY0xbRBhOMa'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }

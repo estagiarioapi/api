@@ -7,6 +7,7 @@ export class PeticaoIntermediariaPrevidenciarioService {
   constructor() { }
 
   async sendContestacao(phoneNumber: string) {
+    const assistant_id = 'asst_A9zDvQ5GbfXPGg4T6sZzrpl3'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -44,6 +45,7 @@ export class PeticaoIntermediariaPrevidenciarioService {
   }
 
   async sendImpugContestacao(phoneNumber: string) {
+    const assistant_id = 'asst_aPsAe3tjyDTjg7yzkB7dLGqU'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -80,6 +82,7 @@ export class PeticaoIntermediariaPrevidenciarioService {
   }
 
   async sendContraEmbargosDeclaracao(phoneNumber: string) {
+    const assistant_id = 'asst_DCqAXpuvynEeFlqk8ke9OlVG'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -116,6 +119,7 @@ export class PeticaoIntermediariaPrevidenciarioService {
   }
 
   async sendContraApelacao(phoneNumber: string) {
+    const assistant_id = 'asst_jkcmK8LKqM4H6Or9mo4Pceu6'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -153,6 +157,7 @@ export class PeticaoIntermediariaPrevidenciarioService {
   }
 
   async sendContraAgravoInstrumento(phoneNumber: string) {
+    const assistant_id = 'asst_MwczZTG4EjuwbKwtWTaY5rBY'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -189,6 +194,7 @@ export class PeticaoIntermediariaPrevidenciarioService {
   }
 
   async sendAlegacoesFinais(phoneNumber: string) {
+    const assistant_id = 'asst_lIgv9v6Tk4pjmK78VF5svZqW'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }

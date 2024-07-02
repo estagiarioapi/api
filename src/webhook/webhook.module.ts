@@ -28,7 +28,7 @@ import { RecursosTrabalhoService } from '../fluxo/pecas/direitos/trabalho/recurs
 import { PeticaoInicialTributarioService } from '../fluxo/pecas/direitos/tributario/peticao.inicial.tributario.service';
 import { PeticaoIntermediariaTributarioService } from '../fluxo/pecas/direitos/tributario/peticao.intermed.tributario.service';
 import { RecursosTributariosService } from '../fluxo/pecas/direitos/tributario/recurso.tributario.service';
-import { FluxoDireitoPecaService } from '../fluxo/pecas/fluxo.direito.peca.service';
+import { FluxoDireitoPecaService } from '../fluxo/fluxo.direito.peca.service';
 import { PeticaoIntermediariaService } from '../fluxo/pecas/intermediaria/fluxo.peticao.intermed.service';
 import { WebhookController } from './webhook.controller';
 import { WebhookService } from './webhook.service';
@@ -71,4 +71,4 @@ import { WebhookService } from './webhook.service';
     PecasDireitosService,
   ],
 })
-export class WebhookModule {}
+export class WebhookModule { }

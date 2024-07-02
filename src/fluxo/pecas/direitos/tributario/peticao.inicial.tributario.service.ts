@@ -7,6 +7,7 @@ export class PeticaoInicialTributarioService {
   constructor() { }
 
   async sendMandadoDeSeguranca(phoneNumber: string) {
+    const assistant_id = 'asst_Mub5xQ0Q3OLLhMEClo08H713'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -44,6 +45,7 @@ export class PeticaoInicialTributarioService {
   }
 
   async sendRepeticaoDeIndebito(phoneNumber: string) {
+    const assistant_id = 'asst_su7Xac6vbQsHxncqbcMQjiLT'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -81,6 +83,7 @@ export class PeticaoInicialTributarioService {
   }
 
   async sendAcaoAnulatoria(phoneNumber: string) {
+    const assistant_id = 'asst_pKjHLrt8cPEFtQhCMyBT1NTB'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -118,6 +121,7 @@ export class PeticaoInicialTributarioService {
   }
 
   async sendExcecaoDePreExecutividade(phoneNumber: string) {
+    const assistant_id = 'asst_SM8EcPxUnNNP7b3Uuh8KvQD4'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -155,6 +159,7 @@ export class PeticaoInicialTributarioService {
   }
 
   async sendInexistenciaRelacaoJuridica(phoneNumber: string) {
+    const assistant_id = 'asst_7XfSSzCmn1mjlUPceSclPw9k'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -192,6 +197,7 @@ export class PeticaoInicialTributarioService {
   }
 
   async sendDeclaratoriaAcaoRepeticaoIndebito(phoneNumber: string) {
+    const assistant_id = 'asst_eYHaP0n8n9fd3KfXZOtFHfoU'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -229,6 +235,7 @@ export class PeticaoInicialTributarioService {
   }
 
   async sendEmbargosExecucaoFiscal(phoneNumber: string) {
+    const assistant_id = 'asst_Vl2TfDy1kwGxF0d447zhEOH2'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }

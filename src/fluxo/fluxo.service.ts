@@ -2,10 +2,10 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import axios from 'axios';
 import { FluxoContratoService } from './contratos/fluxo.contratos.service';
 import { PecasDireitosService } from './pecas/direitos/pecas.direitos.service';
-import { FluxoDireitoPecaService } from './pecas/fluxo.direito.peca.service';
 import { PeticaoInicialService } from './pecas/inicial/fluxo.peticao.inicial.service';
 import { PeticaoIntermediariaService } from './pecas/intermediaria/fluxo.peticao.intermed.service';
 import { RecursoService } from './pecas/recurso/fluxo.recurso.service';
+import { FluxoDireitoPecaService } from './pecas/fluxo.direito.peca.service';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 const peticoesIniciais = [
   '85',

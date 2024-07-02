@@ -7,6 +7,7 @@ export class PeticaoInicialAdministrativoService {
   constructor() { }
 
   async sendAcaoOrdinaria(phoneNumber: string) {
+    const assistant_id = 'asst_eqUDB8YUuWY4zkvScNfLSIx1'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -44,6 +45,7 @@ export class PeticaoInicialAdministrativoService {
   }
 
   async sendMandadoDeSeguranca(phoneNumber: string) {
+    const assistant_id = 'asst_OWVpqPQGgKpUVJqJKEUd9qFE'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -81,6 +83,7 @@ export class PeticaoInicialAdministrativoService {
   }
 
   async sendAcaoPopular(phoneNumber: string) {
+    const assistant_id = 'asst_2gFmj5nLKMj03kBAZPhHAeDN'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -118,6 +121,7 @@ export class PeticaoInicialAdministrativoService {
   }
 
   async sendAcaoAnulatoria(phoneNumber: string) {
+    const assistant_id = 'asst_O9KhadDTYS8RzrTtYaOa2M24'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -155,6 +159,7 @@ export class PeticaoInicialAdministrativoService {
   }
 
   async sendAcaoCivilPublica(phoneNumber: string) {
+    const assistant_id = 'asst_0QYz8VNGXNmTx2EXUpasSbxy'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -192,6 +197,7 @@ export class PeticaoInicialAdministrativoService {
   }
 
   async sendAcaoResponsabilidadeCivil(phoneNumber: string) {
+    const assistant_id = 'asst_dHOUzv9gtJClKyozRW1gZ4jq'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -229,6 +235,7 @@ export class PeticaoInicialAdministrativoService {
   }
 
   async sendAcaoDesapropriacaoIndireta(phoneNumber: string) {
+    const assistant_id = 'asst_EDjWcXuxkFanq78ko75dErtd'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
