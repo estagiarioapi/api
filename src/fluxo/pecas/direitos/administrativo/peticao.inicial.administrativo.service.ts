@@ -1,16 +1,22 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import axios from 'axios';
+import { UserService } from 'src/core/integrations/user.service';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 
 @Injectable()
 export class PeticaoInicialAdministrativoService {
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   async sendAcaoOrdinaria(phoneNumber: string) {
-    const assistant_id = 'asst_eqUDB8YUuWY4zkvScNfLSIx1'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
+    const assistant_id = 'asst_eqUDB8YUuWY4zkvScNfLSIx1'
+    const user = await this.userService.findUser(phoneNumber)
+    if (!user) {
+      throw new BadRequestException('user out of database')
+    }
+
     const messages = [
       {
         text: 'Perfeito, chefe! Foi selecionado *Ação Ordinária* A partir disso, preciso que me *descreva o caso*, incluindo em sua descrição as informações que detalham de *forma precisa* o ocorrido, como a *qualificação das partes e os fatos*, para que eu possa entender melhor o seu caso e atender ao seu pedido da melhor maneira possível.',

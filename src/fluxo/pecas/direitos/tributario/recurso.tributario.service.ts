@@ -1,12 +1,13 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import axios from 'axios';
+import { UserService } from 'src/core/integrations/user.service';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 const auth =
   'EAARMCGe1MUcBO94QEcOVEIAhTrdcGIIePzZC4L4yHs2Vg2GjRxkshxW7xc4iOwWeju64MhOYK7TKDKGVYOwUlf26OtLtAksxerWfxZA1RltKBADw0wnkwVM9Tc6ObynJvTwHwYhYVsLSKjjCPX95aYggrVWHHJ9cheAHl5GOB3fkG4ZCI5UUDvzf5wS9a1EGsVZAoUYtZAHrRE1ZAIeMoZD';
 
 @Injectable()
 export class RecursosTributariosService {
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   async sendApelacao(phoneNumber: string) {
     const assistant_id = 'asst_jmpcUnbl9ZMXSDp9LqVcBBeo'

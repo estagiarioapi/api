@@ -1,10 +1,11 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import axios from 'axios';
+import { UserService } from 'src/core/integrations/user.service';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 
 @Injectable()
 export class RecursosTrabalhoService {
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   async sendRecursoOrdinario(phoneNumber: string) {
     const assistant_id = 'asst_d4IchPyIPV0Eh7DvbL795ySv'

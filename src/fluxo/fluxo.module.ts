@@ -27,10 +27,10 @@ import { RecursosTrabalhoService } from './pecas/direitos/trabalho/recurso.traba
 import { PeticaoInicialTributarioService } from './pecas/direitos/tributario/peticao.inicial.tributario.service';
 import { PeticaoIntermediariaTributarioService } from './pecas/direitos/tributario/peticao.intermed.tributario.service';
 import { RecursosTributariosService } from './pecas/direitos/tributario/recurso.tributario.service';
-import { FluxoDireitoPecaService } from './fluxo.direito.peca.service';
 import { PeticaoInicialService } from './pecas/inicial/fluxo.peticao.inicial.service';
 import { PeticaoIntermediariaService } from './pecas/intermediaria/fluxo.peticao.intermed.service';
 import { RecursoService } from './pecas/recurso/fluxo.recurso.service';
+import { FluxoDireitoPecaService } from './pecas/fluxo.direito.peca.service';
 
 @Module({
   providers: [
