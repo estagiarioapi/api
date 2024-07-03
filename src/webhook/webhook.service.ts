@@ -20,7 +20,7 @@ export class WebhookService {
   constructor(
     private fluxoService: FluxoService,
     private userService: UserService,
-  ) {}
+  ) { }
 
   async processMessage(event: any): Promise<any> {
     try {
@@ -327,24 +327,35 @@ export class WebhookService {
         }
 
         const user = await this.userService.findUser(senderNumber);
-        let thread;
+
+        let conversation;
+        let threadCreated;
+        let threadUpdated
+
         if (!user) {
           throw new BadRequestException('user not found in database');
         }
 
-        const conversationOpened =
-          await this.userService.findOpenedConversation(user.id);
-        if (conversationOpened && !conversationOpened.thread_id) {
-          console.log(conversationOpened.assistant_id);
-          thread = await this.userService.createConversationInDb(
-            conversationOpened[0].assistant_id,
+        const conversationOpened = await this.userService.findOpenedConversation(user.id);
+        if (conversationOpened.assistantId && !conversationOpened.threadId) {
+          conversation = await this.userService.createConversationInDb(
+            conversationOpened.assistantId,
             user.id,
           );
-          console.log('thread teste:', thread);
+          console.log('habibi:', conversation)
+          const messageFormatted = message.text.body
+          threadCreated = await this.userService.createConversation(conversationOpened.assistantId, messageFormatted)
+          console.log('thread created:', threadCreated)
+          if (threadCreated) {
+            threadUpdated = await this.userService.updateConversation(conversation.id, threadCreated.thread_id)
+            console.log('threaddedasdasdsa:', conversation.id, threadCreated.thread_id)
+          }
         }
-        if (thread) {
+        console.log('updated thread:', threadUpdated)
+        if (threadUpdated.thread_id) {
+          console.log('new conversation:', conversation)
           const messageFromApi = await this.userService.getMessages(
-            thread.data.thread_id,
+            threadUpdated.thread_id,
             300,
           );
           const message = messageFromApi.respostaGerada;

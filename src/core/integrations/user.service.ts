@@ -39,13 +39,35 @@ export class UserService {
     }
   }
 
+  async updateConversation(id: number, thread_id: string) {
+    if (!id) {
+      throw new BadRequestException('conversation id is required');
+    }
+    const data = {
+      threadId: thread_id,
+    };
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+    const url = `https://datacore-production.up.railway.app/conversation/${id}`;
+    try {
+      const response = await axios.put(url, data, { headers });
+      console.log(response);
+      return response.data
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   async createConversationInDb(assistant_id: string, userId: string) {
+    console.log(assistant_id, userId)
     if (!assistant_id) {
       throw new BadRequestException('assistant_id is required');
     }
     const data = {
       userId,
       assistantId: assistant_id,
+      isActive: true
     };
     const headers = {
       'Content-Type': 'application/json',
@@ -83,8 +105,8 @@ export class UserService {
       throw new BadRequestException('assistant_id is required');
     }
     const data = {
-      assistant_id,
-      message,
+      assistantId: assistant_id,
+      message: message,
     };
     const headers = {
       'Content-Type': 'application/json',
@@ -102,10 +124,10 @@ export class UserService {
 
   async getMessages(thread_id: string, tokens_count: number) {
     if (!thread_id) {
-      throw new BadRequestException('assistant_id is required');
+      throw new BadRequestException('thread_id is required');
     }
     const payload = {
-      thread: thread_id,
+      threadId: thread_id,
       tokens: 300,
     };
     const headers = {
@@ -121,6 +143,7 @@ export class UserService {
         respostaGerada: response.data.isResult,
         tokens: response.data.tokens,
       };
+      console.log('datafinal:', data)
       return data;
     } catch (error) {
       console.error(error);
