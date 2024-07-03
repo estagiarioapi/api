@@ -15,6 +15,7 @@ provider:
   environment:
     ACCESS_TOKEN: ${env:ACCESS_TOKEN}
     OPENAI_KEY: ${env:OPENAI_KEY}
+    DATABASE_URL: ${env:DATABASE_URL}
 
 functions:
   main:
@@ -32,3 +33,11 @@ functions:
       - http:
           method: GET
           path: webhook    
+
+package:
+    exclude:
+    - tests/**
+    - docs/**
+    - .git/**
+    - .vscode/**
+    - node_modules/aws-sdk/**

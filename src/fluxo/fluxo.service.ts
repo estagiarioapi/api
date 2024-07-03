@@ -2,10 +2,10 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import axios from 'axios';
 import { FluxoContratoService } from './contratos/fluxo.contratos.service';
 import { PecasDireitosService } from './pecas/direitos/pecas.direitos.service';
+import { FluxoDireitoPecaService } from './pecas/fluxo.direito.peca.service';
 import { PeticaoInicialService } from './pecas/inicial/fluxo.peticao.inicial.service';
 import { PeticaoIntermediariaService } from './pecas/intermediaria/fluxo.peticao.intermed.service';
 import { RecursoService } from './pecas/recurso/fluxo.recurso.service';
-import { FluxoDireitoPecaService } from './pecas/fluxo.direito.peca.service';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 const peticoesIniciais = [
   '85',
@@ -189,7 +189,7 @@ const recursos = [
   '257',
 ];
 
-const menuRecursos = ['64', '67', '70', '73', '76', '79', '82', '85'];
+const menuRecursos = ['64', '67', '70', '73', '76', '79', '82'];
 const menuPeticaoIntermed = ['63', '66', '69', '72', '75', '78', '81', '84'];
 const menuPeticaoInicial = ['62', '65', '68', '71', '74', '77', '80', '83'];
 const tipoContratoMenu = ['13', '14', '15', '16', '17', '18'];
@@ -203,6 +203,8 @@ const pecasProcessuaisDireitosMenu = [
   '11',
   '12',
 ];
+
+console.log('token:', process.env.ACCESS_TOKEN);
 @Injectable()
 export class FluxoService {
   constructor(
@@ -212,7 +214,7 @@ export class FluxoService {
     private peticaoIntermedService: PeticaoIntermediariaService,
     private recursoService: RecursoService,
     private pecasService: PecasDireitosService,
-  ) { }
+  ) {}
 
   async sendInteractiveMessage(phoneNumber: string) {
     if (!phoneNumber) {
@@ -259,7 +261,8 @@ export class FluxoService {
 
     try {
       const headers = {
-        Authorization: process.env.ACCESS_TOKEN,
+        Authorization:
+          'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
@@ -318,7 +321,8 @@ export class FluxoService {
       },
     ];
     const headers = {
-      Authorization: process.env.ACCESS_TOKEN,
+      Authorization:
+        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
 
       'Content-Type': 'application/json',
     };
@@ -356,7 +360,8 @@ export class FluxoService {
     ];
 
     const headers = {
-      Authorization: process.env.ACCESS_TOKEN,
+      Authorization:
+        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
       'Content-Type': 'application/json',
     };
 
@@ -439,7 +444,8 @@ export class FluxoService {
 
     try {
       const headers = {
-        Authorization: process.env.ACCESS_TOKEN,
+        Authorization:
+          'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
@@ -545,7 +551,7 @@ export class FluxoService {
       return this.recursoService.sendDireitoTributario(phoneNumber);
     } else if (menuId === '82') {
       return this.recursoService.sendDireitoAdministrativo(phoneNumber);
-    } else if (menuId === '85') {
+    } else if (menuId === '84') {
       return this.recursoService.sendDireitoPrevidenciario(phoneNumber);
     }
   }
@@ -602,7 +608,8 @@ export class FluxoService {
     };
     try {
       const headers = {
-        Authorization: process.env.ACCESS_TOKEN,
+        Authorization:
+          'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });

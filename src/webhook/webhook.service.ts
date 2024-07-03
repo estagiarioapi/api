@@ -1,11 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import axios from 'axios';
 import FormData from 'form-data';
 import { promises as fs } from 'fs';
 import { FluxoService } from 'src/fluxo/fluxo.service';
+import { UserService } from '../core/integrations/user.service';
 const existingAssistantId = 'asst_k3hihCq0BbmquqRptSf8J858';
 const existingVectorStoreId = 'vs_VkV662jbqd9Rigx9SQIB3hdA';
-
 
 @Injectable()
 export class WebhookService {
@@ -17,16 +17,20 @@ export class WebhookService {
     'boa tarde',
     'ola, estagiario',
   ];
-  constructor(private fluxoService: FluxoService) { }
+  constructor(
+    private fluxoService: FluxoService,
+    private userService: UserService,
+  ) {}
 
   async processMessage(event: any): Promise<any> {
     try {
       const body = JSON.parse(event.body);
       const message = body.entry[0].changes[0].value.messages[0];
       const senderNumber = message.from;
-
-      if (!body || !body.entry || !body.entry[0] || !body.entry[0].changes || !body.entry[0].changes[0] || !body.entry[0].changes[0].value || !body.entry[0].changes[0].value.messages) {
-        throw new Error('Invalid message format');
+      const user = await this.userService.findUser(senderNumber);
+      let thread;
+      if (!user) {
+        throw new BadRequestException('user not found in database');
       }
 
       if (message.document) {
@@ -258,7 +262,7 @@ export class WebhookService {
     const urlDownload = `https://graph.facebook.com/v14.0/${audioId}`;
     const audioResponse = await axios.get(urlDownload, {
       headers: {
-        Authorization: process.env.ACCESS_TOKEN
+        Authorization: process.env.ACCESS_TOKEN,
       },
     });
 
@@ -267,7 +271,7 @@ export class WebhookService {
 
     const fileResponse = await axios.get(fileUrl, {
       headers: {
-        Authorization: process.env.ACCESS_TOKEN
+        Authorization: process.env.ACCESS_TOKEN,
       },
       responseType: 'arraybuffer',
     });
@@ -320,6 +324,32 @@ export class WebhookService {
 
         if (this.detectMenu(text)) {
           return this.fluxoService.sendInteractiveMessage(sender);
+        }
+
+        const user = await this.userService.findUser(senderNumber);
+        let thread;
+        if (!user) {
+          throw new BadRequestException('user not found in database');
+        }
+
+        const conversationOpened =
+          await this.userService.findOpenedConversation(user.id);
+        if (conversationOpened && !conversationOpened.thread_id) {
+          console.log(conversationOpened.assistant_id);
+          thread = await this.userService.createConversationInDb(
+            conversationOpened[0].assistant_id,
+            user.id,
+          );
+          console.log('thread teste:', thread);
+        }
+        if (thread) {
+          const messageFromApi = await this.userService.getMessages(
+            thread.data.thread_id,
+            300,
+          );
+          const message = messageFromApi.respostaGerada;
+          const response = messageFromApi.response;
+          console.log('getMessage teste:', messageFromApi);
         }
 
         return {

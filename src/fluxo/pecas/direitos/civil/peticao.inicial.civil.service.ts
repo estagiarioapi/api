@@ -5,12 +5,16 @@ const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 
 @Injectable()
 export class PeticaoIncialCivilService {
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {}
 
   async sendAcaoDeAlimentos(phoneNumber: string) {
-    const assistant_id = 'asst_xEVsGvt1cFCO68heNNLYBGVP'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
+    }
+    const assistant_id = 'asst_eqUDB8YUuWY4zkvScNfLSIx1';
+    const user = await this.userService.findUser(phoneNumber);
+    if (!user) {
+      throw new BadRequestException('user out of database');
     }
     const messages = [
       {
@@ -21,7 +25,8 @@ export class PeticaoIncialCivilService {
       },
     ];
     const headers = {
-      Authorization: process.env.ACCESS_TOKEN,
+      Authorization:
+        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -42,11 +47,17 @@ export class PeticaoIncialCivilService {
       }
     }
 
+    const updateUserData = await this.userService.createConversationInDb(
+      assistant_id,
+      user.id,
+    );
+    console.log(updateUserData);
+
     return true;
   }
 
   async sendAcaoIndenizatoria(phoneNumber: string) {
-    const assistant_id = 'asst_0SsA0NJnUWcIYdUVLCcOK0Q8'
+    const assistant_id = 'asst_0SsA0NJnUWcIYdUVLCcOK0Q8';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -84,7 +95,7 @@ export class PeticaoIncialCivilService {
   }
 
   async sendAcaoMonitoria(phoneNumber: string) {
-    const assistant_id = 'asst_6dhws4RJ8ZnMyQ5N5G9hh5f3'
+    const assistant_id = 'asst_6dhws4RJ8ZnMyQ5N5G9hh5f3';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -122,7 +133,7 @@ export class PeticaoIncialCivilService {
   }
 
   async sendAntecipacaoDeTutela(phoneNumber: string) {
-    const assistant_id = 'asst_E91R7jttddFU4oc9mYzz0gku'
+    const assistant_id = 'asst_E91R7jttddFU4oc9mYzz0gku';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -160,7 +171,7 @@ export class PeticaoIncialCivilService {
   }
 
   async sendExecPorQuantia(phoneNumber: string) {
-    const assistant_id = 'asst_mTHfExc64lkvcFsiKB0PZRij'
+    const assistant_id = 'asst_mTHfExc64lkvcFsiKB0PZRij';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -198,7 +209,7 @@ export class PeticaoIncialCivilService {
   }
 
   async sendAcaoDeDespejo(phoneNumber: string) {
-    const assistant_id = 'asst_ROeDQdPVYgPYipsjis7L700J'
+    const assistant_id = 'asst_ROeDQdPVYgPYipsjis7L700J';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -236,7 +247,7 @@ export class PeticaoIncialCivilService {
   }
 
   async sendAcaoDeCobrança(phoneNumber: string) {
-    const assistant_id = 'asst_vhe7I1ARhzAZDac1jsfwKW6i'
+    const assistant_id = 'asst_vhe7I1ARhzAZDac1jsfwKW6i';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -274,7 +285,7 @@ export class PeticaoIncialCivilService {
   }
 
   async sendDeclaratoriaInexistenciaDebito(phoneNumber: string) {
-    const assistant_id = 'asst_PyuOATU7aXTH5jhISZ6WPrrN'
+    const assistant_id = 'asst_PyuOATU7aXTH5jhISZ6WPrrN';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -312,7 +323,7 @@ export class PeticaoIncialCivilService {
   }
 
   async sendObrigacaoFazer(phoneNumber: string) {
-    const assistant_id = 'asst_ike365wwVWgTdoXmJxU3UY6G'
+    const assistant_id = 'asst_ike365wwVWgTdoXmJxU3UY6G';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -350,7 +361,7 @@ export class PeticaoIncialCivilService {
   }
 
   async sendPeticaoInicial(phoneNumber: string) {
-    const assistant_id = 'asst_bA2jjqnf4lZATRUSX7WIBb22'
+    const assistant_id = 'asst_bA2jjqnf4lZATRUSX7WIBb22';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -386,4 +397,7 @@ export class PeticaoIncialCivilService {
 
     return true;
   }
+}
+function createConversation() {
+  throw new Error('Function not implemented.');
 }

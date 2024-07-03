@@ -11,8 +11,9 @@
         "restApi": false
       },
       "environment": {
-        "ACCESS_TOKEN": "Bearer EAARMCGe1MUcBO2khquDWAFbZAx7cwKGPbK96IlVIPFIUQXPvFNdwL9gIclSAzcyBcB0bxMtp0s1UWRTLtp1oxPSZAB7knwgKUVc2TSUVNMkGgwQrewZAYZAzdpq9bHrbcFHUZCNg9UR82oqNBNQYx5G20PHSWNA1LIQVLcECtYXgO100IQJsg96KA3tVnGepbH4HMYNc7uAgCqsrDI7wZD",
-        "OPENAI_KEY": "Bearer sk-proj-Az96Q8yXAonC8lEBq0mLT3BlbkFJcWClrLaidIdCQYJiBpZA"
+        "ACCESS_TOKEN": "'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh';",
+        "OPENAI_KEY": "'Bearer sk-proj-Az96Q8yXAonC8lEBq0mLT3BlbkFJcWClrLaidIdCQYJiBpZA';",
+        "DATABASE_URL": "postgresql://postgres:PJ99rs1YO8qf@estagiario.c94gy62qez1d.us-east-1.rds.amazonaws.com:5432/estagiario?schema=public"
       },
       "stage": "dev",
       "region": "us-east-1",
@@ -227,7 +228,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverless-estagiario/dev/1719856805597-2024-07-01T18:00:05.597Z/serverless-estagiario.zip"
+                "S3Key": "serverless/serverless-estagiario/dev/1719981937202-2024-07-03T04:45:37.202Z/serverless-estagiario.zip"
               },
               "Handler": "s_main.handler",
               "Runtime": "nodejs20.x",
@@ -236,8 +237,9 @@
               "Timeout": 6,
               "Environment": {
                 "Variables": {
-                  "ACCESS_TOKEN": "Bearer EAARMCGe1MUcBO2khquDWAFbZAx7cwKGPbK96IlVIPFIUQXPvFNdwL9gIclSAzcyBcB0bxMtp0s1UWRTLtp1oxPSZAB7knwgKUVc2TSUVNMkGgwQrewZAYZAzdpq9bHrbcFHUZCNg9UR82oqNBNQYx5G20PHSWNA1LIQVLcECtYXgO100IQJsg96KA3tVnGepbH4HMYNc7uAgCqsrDI7wZD",
-                  "OPENAI_KEY": "Bearer sk-proj-Az96Q8yXAonC8lEBq0mLT3BlbkFJcWClrLaidIdCQYJiBpZA"
+                  "ACCESS_TOKEN": "'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh';",
+                  "OPENAI_KEY": "'Bearer sk-proj-Az96Q8yXAonC8lEBq0mLT3BlbkFJcWClrLaidIdCQYJiBpZA';",
+                  "DATABASE_URL": "postgresql://postgres:PJ99rs1YO8qf@estagiario.c94gy62qez1d.us-east-1.rds.amazonaws.com:5432/estagiario?schema=public"
                 }
               },
               "Role": {
@@ -251,14 +253,14 @@
               "MainLogGroup"
             ]
           },
-          "MainLambdaVersionzzwHa0G3o3llFkUzYAAvPYc6FwwhUGMF62dQNc8A": {
+          "MainLambdaVersionQYauu6ilnNizg5IbA8cwdgSalIZ9Y4nZtOSN3oiJ0": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "MainLambdaFunction"
               },
-              "CodeSha256": "jRAYG8vm5bKRDw5/IxjBRQAhBNGI9xSP8rA4x5oRAJ0="
+              "CodeSha256": "FaIw++rlZUq3C3N/XqlQ/YvE1IfLuaYXIq3sdsc5+Xc="
             }
           },
           "ApiGatewayRestApi": {
@@ -490,7 +492,7 @@
               "MainLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1719856779501": {
+          "ApiGatewayDeployment1719981916383": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -566,7 +568,7 @@
           "MainLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "MainLambdaVersionzzwHa0G3o3llFkUzYAAvPYc6FwwhUGMF62dQNc8A"
+              "Ref": "MainLambdaVersionQYauu6ilnNizg5IbA8cwdgSalIZ9Y4nZtOSN3oiJ0"
             },
             "Export": {
               "Name": "sls-serverless-estagiario-dev-MainLambdaFunctionQualifiedArn"
@@ -727,7 +729,7 @@
         "timeout": 6,
         "runtime": "nodejs20.x",
         "vpc": {},
-        "versionLogicalId": "MainLambdaVersionzzwHa0G3o3llFkUzYAAvPYc6FwwhUGMF62dQNc8A"
+        "versionLogicalId": "MainLambdaVersionQYauu6ilnNizg5IbA8cwdgSalIZ9Y4nZtOSN3oiJ0"
       }
     },
     "configValidationMode": "warn",
@@ -745,6 +747,22 @@
       },
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
+      },
+      "package": {
+        "exclude": [
+          "tests/**",
+          "docs/**",
+          ".git/**",
+          ".vscode/**",
+          "node_modules/aws-sdk/**"
+        ],
+        "artifactsS3KeyDirname": "serverless/serverless-estagiario/dev/code-artifacts",
+        "patterns": [
+          "s_*.js",
+          "serverless_sdk/**"
+        ],
+        "artifact": "C:\\Users\\Otavio\\Documents\\GitHub\\api\\.serverless\\serverless-estagiario.zip",
+        "artifactDirectoryName": "serverless/serverless-estagiario/dev/1719981937202-2024-07-03T04:45:37.202Z"
       }
     },
     "app": "serverless-estagiario",
@@ -754,10 +772,10 @@
     "isDashboardAppPreconfigured": true,
     "orgUid": "388e10d8-ee1a-47ed-8f4d-f589cd4741e5",
     "appUid": "GGFl2VKqNhq1mmB3lK",
-    "artifact": "C:\\Users\\ddeli\\OneDrive\\Documentos\\Git\\api\\.serverless\\serverless-estagiario.zip"
+    "artifact": "C:\\Users\\Otavio\\Documents\\GitHub\\api\\.serverless\\serverless-estagiario.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/serverless-estagiario/dev/1719856805597-2024-07-01T18:00:05.597Z",
+    "artifactDirectoryName": "serverless/serverless-estagiario/dev/1719981937202-2024-07-03T04:45:37.202Z",
     "artifact": "serverless-estagiario.zip"
   }
 }
