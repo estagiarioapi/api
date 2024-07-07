@@ -3,7 +3,9 @@ import axios from 'axios';
 import FormData from 'form-data';
 import { promises as fs } from 'fs';
 import { FluxoService } from 'src/fluxo/fluxo.service';
+import { ConversationService } from '../core/integrations/conversation.service';
 import { UserService } from '../core/integrations/user.service';
+import { ReplyService } from '../core/replyes/reply.service';
 const existingAssistantId = 'asst_k3hihCq0BbmquqRptSf8J858';
 const existingVectorStoreId = 'vs_VkV662jbqd9Rigx9SQIB3hdA';
 
@@ -20,7 +22,9 @@ export class WebhookService {
   constructor(
     private fluxoService: FluxoService,
     private userService: UserService,
-  ) { }
+    private conversationService: ConversationService,
+    private replyService: ReplyService,
+  ) {}
 
   async processMessage(event: any): Promise<any> {
     try {
@@ -42,7 +46,7 @@ export class WebhookService {
           statusCode: 200,
           body: JSON.stringify({
             message: 'Document processed and sent successfully',
-            thread_id: threadId,
+            threadId: threadId,
             run_id: runId,
             sender_number: sender,
           }),
@@ -287,9 +291,19 @@ export class WebhookService {
 
   async handler(event: any) {
     try {
-      const message = event.entry[0].changes[0].value.messages[0];
+      const changes = event.entry[0].changes[0].value;
+      if (!changes.messages) {
+        throw new BadRequestException('No messages found in the received body');
+      }
+      console.log('changes:', changes.messages);
+
+      const message = changes.messages[0];
       const senderNumber = message.from;
-      console.log(message);
+      const user = await this.userService.findUser(senderNumber);
+
+      if (!user) {
+        throw new BadRequestException('User not found in database');
+      }
       if (message.document) {
         const { threadId, runId, sender } = await this.processDocument(
           message,
@@ -310,67 +324,162 @@ export class WebhookService {
           message,
           senderNumber,
         );
-        console.log(transcript, sender);
-        return {
-          statusCode: 200,
-          body: JSON.stringify({
-            message: 'Audio processed and transcribed successfully',
-            transcript: transcript,
-            sender_number: sender,
-          }),
-        };
-      } else if (message.text) {
-        const { text, sender } = await this.processText(message, senderNumber);
-
-        if (this.detectMenu(text)) {
-          return this.fluxoService.sendInteractiveMessage(sender);
-        }
-
-        const user = await this.userService.findUser(senderNumber);
-
         let conversation;
         let threadCreated;
-        let threadUpdated
-
-        if (!user) {
-          throw new BadRequestException('user not found in database');
+        let threadUpdated;
+        const conversationOpened =
+          await this.conversationService.findOpenedConversation(user.id);
+        if (!conversationOpened) {
+          return "você precisa selecionar uma opção, ou se desejar voltar ao menu digite 'menu'.";
         }
-
-        const conversationOpened = await this.userService.findOpenedConversation(user.id);
         if (conversationOpened.assistantId && !conversationOpened.threadId) {
-          conversation = await this.userService.createConversationInDb(
+          threadCreated = await this.conversationService.createConversation(
             conversationOpened.assistantId,
-            user.id,
+            transcript,
           );
-          console.log('habibi:', conversation)
-          const messageFormatted = message.text.body
-          threadCreated = await this.userService.createConversation(conversationOpened.assistantId, messageFormatted)
-          console.log('thread created:', threadCreated)
           if (threadCreated) {
-            threadUpdated = await this.userService.updateConversation(conversation.id, threadCreated.thread_id)
-            console.log('threaddedasdasdsa:', conversation.id, threadCreated.thread_id)
+            threadUpdated =
+              await this.conversationService.updateConversationInDb(
+                conversationOpened.id,
+                threadCreated.threadId,
+              );
           }
         }
-        console.log('updated thread:', threadUpdated)
-        if (threadUpdated.thread_id) {
-          console.log('new conversation:', conversation)
-          const messageFromApi = await this.userService.getMessages(
-            threadUpdated.thread_id,
-            300,
+        /* */
+        if (conversationOpened.threadId) {
+          const respostaGpt = await this.userService.getMessages(
+            conversationOpened.threadId,
           );
-          const message = messageFromApi.respostaGerada;
-          const response = messageFromApi.response;
-          console.log('getMessage teste:', messageFromApi);
         }
 
         return {
           statusCode: 200,
           body: JSON.stringify({
             message: 'Text message processed successfully',
-            response_message: text,
+            response_message: transcript,
             sender_number: sender,
           }),
         };
+      } else if (message.text) {
+        const { text, sender } = await this.processText(message, senderNumber);
+        if (this.detectMenu(text)) {
+          const openedConversation =
+            await this.conversationService.findOpenedConversation(user.id);
+          if (openedConversation) {
+            const ccvs =
+              await this.conversationService.desactiveLastConversation(
+                openedConversation.id,
+              );
+          }
+          return this.fluxoService.sendInteractiveMessage(sender);
+        }
+        let threadCreated;
+        let threadUpdated;
+        const conversationOpened =
+          await this.conversationService.findOpenedConversation(user.id);
+        if (!conversationOpened) {
+          return "você precisa selecionar uma opção, ou se desejar voltar ao menu digite 'menu'.";
+        }
+        /* if(user selecionou uma opção, e no momento só tem a assistant_id sem a thread criada e salva na sua conversa) */
+        if (conversationOpened.assistantId && !conversationOpened.threadId) {
+          threadCreated = await this.conversationService.createConversation(
+            conversationOpened.assistantId,
+            text,
+          );
+          if (threadCreated) {
+            await this.replyService.replyMessagePeca(sender);
+            threadUpdated =
+              await this.conversationService.updateConversationInDb(
+                conversationOpened.id,
+                threadCreated.thread_id,
+              );
+          }
+          const conversationUpdatedOpened =
+            await this.conversationService.findOpenedConversation(user.id);
+
+          console.log('first if:', conversationUpdatedOpened);
+          const respostaGpt = await this.userService.getMessages(
+            conversationUpdatedOpened.threadId,
+          );
+
+          console.log('respostaGpt init:', respostaGpt);
+          if (respostaGpt.data.response != text) {
+            const message = {
+              type: 'text',
+              value: respostaGpt.data.response,
+            };
+            const messageInDb =
+              await this.conversationService.createMessage(message);
+            const conversationMessage = {
+              conversationId: conversationUpdatedOpened.id,
+              messageId: messageInDb.id,
+              isInput: false,
+            };
+            await this.conversationService.createConversationMessage(
+              conversationMessage,
+            );
+          }
+          await this.replyService.replyAnswerGpt(
+            sender,
+            respostaGpt.data.response,
+          );
+          return true;
+        }
+
+        if (conversationOpened.threadId) {
+          const conversationUpdatedOpened =
+            await this.conversationService.findOpenedConversation(user.id);
+
+          await this.replyService.replyMessagePeca(sender);
+
+          const newMessageOpenAI =
+            await this.conversationService.createNewMessageOpenAI(
+              conversationUpdatedOpened.threadId,
+              text,
+            );
+
+          console.log('conversationUpdatedOpened:', conversationUpdatedOpened);
+
+          const runThread = await this.conversationService.runThread(
+            conversationUpdatedOpened.threadId,
+            conversationUpdatedOpened.assistantId,
+          );
+          console.log('runThread:', runThread);
+
+          console.log('afterrunthread:', conversationUpdatedOpened);
+          const respostaGpt = await this.userService.getMessages(
+            conversationUpdatedOpened.threadId,
+          );
+
+          if (!respostaGpt) {
+          }
+
+          if (respostaGpt.data.response != text) {
+            const message = {
+              type: 'text',
+              value: respostaGpt.data.response,
+            };
+
+            const messageInDb =
+              await this.conversationService.createMessage(message);
+
+            const conversationMessage = {
+              conversationId: conversationUpdatedOpened.id,
+              messageId: messageInDb.id,
+              isInput: false,
+            };
+
+            await this.conversationService.createConversationMessage(
+              conversationMessage,
+            );
+
+            await this.replyService.replyAnswerGpt(
+              sender,
+              respostaGpt.data.response,
+            );
+            return true;
+          }
+        }
       } else if (message.interactive) {
         const menu = message.interactive.list_reply.id;
 

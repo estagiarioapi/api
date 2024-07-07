@@ -1,11 +1,15 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import axios from 'axios';
 import { UserService } from 'src/core/integrations/user.service';
+import { ConversationService } from '../../../../core/integrations/conversation.service';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 
 @Injectable()
 export class PeticaoIncialCivilService {
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private conversationService: ConversationService,
+  ) {}
 
   async sendAcaoDeAlimentos(phoneNumber: string) {
     if (!phoneNumber) {
@@ -47,11 +51,12 @@ export class PeticaoIncialCivilService {
       }
     }
 
-    const updateUserData = await this.userService.createConversationInDb(
-      assistant_id,
-      user.id,
-    );
-    console.log(updateUserData);
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
+    console.log('userUpdated: (peticaoInicialService)', updateUserData);
 
     return true;
   }

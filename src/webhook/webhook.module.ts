@@ -2,7 +2,9 @@ import { Module } from '@nestjs/common';
 import { FluxoDireitoPecaService } from 'src/fluxo/pecas/fluxo.direito.peca.service';
 import { PeticaoInicialService } from 'src/fluxo/pecas/inicial/fluxo.peticao.inicial.service';
 import { RecursoService } from 'src/fluxo/pecas/recurso/fluxo.recurso.service';
+import { ConversationService } from '../core/integrations/conversation.service';
 import { UserService } from '../core/integrations/user.service';
+import { ReplyService } from '../core/replyes/reply.service';
 import { FluxoContratoService } from '../fluxo/contratos/fluxo.contratos.service';
 import { FluxoService } from '../fluxo/fluxo.service';
 import { PeticaoInicialAdministrativoService } from '../fluxo/pecas/direitos/administrativo/peticao.inicial.administrativo.service';
@@ -71,6 +73,8 @@ import { WebhookService } from './webhook.service';
     RecursosTributariosService,
     PecasDireitosService,
     UserService,
+    ConversationService,
+    ReplyService,
   ],
 })
 export class WebhookModule {}

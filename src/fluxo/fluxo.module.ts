@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ConversationService } from '../core/integrations/conversation.service';
 import { UserService } from '../core/integrations/user.service';
 import { FluxoContratoService } from './contratos/fluxo.contratos.service';
 import { FluxoController } from './fluxo.controller';
@@ -32,6 +33,7 @@ import { FluxoDireitoPecaService } from './pecas/fluxo.direito.peca.service';
 import { PeticaoInicialService } from './pecas/inicial/fluxo.peticao.inicial.service';
 import { PeticaoIntermediariaService } from './pecas/intermediaria/fluxo.peticao.intermed.service';
 import { RecursoService } from './pecas/recurso/fluxo.recurso.service';
+import { ReplyService } from '../core/replyes/reply.service';
 
 @Module({
   providers: [
@@ -67,6 +69,8 @@ import { RecursoService } from './pecas/recurso/fluxo.recurso.service';
     RecursosTributariosService,
     PecasDireitosService,
     UserService,
+    ConversationService,
+    ReplyService
   ],
   controllers: [FluxoController],
 })
