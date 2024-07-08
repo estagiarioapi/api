@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { ConversationService } from '../core/integrations/conversation.service';
 import { UserService } from '../core/integrations/user.service';
 import { FluxoContratoService } from './contratos/fluxo.contratos.service';
-import { FluxoController } from './fluxo.controller';
 import { FluxoService } from './fluxo.service';
 import { PeticaoInicialAdministrativoService } from './pecas/direitos/administrativo/peticao.inicial.administrativo.service';
 import { PeticaoIntermediariaAdministrativoService } from './pecas/direitos/administrativo/peticao.intermed.administrativo.service';
@@ -30,10 +29,11 @@ import { PeticaoInicialTributarioService } from './pecas/direitos/tributario/pet
 import { PeticaoIntermediariaTributarioService } from './pecas/direitos/tributario/peticao.intermed.tributario.service';
 import { RecursosTributariosService } from './pecas/direitos/tributario/recurso.tributario.service';
 import { FluxoDireitoPecaService } from './pecas/fluxo.direito.peca.service';
-import { PeticaoInicialService } from './pecas/inicial/fluxo.peticao.inicial.service';
-import { PeticaoIntermediariaService } from './pecas/intermediaria/fluxo.peticao.intermed.service';
-import { RecursoService } from './pecas/recurso/fluxo.recurso.service';
+import { PeticaoInicialService } from './pecas/menus/inicial/fluxo.peticao.inicial.service';
+import { PeticaoIntermediariaService } from './pecas/menus/intermediaria/fluxo.peticao.intermed.service';
+import { RecursoService } from './pecas/menus/recurso/fluxo.recurso.service';
 import { ReplyService } from '../core/replyes/reply.service';
+import { FluxoDocumentoService } from './documentos/fluxo.documento.service';
 
 @Module({
   providers: [
@@ -70,8 +70,9 @@ import { ReplyService } from '../core/replyes/reply.service';
     PecasDireitosService,
     UserService,
     ConversationService,
-    ReplyService
+    ReplyService,
+    FluxoDocumentoService
   ],
-  controllers: [FluxoController],
+  controllers: [],
 })
-export class FluxoModule {}
+export class FluxoModule { }

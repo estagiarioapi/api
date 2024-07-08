@@ -3,9 +3,10 @@ import axios from 'axios';
 import { FluxoContratoService } from './contratos/fluxo.contratos.service';
 import { PecasDireitosService } from './pecas/direitos/pecas.direitos.service';
 import { FluxoDireitoPecaService } from './pecas/fluxo.direito.peca.service';
-import { PeticaoInicialService } from './pecas/inicial/fluxo.peticao.inicial.service';
-import { PeticaoIntermediariaService } from './pecas/intermediaria/fluxo.peticao.intermed.service';
-import { RecursoService } from './pecas/recurso/fluxo.recurso.service';
+import { PeticaoInicialService } from './pecas/menus/inicial/fluxo.peticao.inicial.service';
+import { PeticaoIntermediariaService } from './pecas/menus/intermediaria/fluxo.peticao.intermed.service';
+import { RecursoService } from './pecas/menus/recurso/fluxo.recurso.service';
+import { FluxoDocumentoService } from './documentos/fluxo.documento.service';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 const peticoesIniciais = [
   '85',
@@ -189,6 +190,10 @@ const recursos = [
   '257',
 ];
 
+const documentosMenus = [
+  '1010', '1011', '1012', '1013'
+]
+
 const menuRecursos = ['64', '67', '70', '73', '76', '79', '82'];
 const menuPeticaoIntermed = ['63', '66', '69', '72', '75', '78', '81', '84'];
 const menuPeticaoInicial = ['62', '65', '68', '71', '74', '77', '80', '83'];
@@ -204,7 +209,6 @@ const pecasProcessuaisDireitosMenu = [
   '12',
 ];
 
-console.log('token:', process.env.ACCESS_TOKEN);
 @Injectable()
 export class FluxoService {
   constructor(
@@ -214,7 +218,8 @@ export class FluxoService {
     private peticaoIntermedService: PeticaoIntermediariaService,
     private recursoService: RecursoService,
     private pecasService: PecasDireitosService,
-  ) {}
+    private fluxoDocumentoService: FluxoDocumentoService
+  ) { }
 
   async sendInteractiveMessage(phoneNumber: string) {
     if (!phoneNumber) {
@@ -252,6 +257,10 @@ export class FluxoService {
                   id: '4',
                   title: 'Contratos',
                 },
+                {
+                  id: '1005',
+                  title: 'Análise Documentos'
+                }
               ],
             },
           ],
@@ -287,6 +296,10 @@ export class FluxoService {
       return this.sendPecasProcessuaisMenu(phoneNumber);
     } else if (menuId === '4') {
       return this.sendContratosMenu(phoneNumber);
+    } else if (menuId === '1005') {
+      return this.sendAnaliseDocumentos(phoneNumber)
+    } else if (documentosMenus.includes(menuId)) {
+      return this.fluxoDocumentoService.sendCadaFluxo(menuId, phoneNumber)
     } else if (pecasProcessuaisDireitosMenu.includes(menuId)) {
       return this.sendPecasProcessuaisDireitosMenu(phoneNumber, menuId);
     } else if (tipoContratoMenu.includes(menuId)) {
@@ -381,6 +394,104 @@ export class FluxoService {
         console.error('Error sending message:', error);
         return false;
       }
+    }
+  }
+  async sendAnaliseDocumentos(phoneNumber: string) {
+    if (!phoneNumber) {
+      throw new BadRequestException('Favor fornecer o numero do usuário');
+    }
+    const messages = [
+      {
+        text: 'Você selecionou *Interação com documentos*. Nessa funcionalidade, consigo desempenhar funções distintas como por exemplo: *Interagir, resumir e analisar documentos*, bem como *comparar dois documentos distintos*. Estou apto a interagir com petições, contratos e decisões judiciais. Para realizar essas funções, você deverá enviar um documento para que eu possa realizar a leitura do arquivo. Com base nisso, poderei: ',
+      },
+      {
+        text: '📝 *Extrair informações de documentos*: Nesta tarefa, posso responder a questionamentos a respeito das informações que constam no documento.\n 📃 *Resumir documentos*: Nesta funcionalidade, consigo resumir um documento, extraindo os pontos principais.\n 📊 *Analisar documentos*: Neste recurso, sou capaz de analisar o conteúdo do documento e fornecer sugestões de melhoria e aprimoramento, identificando os pontos fracos e fortes do arquivo enviado.\n 📑 *Comparar dois documentos*: Nesta função, você pode me enviar dois documentos e eu consigo fazer um paralelo entre eles, traçando as diferenças e semelhanças, bem como identificando as vantagens de um sobre o outro.',
+      },
+    ];
+
+    const headers = {
+      Authorization:
+        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      'Content-Type': 'application/json',
+    };
+
+    for (const message of messages) {
+      const messagePayload = {
+        messaging_product: 'whatsapp',
+        recipient_type: 'individual',
+        to: phoneNumber,
+        type: 'text',
+        text: { body: message.text },
+      };
+
+      try {
+        const response = await axios.post(url, messagePayload, { headers });
+        if (response.status !== 200) throw new Error('Failed to send message');
+      } catch (error) {
+        console.error('Error sending message:', error);
+        return false;
+      }
+    }
+
+    try {
+      const returnMenu = await this.sendAnaliseDocumentosMenu(phoneNumber)
+    } catch (error) {
+      console.error('Error sending documents menu')
+    }
+
+  }
+  async sendAnaliseDocumentosMenu(phoneNumber: string) {
+    const messagePayloadMenu = {
+      recipient_type: 'individual',
+      to: phoneNumber,
+      messaging_product: 'whatsapp',
+      type: 'interactive',
+      interactive: {
+        type: 'list',
+        body: {
+          text: 'Diante disso, como posso te ajudar, chefe?',
+        },
+        action: {
+          button: 'Petições',
+          sections: [
+            {
+              title: '',
+              rows: [
+                {
+                  id: '1010',
+                  title: 'Extrair informações',
+                },
+                {
+                  id: '1011',
+                  title: 'Resumir documentos',
+                },
+                {
+                  id: '1012',
+                  title: 'Analisar documentos',
+                },
+                {
+                  id: '1013',
+                  title: 'Comparar documentos',
+                }
+              ],
+            },
+          ],
+        },
+      },
+    };
+
+    const headers = {
+      Authorization:
+        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      'Content-Type': 'application/json',
+    };
+
+    try {
+      const response2 = await axios.post(url, messagePayloadMenu, { headers });
+      if (response2.status !== 200) throw new Error('Failed to send message');
+    } catch (error) {
+      console.error('Error sending message:', error);
+      return false;
     }
   }
   async sendPecasProcessuaisMenu(phoneNumber: string) {
