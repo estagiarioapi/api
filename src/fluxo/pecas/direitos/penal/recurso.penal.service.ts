@@ -1,15 +1,20 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import axios from 'axios';
+import { ConversationService } from 'src/core/integrations/conversation.service';
 import { UserService } from 'src/core/integrations/user.service';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 @Injectable()
 export class RecursosPenalService {
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private conversationService: ConversationService) { }
 
   async sendApelacao(phoneNumber: string) {
     const assistant_id = 'asst_qyAP53QR5ZSYWsDBJZbjyTV1'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
+    }
+    const user = await this.userService.findUser(phoneNumber);
+    if (!user) {
+      throw new BadRequestException('user out of database');
     }
     const messages = [
       {
@@ -41,6 +46,12 @@ export class RecursosPenalService {
       }
     }
 
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
+
     return true;
   }
 
@@ -48,6 +59,10 @@ export class RecursosPenalService {
     const assistant_id = 'asst_H3Tx78m9xZG4stGRt7Pvh561'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
+    }
+    const user = await this.userService.findUser(phoneNumber);
+    if (!user) {
+      throw new BadRequestException('user out of database');
     }
     const messages = [
       {
@@ -79,6 +94,12 @@ export class RecursosPenalService {
       }
     }
 
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
+
     return true;
   }
 
@@ -86,6 +107,10 @@ export class RecursosPenalService {
     const assistant_id = 'asst_rMLgOrxbxFvBUnzkYC44aB0g'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
+    }
+    const user = await this.userService.findUser(phoneNumber);
+    if (!user) {
+      throw new BadRequestException('user out of database');
     }
     const messages = [
       {
@@ -117,6 +142,12 @@ export class RecursosPenalService {
       }
     }
 
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
+
     return true;
   }
 
@@ -124,6 +155,10 @@ export class RecursosPenalService {
     const assistant_id = 'asst_gvL5AMntAepIlAbh8Re90ce2'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
+    }
+    const user = await this.userService.findUser(phoneNumber);
+    if (!user) {
+      throw new BadRequestException('user out of database');
     }
     const messages = [
       {
@@ -155,6 +190,12 @@ export class RecursosPenalService {
       }
     }
 
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
+
     return true;
   }
 
@@ -162,6 +203,10 @@ export class RecursosPenalService {
     const assistant_id = 'asst_bIwT7srIn0JeisCJqLlRs5bF'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
+    }
+    const user = await this.userService.findUser(phoneNumber);
+    if (!user) {
+      throw new BadRequestException('user out of database');
     }
     const messages = [
       {
@@ -193,6 +238,12 @@ export class RecursosPenalService {
       }
     }
 
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
+
     return true;
   }
 
@@ -200,6 +251,10 @@ export class RecursosPenalService {
     const assistant_id = 'asst_dotyC87mB2EnZOcXi6GUOzWs'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
+    }
+    const user = await this.userService.findUser(phoneNumber);
+    if (!user) {
+      throw new BadRequestException('user out of database');
     }
     const messages = [
       {
@@ -231,6 +286,12 @@ export class RecursosPenalService {
       }
     }
 
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
+
     return true;
   }
 
@@ -238,6 +299,10 @@ export class RecursosPenalService {
     const assistant_id = 'asst_oFc2pCTrrzKmbCAqyNI0p591'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
+    }
+    const user = await this.userService.findUser(phoneNumber);
+    if (!user) {
+      throw new BadRequestException('user out of database');
     }
     const messages = [
       {
@@ -269,6 +334,12 @@ export class RecursosPenalService {
       }
     }
 
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
+
     return true;
   }
 
@@ -276,6 +347,10 @@ export class RecursosPenalService {
     const assistant_id = 'asst_KjjpvJcmjBWKP2LLkRUjlLbq'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
+    }
+    const user = await this.userService.findUser(phoneNumber);
+    if (!user) {
+      throw new BadRequestException('user out of database');
     }
     const messages = [
       {
@@ -307,6 +382,12 @@ export class RecursosPenalService {
       }
     }
 
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
+
     return true;
   }
 
@@ -314,6 +395,10 @@ export class RecursosPenalService {
     const assistant_id = 'asst_HZwwgBPrk70IylF56mrGuVzS'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
+    }
+    const user = await this.userService.findUser(phoneNumber);
+    if (!user) {
+      throw new BadRequestException('user out of database');
     }
     const messages = [
       {
@@ -345,6 +430,12 @@ export class RecursosPenalService {
       }
     }
 
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
+
     return true;
   }
 
@@ -352,6 +443,10 @@ export class RecursosPenalService {
     const assistant_id = 'asst_QzKQk30xkXIqEtFGgjiTW48P'
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
+    }
+    const user = await this.userService.findUser(phoneNumber);
+    if (!user) {
+      throw new BadRequestException('user out of database');
     }
     const messages = [
       {
@@ -382,6 +477,12 @@ export class RecursosPenalService {
         return false;
       }
     }
+
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
 
     return true;
   }

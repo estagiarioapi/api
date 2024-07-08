@@ -1,14 +1,19 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import axios from 'axios';
+import { ConversationService } from 'src/core/integrations/conversation.service';
 import { UserService } from 'src/core/integrations/user.service';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 
 @Injectable()
 export class PeticaoIntermediariaAdministrativoService {
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private conversationService: ConversationService) { }
 
   async sendContestacao(phoneNumber: string) {
     const assistant_id = 'asst_K1ZLYnDhJxuJE6Kx6lPhsuDx'
+    const user = await this.userService.findUser(phoneNumber);
+    if (!user) {
+      throw new BadRequestException('user out of database');
+    }
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -42,11 +47,21 @@ export class PeticaoIntermediariaAdministrativoService {
       }
     }
 
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
+
     return true;
   }
 
   async sendImpugnacaoContestacao(phoneNumber: string) {
     const assistant_id = 'asst_FIxEWSgpCUN6LWxUh9hm6aeR'
+    const user = await this.userService.findUser(phoneNumber);
+    if (!user) {
+      throw new BadRequestException('user out of database');
+    }
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -80,11 +95,21 @@ export class PeticaoIntermediariaAdministrativoService {
       }
     }
 
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
+
     return true;
   }
 
   async sendContraEmbargosDeclaracao(phoneNumber: string) {
     const assistant_id = 'asst_ueXymFx31iRvRsbq7aHyAdX6'
+    const user = await this.userService.findUser(phoneNumber);
+    if (!user) {
+      throw new BadRequestException('user out of database');
+    }
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -118,11 +143,21 @@ export class PeticaoIntermediariaAdministrativoService {
       }
     }
 
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
+
     return true;
   }
 
   async sendContraApelacao(phoneNumber: string) {
     const assistant_id = 'asst_XaPo1DVrHepJb2ZwpNDhlEH2'
+    const user = await this.userService.findUser(phoneNumber);
+    if (!user) {
+      throw new BadRequestException('user out of database');
+    }
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -156,11 +191,21 @@ export class PeticaoIntermediariaAdministrativoService {
       }
     }
 
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
+
     return true;
   }
 
   async sendContraAgravoInstrumento(phoneNumber: string) {
     const assistant_id = 'asst_Q71pg1BxJo3h1KhNMpSvpg3b'
+    const user = await this.userService.findUser(phoneNumber);
+    if (!user) {
+      throw new BadRequestException('user out of database');
+    }
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -194,11 +239,21 @@ export class PeticaoIntermediariaAdministrativoService {
       }
     }
 
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
+
     return true;
   }
 
   async sendAlegacoesFinais(phoneNumber: string) {
     const assistant_id = 'asst_HyFedaXSIPVqv33DKQ6Rb6oA'
+    const user = await this.userService.findUser(phoneNumber);
+    if (!user) {
+      throw new BadRequestException('user out of database');
+    }
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -231,6 +286,12 @@ export class PeticaoIntermediariaAdministrativoService {
         return false;
       }
     }
+
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
 
     return true;
   }

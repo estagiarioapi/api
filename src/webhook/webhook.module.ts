@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { FluxoDireitoPecaService } from 'src/fluxo/pecas/fluxo.direito.peca.service';
-import { PeticaoInicialService } from 'src/fluxo/pecas/inicial/fluxo.peticao.inicial.service';
-import { RecursoService } from 'src/fluxo/pecas/recurso/fluxo.recurso.service';
+import { PeticaoInicialService } from 'src/fluxo/pecas/menus/inicial/fluxo.peticao.inicial.service';
+import { RecursoService } from 'src/fluxo/pecas/menus/recurso/fluxo.recurso.service';
 import { ConversationService } from '../core/integrations/conversation.service';
 import { UserService } from '../core/integrations/user.service';
 import { ReplyService } from '../core/replyes/reply.service';
@@ -38,9 +38,10 @@ import { RecursosTrabalhoService } from '../fluxo/pecas/direitos/trabalho/recurs
 import { PeticaoInicialTributarioService } from '../fluxo/pecas/direitos/tributario/peticao.inicial.tributario.service';
 import { PeticaoIntermediariaTributarioService } from '../fluxo/pecas/direitos/tributario/peticao.intermed.tributario.service';
 import { RecursosTributariosService } from '../fluxo/pecas/direitos/tributario/recurso.tributario.service';
-import { PeticaoIntermediariaService } from '../fluxo/pecas/intermediaria/fluxo.peticao.intermed.service';
+import { PeticaoIntermediariaService } from '../fluxo/pecas/menus/intermediaria/fluxo.peticao.intermed.service';
 import { WebhookController } from './webhook.controller';
 import { WebhookService } from './webhook.service';
+import { FluxoDocumentoService } from 'src/fluxo/documentos/fluxo.documento.service';
 
 @Module({
   imports: [],
@@ -81,12 +82,16 @@ import { WebhookService } from './webhook.service';
     UserService,
     ConversationService,
     ReplyService,
+<<<<<<< HEAD
     ContratosAgrariosService,
     ContratosCivisService,
     ContratosCulturaisService,
     ContratosEmpresariaisService,
     ContratosImobiliariosService,
     ContratosInstrumentosAdvocaticiosService,
+=======
+    FluxoDocumentoService
+>>>>>>> 8548b64277954ea278b543f3eed7b4cfc373e401
   ],
 })
-export class WebhookModule {}
+export class WebhookModule { }

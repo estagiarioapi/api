@@ -6,6 +6,7 @@ import { FluxoService } from 'src/fluxo/fluxo.service';
 import { ConversationService } from '../core/integrations/conversation.service';
 import { UserService } from '../core/integrations/user.service';
 import { ReplyService } from '../core/replyes/reply.service';
+<<<<<<< HEAD
 import { detectMenu } from '../core/utils/detectMenu';
 const existingAssistantId = 'asst_k3hihCq0BbmquqRptSf8J858';
 const existingVectorStoreId = 'vs_VkV662jbqd9Rigx9SQIB3hdA';
@@ -54,6 +55,57 @@ const contratos = [
   '',
   '',
 ];
+=======
+import { send } from 'process';
+const existingAssistantId = 'asst_k3hihCq0BbmquqRptSf8J858';
+const existingVectorStoreId = 'vs_VkV662jbqd9Rigx9SQIB3hdA';
+const contratosAssistants = [
+  "asst_etxHCk9nHcPrdWpyFn7HsI4N",
+  "asst_UuAFNNYybmrAhVVFjoV9sZlF",
+  "asst_UvWfEqs5Xf0D1L5j3yOn3C6E",
+  "asst_osIV8UVg1F4AfrPvmxPjKKSt",
+  "asst_1oSRbpqhHAu6xbSeoIGA9IiQ",
+  "asst_xB8wVqSuKWFM3dwqnohyGpnL",
+  "asst_AdbHdgomEkq95nyLd5yPsayP",
+  "asst_ERdv7VDrGiO5aFNUa31HCXDl",
+  "asst_3hC4OwOY6YzeKVVaS8grevTX",
+  "asst_SLcqbgHJSVzrIOJxs0rAOC9i",
+  "asst_fgmC77heRQKAl9jGqM02sbis",
+  "asst_2C1GjP7zX1mnHY9V6UGQDL92",
+  "asst_MxGIUM4co90MIEYFUfshcQ4D",
+  "asst_Hz2LNE7lWj0xpqWGrfZ6SuRH",
+  "asst_1j0RiEu9x8WPKi98a73varQa",
+  "asst_q32pzxH7HWQIWqikE2zrNVEU",
+  "asst_cYqft3F0LpRyL5O0bt4JXlnQ",
+  "asst_D4rpKKrdiPx8S0ZGUUxw5pUd",
+  "asst_ppRjaaJC1LYaOwpOE5lpeuV0",
+  "asst_qfYcSX5bZCn1A7BjBohnYgr2",
+  "asst_GgJG1x1btieUeKj5g5z1F4Ty",
+  "asst_7UkjQypTHPBgz2Iu5kSIpwMh",
+  "asst_U9Xatm1sMwV1IiZiE50MhyQn",
+  "asst_bDkYfcdHJKIKtJyT9U8WmCT1",
+  "asst_Hv2WQuoOA4ncLSbysZBCoTkc",
+  "asst_lgKqhjocvSTu80wy8E8pfnYm",
+  "asst_iPe7ypYaccWteEIFHcPrdgL6",
+  "asst_EnrFjS4nA3iVsE73TT2ZKdqX",
+  "asst_UYS9MpuizAPxTAgMqIEBbPy5",
+  "asst_CroZkh7buvpzTIOWXNyVGKhH",
+  "asst_IXxKqy6OhBidZWrJDDQ3nQcx",
+  "asst_fplN3Q40gq0ptGzSHtw7dIT9",
+  "asst_PMV25oPX1rvGEOO2nmcC5lHT",
+  "asst_cw4CCrkhdYZ33flf6Z7GeG0j",
+  "asst_4FKLgn6cqZkA8RA0nI5JCKTc",
+  "asst_HG9h1PX3TQXO59r97zGWY47o",
+  "asst_YqAS9cbNTucLmpVDEIrUCd43",
+  "asst_WC3s6HP5XsMUtGQHhUN2JNJD",
+  "asst_ryl3p0iugtmREL07EgSggL0d",
+  "asst_M7Aw75sSm7XC1iOW4YnY1gYz",
+  "asst_m9lPMoZzx40gjl41AmsFKLIT",
+  "asst_EOI18sTeQPqn6J4mRAiySBMo",
+  "asst_Y6W3bxRVlHyVvy7ZGr4JcUxv",
+  "asst_k6Osw0BaWiXJPpHBSiFZr9o8"
+]
+>>>>>>> 8548b64277954ea278b543f3eed7b4cfc373e401
 @Injectable()
 export class WebhookService {
   constructor(
@@ -61,7 +113,7 @@ export class WebhookService {
     private userService: UserService,
     private conversationService: ConversationService,
     private replyService: ReplyService,
-  ) {}
+  ) { }
 
   async processMessage(event: any): Promise<any> {
     try {
@@ -547,7 +599,15 @@ export class WebhookService {
           const conversationUpdatedOpened =
             await this.conversationService.findOpenedConversation(user.id);
 
-          await this.replyService.replyMessagePeca(sender);
+          if (contratosAssistants.includes(conversationUpdatedOpened.assistant_id)) {
+            await this.replyService.replyMessageContrato(sender)
+          } else if (conversationUpdatedOpened.assistant_id = 'asst_511yec0MJEyQJoL8Tsp1RikT') {
+            await this.replyService.replyMessageNotificacao(sender)
+          } else if (conversationUpdatedOpened.assistant_id = 'asst_PnosQim2RndvcNgW0yQiKx1M') {
+            await this.replyService.replyMessageAuxiliar(sender)
+          } else {
+            await this.replyService.replyMessagePeca(sender);
+          }
 
           const newMessageOpenAI =
             await this.conversationService.createNewMessageOpenAI(

@@ -7,9 +7,12 @@ import { ContratosCivisService } from './contratos/civil/contratos.civis.service
 import { ContratosCulturaisService } from './contratos/cultural/contratos.culturais.service';
 import { ContratosEmpresariaisService } from './contratos/empresarial/contratos.empresariais.service';
 import { FluxoContratoService } from './contratos/fluxo.contratos.service';
+<<<<<<< HEAD
 import { ContratosImobiliariosService } from './contratos/imobiliario/contratos.imobiliarios.service';
 import { ContratosInstrumentosAdvocaticiosService } from './contratos/instrumentosAdvocacia/contratos.instrumentos.service';
 import { FluxoController } from './fluxo.controller';
+=======
+>>>>>>> 8548b64277954ea278b543f3eed7b4cfc373e401
 import { FluxoService } from './fluxo.service';
 import { PeticaoInicialAdministrativoService } from './pecas/direitos/administrativo/peticao.inicial.administrativo.service';
 import { PeticaoIntermediariaAdministrativoService } from './pecas/direitos/administrativo/peticao.intermed.administrativo.service';
@@ -37,9 +40,17 @@ import { PeticaoInicialTributarioService } from './pecas/direitos/tributario/pet
 import { PeticaoIntermediariaTributarioService } from './pecas/direitos/tributario/peticao.intermed.tributario.service';
 import { RecursosTributariosService } from './pecas/direitos/tributario/recurso.tributario.service';
 import { FluxoDireitoPecaService } from './pecas/fluxo.direito.peca.service';
+<<<<<<< HEAD
 import { PeticaoInicialService } from './pecas/inicial/fluxo.peticao.inicial.service';
 import { PeticaoIntermediariaService } from './pecas/intermediaria/fluxo.peticao.intermed.service';
 import { RecursoService } from './pecas/recurso/fluxo.recurso.service';
+=======
+import { PeticaoInicialService } from './pecas/menus/inicial/fluxo.peticao.inicial.service';
+import { PeticaoIntermediariaService } from './pecas/menus/intermediaria/fluxo.peticao.intermed.service';
+import { RecursoService } from './pecas/menus/recurso/fluxo.recurso.service';
+import { ReplyService } from '../core/replyes/reply.service';
+import { FluxoDocumentoService } from './documentos/fluxo.documento.service';
+>>>>>>> 8548b64277954ea278b543f3eed7b4cfc373e401
 
 @Module({
   providers: [
@@ -77,13 +88,17 @@ import { RecursoService } from './pecas/recurso/fluxo.recurso.service';
     UserService,
     ConversationService,
     ReplyService,
+<<<<<<< HEAD
     ContratosAgrariosService,
     ContratosCivisService,
     ContratosCulturaisService,
     ContratosEmpresariaisService,
     ContratosImobiliariosService,
     ContratosInstrumentosAdvocaticiosService,
+=======
+    FluxoDocumentoService
+>>>>>>> 8548b64277954ea278b543f3eed7b4cfc373e401
   ],
-  controllers: [FluxoController],
+  controllers: [],
 })
-export class FluxoModule {}
+export class FluxoModule { }
