@@ -189,6 +189,69 @@ const recursos = [
   '257',
 ];
 
+const contratos = [
+  '19',
+  '20',
+  '21',
+  '22',
+  '23',
+  '24',
+  '25',
+  '26',
+  '27',
+  '28',
+  '29',
+  '30',
+  '31',
+  '32',
+  '33',
+  '34',
+  '35',
+  '36',
+  '37',
+  '38',
+  '39',
+  '40',
+  '41',
+  '42',
+  '43',
+  '44',
+  '45',
+  '46',
+  '47',
+  '48',
+  '49',
+  '50',
+  '51',
+  '52',
+  '53',
+  '54',
+  '55',
+  '56',
+  '57',
+  '58',
+  '59',
+  '60',
+  '61',
+];
+
+const contratosCivis = ['19', '20', '21', '22', '23', '24'];
+const contratosImobiliarios = ['25', '26', '27', '28', '29', '30', '31', '32'];
+const contratosEmpresariais = [
+  '33',
+  '34',
+  '35',
+  '36',
+  '37',
+  '38',
+  '39',
+  '40',
+  '41',
+];
+const contratosAgrarios = ['42', '43', '44', '45', '46', '47'];
+const contratosCulturais = ['48', '49', '50', '51', '52', '53', '54', '55'];
+const instrumentosAdvocaticios = ['56', '57', '58', '59', '60', '61'];
+
 const menuRecursos = ['64', '67', '70', '73', '76', '79', '82'];
 const menuPeticaoIntermed = ['63', '66', '69', '72', '75', '78', '81', '84'];
 const menuPeticaoInicial = ['62', '65', '68', '71', '74', '77', '80', '83'];
@@ -301,8 +364,26 @@ export class FluxoService {
       return this.pecasService.sendPeticaoInicial(phoneNumber, menuId);
     } else if (peticoesIntermediarias.includes(menuId)) {
       return this.pecasService.sendPeticaoIntermediaria(phoneNumber, menuId);
+    } else if (menuId === '13') {
+      return this.fluxoContratoService.sendContratosCivis(phoneNumber);
+    } else if (menuId === '14') {
+      return this.fluxoContratoService.sendContratosImobiliarios(phoneNumber);
+    } else if (menuId === '15') {
+      return this.fluxoContratoService.sendContratosEmpresariais(phoneNumber);
+    } else if (menuId === '16') {
+      return this.fluxoContratoService.sendContratosAgrarios(phoneNumber);
+    } else if (menuId === '17') {
+      return this.fluxoContratoService.sendContratosCulturais(phoneNumber);
+    } else if (menuId === '18') {
+      return this.fluxoContratoService.sendContratosDeInstrumentosParaAdvocacia(
+        phoneNumber,
+      );
+    } else if (contratos.includes(menuId)) {
+      return this.fluxoContratoService.sendCadaContrato(phoneNumber, menuId);
     } else if (recursos.includes(menuId)) {
       return this.pecasService.sendRecurso(phoneNumber, menuId);
+    } else if (contratos.includes(menuId)) {
+      return this.fluxoContratoService.sendCadaContrato(phoneNumber, menuId);
     }
   }
   async sendAuxiliarJuridicoMenu(phoneNumber: string) {

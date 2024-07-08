@@ -15,7 +15,7 @@ export class PeticaoIncialCivilService {
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
-    const assistant_id = 'asst_eqUDB8YUuWY4zkvScNfLSIx1';
+    const assistant_id = 'asst_xEVsGvt1cFCO68heNNLYBGVP';
     const user = await this.userService.findUser(phoneNumber);
     if (!user) {
       throw new BadRequestException('user out of database');

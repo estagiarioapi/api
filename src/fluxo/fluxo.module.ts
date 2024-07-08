@@ -1,7 +1,14 @@
 import { Module } from '@nestjs/common';
 import { ConversationService } from '../core/integrations/conversation.service';
 import { UserService } from '../core/integrations/user.service';
+import { ReplyService } from '../core/replyes/reply.service';
+import { ContratosAgrariosService } from './contratos/agrario/contratos.agrarios.service';
+import { ContratosCivisService } from './contratos/civil/contratos.civis.service';
+import { ContratosCulturaisService } from './contratos/cultural/contratos.culturais.service';
+import { ContratosEmpresariaisService } from './contratos/empresarial/contratos.empresariais.service';
 import { FluxoContratoService } from './contratos/fluxo.contratos.service';
+import { ContratosImobiliariosService } from './contratos/imobiliario/contratos.imobiliarios.service';
+import { ContratosInstrumentosAdvocaticiosService } from './contratos/instrumentosAdvocacia/contratos.instrumentos.service';
 import { FluxoController } from './fluxo.controller';
 import { FluxoService } from './fluxo.service';
 import { PeticaoInicialAdministrativoService } from './pecas/direitos/administrativo/peticao.inicial.administrativo.service';
@@ -33,7 +40,6 @@ import { FluxoDireitoPecaService } from './pecas/fluxo.direito.peca.service';
 import { PeticaoInicialService } from './pecas/inicial/fluxo.peticao.inicial.service';
 import { PeticaoIntermediariaService } from './pecas/intermediaria/fluxo.peticao.intermed.service';
 import { RecursoService } from './pecas/recurso/fluxo.recurso.service';
-import { ReplyService } from '../core/replyes/reply.service';
 
 @Module({
   providers: [
@@ -70,7 +76,13 @@ import { ReplyService } from '../core/replyes/reply.service';
     PecasDireitosService,
     UserService,
     ConversationService,
-    ReplyService
+    ReplyService,
+    ContratosAgrariosService,
+    ContratosCivisService,
+    ContratosCulturaisService,
+    ContratosEmpresariaisService,
+    ContratosImobiliariosService,
+    ContratosInstrumentosAdvocaticiosService,
   ],
   controllers: [FluxoController],
 })

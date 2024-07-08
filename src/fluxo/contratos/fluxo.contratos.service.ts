@@ -1,12 +1,24 @@
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
+import { ContratosAgrariosService } from './agrario/contratos.agrarios.service';
+import { ContratosCivisService } from './civil/contratos.civis.service';
+import { ContratosCulturaisService } from './cultural/contratos.culturais.service';
+import { ContratosEmpresariaisService } from './empresarial/contratos.empresariais.service';
+import { ContratosImobiliariosService } from './imobiliario/contratos.imobiliarios.service';
+import { ContratosInstrumentosAdvocaticiosService } from './instrumentosAdvocacia/contratos.instrumentos.service';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 
 @Injectable()
 export class FluxoContratoService {
-  constructor() { }
+  constructor(
+    private contratosAgrarios: ContratosAgrariosService,
+    private contratosCivis: ContratosCivisService,
+    private contratosCulturais: ContratosCulturaisService,
+    private contratosEmpresariais: ContratosEmpresariaisService,
+    private contratosImobiliarios: ContratosImobiliariosService,
+    private instrumentosAdvocacia: ContratosInstrumentosAdvocaticiosService,
+  ) {}
   async sendContratosCivis(phoneNumber: string) {
-    console.log('passou:', phoneNumber);
     const message = {
       recipient_type: 'individual',
       to: phoneNumber,
@@ -55,7 +67,8 @@ export class FluxoContratoService {
     };
     try {
       const headers = {
-        Authorization: process.env.ACCESS_TOKEN,
+        Authorization:
+          'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
@@ -126,8 +139,9 @@ export class FluxoContratoService {
     };
     try {
       const headers = {
-        Authorization: process.env.ACCESS_TOKEN
-        , 'Content-Type': 'application/json',
+        Authorization:
+          'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+        'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
       return response.status === 200;
@@ -198,7 +212,9 @@ export class FluxoContratoService {
     };
     try {
       const headers = {
-        Authorization: process.env.ACCESS_TOKEN, 'Content-Type': 'application/json',
+        Authorization:
+          'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+        'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
       return response.status === 200;
@@ -259,7 +275,9 @@ export class FluxoContratoService {
     };
     try {
       const headers = {
-        Authorization: process.env.ACCESS_TOKEN, 'Content-Type': 'application/json',
+        Authorization:
+          'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+        'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
       return response.status === 200;
@@ -330,7 +348,9 @@ export class FluxoContratoService {
     };
     try {
       const headers = {
-        Authorization: process.env.ACCESS_TOKEN, 'Content-Type': 'application/json',
+        Authorization:
+          'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+        'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
       return response.status === 200;
@@ -372,20 +392,15 @@ export class FluxoContratoService {
                 },
                 {
                   id: '59',
-                  title: 'Cessão de Dir. Auto.',
-                  description: 'Cessão de Direitos Autorais',
-                },
-                {
-                  id: '60',
                   title: 'Honorários',
                 },
                 {
-                  id: '61',
+                  id: '60',
                   title: 'P. entre Escritórios',
                   description: 'Parceria Entre Escritórios',
                 },
                 {
-                  id: '62',
+                  id: '61',
                   title: 'T. De Con. de Dívida',
                   description: 'Termo de Confissão de Dívida',
                 },
@@ -397,13 +412,115 @@ export class FluxoContratoService {
     };
     try {
       const headers = {
-        Authorization: process.env.ACCESS_TOKEN, 'Content-Type': 'application/json',
+        Authorization:
+          'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+        'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
       return response.status === 200;
     } catch (error) {
       console.error('Error sending message:', error);
       return false;
+    }
+  }
+  async sendCadaContrato(phoneNumber: string, menuId: string) {
+    switch (menuId) {
+      case '19':
+        return this.contratosCivis.sendCompraEVenda(phoneNumber);
+      case '20':
+        return this.contratosCivis.sendPrestacaoServicos(phoneNumber);
+      case '21':
+        return this.contratosCivis.sendEmpreitada(phoneNumber);
+      case '22':
+        return this.contratosCivis.sendDistrato(phoneNumber);
+      case '23':
+        return this.contratosCivis.sendComodato(phoneNumber);
+      case '24':
+        return this.contratosCivis.sendDeposito(phoneNumber);
+      case '25':
+        return this.contratosImobiliarios.sendCompraVendaImóvel(phoneNumber);
+      case '26':
+        return this.contratosImobiliarios.sendLocação(phoneNumber);
+      case '27':
+        return this.contratosImobiliarios.sendFinanciamentoImob(phoneNumber);
+      case '28':
+        return this.contratosImobiliarios.sendCorretagemImob(phoneNumber);
+      case '29':
+        return this.contratosImobiliarios.sendBuiltToSuit(phoneNumber);
+      case '30':
+        return this.contratosImobiliarios.sendCessaoDireitoPossesorio(
+          phoneNumber,
+        );
+      case '31':
+        return this.contratosImobiliarios.sendPermutaImoveis(phoneNumber);
+      case '32':
+        return this.contratosImobiliarios.sendComodatoImovel(phoneNumber);
+      case '33':
+        return this.contratosEmpresariais.sendSociedade(phoneNumber);
+      case '34':
+        return this.contratosEmpresariais.sendFranquia(phoneNumber);
+      case '35':
+        return this.contratosEmpresariais.sendFornecimento(phoneNumber);
+      case '36':
+        return this.contratosEmpresariais.sendDistribuicao(phoneNumber);
+      case '37':
+        return this.contratosEmpresariais.sendLicencaMarcaPatente(phoneNumber);
+      case '38':
+        return this.contratosEmpresariais.sendAcordoAcionista(phoneNumber);
+      case '39':
+        return this.contratosEmpresariais.sendParceria(phoneNumber);
+      case '40':
+        return this.contratosEmpresariais.sendFactoring(phoneNumber);
+      case '41':
+        return this.contratosEmpresariais.sendContratoSocial(phoneNumber);
+      case '42':
+        return this.contratosAgrarios.sendArrendamentoRural(phoneNumber);
+      case '43':
+        return this.contratosAgrarios.sendParceriaRural(phoneNumber);
+      case '44':
+        return this.contratosAgrarios.sendCompraVendaProdutosAgricolas(
+          phoneNumber,
+        );
+      case '45':
+        return this.contratosAgrarios.sendComodadoImovelRural(phoneNumber);
+      case '46':
+        return this.contratosAgrarios.sendFornecimentoInsumosAgricolas(
+          phoneNumber,
+        );
+      case '47':
+        return this.contratosAgrarios.sendGestaoPropriedadeRural(phoneNumber);
+      case '48':
+        return this.contratosCulturais.sendPatrocinioCultural(phoneNumber);
+      case '49':
+        return this.contratosCulturais.sendParceriaCultural(phoneNumber);
+      case '50':
+        return this.contratosCulturais.sendCoProducaoDeEventos(phoneNumber);
+      case '51':
+        return this.contratosCulturais.sendCessaoDireitosAutorais(phoneNumber);
+      case '52':
+        return this.contratosCulturais.sendServicosArtisticos(phoneNumber);
+      case '53':
+        return this.contratosCulturais.sendRealizaoDeShow(phoneNumber);
+      case '54':
+        return this.contratosCulturais.sendDistribuicaoDeObras(phoneNumber);
+      case '55':
+        return this.contratosCulturais.sendAgenciamentoFisico(phoneNumber);
+      case '56':
+        return this.instrumentosAdvocacia.sendPropostaServicos(phoneNumber);
+      case '57':
+        return this.instrumentosAdvocacia.sendProcuracao(phoneNumber);
+      case '58':
+        return this.instrumentosAdvocacia.sendDeclaracaoHipossuficiencia(
+          phoneNumber,
+        );
+      case '59':
+        return this.instrumentosAdvocacia.sendHonorarios(phoneNumber);
+      case '60':
+        return this.instrumentosAdvocacia.sendParceriaEscritorios(phoneNumber);
+      case '61':
+        return this.instrumentosAdvocacia.sendTermoConfissaoDeDivida(
+          phoneNumber,
+        );
     }
   }
 }

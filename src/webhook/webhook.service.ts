@@ -6,19 +6,56 @@ import { FluxoService } from 'src/fluxo/fluxo.service';
 import { ConversationService } from '../core/integrations/conversation.service';
 import { UserService } from '../core/integrations/user.service';
 import { ReplyService } from '../core/replyes/reply.service';
+import { detectMenu } from '../core/utils/detectMenu';
 const existingAssistantId = 'asst_k3hihCq0BbmquqRptSf8J858';
 const existingVectorStoreId = 'vs_VkV662jbqd9Rigx9SQIB3hdA';
-
+const contratos = [
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+];
 @Injectable()
 export class WebhookService {
-  private entryPointsMenu = [
-    'oi',
-    'ola',
-    'menu',
-    'bom dia',
-    'boa tarde',
-    'ola, estagiario',
-  ];
   constructor(
     private fluxoService: FluxoService,
     private userService: UserService,
@@ -198,7 +235,8 @@ export class WebhookService {
       form,
       {
         headers: {
-          Authorization: process.env.OPENAI_KEY,
+          Authorization:
+            'Bearer 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',
           ...form.getHeaders(),
         },
       },
@@ -266,7 +304,8 @@ export class WebhookService {
     const urlDownload = `https://graph.facebook.com/v14.0/${audioId}`;
     const audioResponse = await axios.get(urlDownload, {
       headers: {
-        Authorization: process.env.ACCESS_TOKEN,
+        Authorization:
+          'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
       },
     });
 
@@ -275,7 +314,8 @@ export class WebhookService {
 
     const fileResponse = await axios.get(fileUrl, {
       headers: {
-        Authorization: process.env.ACCESS_TOKEN,
+        Authorization:
+          'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
       },
       responseType: 'arraybuffer',
     });
@@ -324,55 +364,6 @@ export class WebhookService {
           message,
           senderNumber,
         );
-        let conversation;
-        let threadCreated;
-        let threadUpdated;
-        const conversationOpened =
-          await this.conversationService.findOpenedConversation(user.id);
-        if (!conversationOpened) {
-          return "você precisa selecionar uma opção, ou se desejar voltar ao menu digite 'menu'.";
-        }
-        if (conversationOpened.assistantId && !conversationOpened.threadId) {
-          threadCreated = await this.conversationService.createConversation(
-            conversationOpened.assistantId,
-            transcript,
-          );
-          if (threadCreated) {
-            threadUpdated =
-              await this.conversationService.updateConversationInDb(
-                conversationOpened.id,
-                threadCreated.threadId,
-              );
-          }
-        }
-        /* */
-        if (conversationOpened.threadId) {
-          const respostaGpt = await this.userService.getMessages(
-            conversationOpened.threadId,
-          );
-        }
-
-        return {
-          statusCode: 200,
-          body: JSON.stringify({
-            message: 'Text message processed successfully',
-            response_message: transcript,
-            sender_number: sender,
-          }),
-        };
-      } else if (message.text) {
-        const { text, sender } = await this.processText(message, senderNumber);
-        if (this.detectMenu(text)) {
-          const openedConversation =
-            await this.conversationService.findOpenedConversation(user.id);
-          if (openedConversation) {
-            const ccvs =
-              await this.conversationService.desactiveLastConversation(
-                openedConversation.id,
-              );
-          }
-          return this.fluxoService.sendInteractiveMessage(sender);
-        }
         let threadCreated;
         let threadUpdated;
         const conversationOpened =
@@ -384,7 +375,7 @@ export class WebhookService {
         if (conversationOpened.assistantId && !conversationOpened.threadId) {
           threadCreated = await this.conversationService.createConversation(
             conversationOpened.assistantId,
-            text,
+            transcript,
           );
           if (threadCreated) {
             await this.replyService.replyMessagePeca(sender);
@@ -403,7 +394,7 @@ export class WebhookService {
           );
 
           console.log('respostaGpt init:', respostaGpt);
-          if (respostaGpt.data.response != text) {
+          if (respostaGpt.data.response != transcript) {
             const message = {
               type: 'text',
               value: respostaGpt.data.response,
@@ -423,6 +414,132 @@ export class WebhookService {
             sender,
             respostaGpt.data.response,
           );
+          return true;
+        }
+
+        if (conversationOpened.threadId) {
+          let respostaGpt;
+          const conversationUpdatedOpened =
+            await this.conversationService.findOpenedConversation(user.id);
+
+          await this.replyService.replyMessagePeca(sender);
+
+          const newMessageOpenAI =
+            await this.conversationService.createNewMessageOpenAI(
+              conversationUpdatedOpened.threadId,
+              transcript,
+            );
+          const runThread = await this.conversationService.runThread(
+            conversationUpdatedOpened.threadId,
+            conversationUpdatedOpened.assistantId,
+          );
+          respostaGpt = await this.userService.getMessages(
+            conversationUpdatedOpened.threadId,
+          );
+          let tentativa = 0;
+          while (!respostaGpt && tentativa < 5) {
+            tentativa++;
+            respostaGpt = await this.userService.getMessages(
+              conversationUpdatedOpened.threadId,
+            );
+          }
+          if (respostaGpt.data.response != transcript) {
+            const message = {
+              type: 'text',
+              value: respostaGpt.data.response,
+            };
+            const messageInDb =
+              await this.conversationService.createMessage(message);
+
+            const conversationMessage = {
+              conversationId: conversationUpdatedOpened.id,
+              messageId: messageInDb.id,
+              isInput: false,
+            };
+
+            await this.conversationService.createConversationMessage(
+              conversationMessage,
+            );
+            if (respostaGpt && respostaGpt.data && respostaGpt.data.response) {
+              const maxChar = 4096;
+              let response = respostaGpt.data.response;
+
+              while (response.length > 0) {
+                let part = response.substring(0, maxChar);
+                response = response.substring(maxChar);
+                await this.replyService.replyAnswerGpt(sender, part);
+              }
+            }
+
+            return true;
+          }
+        }
+      } else if (message.text) {
+        const { text, sender } = await this.processText(message, senderNumber);
+        if (detectMenu(text)) {
+          const openedConversation =
+            await this.conversationService.findOpenedConversation(user.id);
+          if (openedConversation) {
+            const ccvs =
+              await this.conversationService.desactiveLastConversation(
+                openedConversation.id,
+              );
+          }
+          return this.fluxoService.sendInteractiveMessage(sender);
+        }
+        let threadCreated;
+        let threadUpdated;
+        const conversationOpened =
+          await this.conversationService.findOpenedConversation(user.id);
+        if (!conversationOpened) {
+          return "você precisa selecionar uma opção, ou se desejar voltar ao menu digite 'menu'.";
+        }
+        /* if(user selecionou uma opção, e no momento só tem a assistant_id, sem a thread criada e salva na sua conversa) */
+        if (conversationOpened.assistantId && !conversationOpened.threadId) {
+          threadCreated = await this.conversationService.createConversation(
+            conversationOpened.assistantId,
+            text,
+          );
+          if (threadCreated) {
+            await this.replyService.replyMessagePeca(sender);
+            threadUpdated =
+              await this.conversationService.updateConversationInDb(
+                conversationOpened.id,
+                threadCreated.thread_id,
+              );
+          }
+          const conversationUpdatedOpened =
+            await this.conversationService.findOpenedConversation(user.id);
+          const respostaGpt = await this.userService.getMessages(
+            conversationUpdatedOpened.threadId,
+          );
+          if (respostaGpt.data.response != text) {
+            const message = {
+              type: 'text',
+              value: respostaGpt.data.response,
+            };
+            const messageInDb =
+              await this.conversationService.createMessage(message);
+            const conversationMessage = {
+              conversationId: conversationUpdatedOpened.id,
+              messageId: messageInDb.id,
+              isInput: false,
+            };
+            await this.conversationService.createConversationMessage(
+              conversationMessage,
+            );
+          }
+          if (respostaGpt && respostaGpt.data && respostaGpt.data.response) {
+            const maxChar = 4096;
+            let response = respostaGpt.data.response;
+
+            while (response.length > 0) {
+              let part = response.substring(0, maxChar);
+              response = response.substring(maxChar);
+              await this.replyService.replyAnswerGpt(sender, part);
+            }
+          }
+
           return true;
         }
 
@@ -497,15 +614,5 @@ export class WebhookService {
         }),
       };
     }
-  }
-
-  private detectMenu(message: string): boolean {
-    return this.entryPointsMenu.some((e) =>
-      message
-        .toLowerCase()
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .includes(e),
-    );
   }
 }

@@ -5,7 +5,13 @@ import { RecursoService } from 'src/fluxo/pecas/recurso/fluxo.recurso.service';
 import { ConversationService } from '../core/integrations/conversation.service';
 import { UserService } from '../core/integrations/user.service';
 import { ReplyService } from '../core/replyes/reply.service';
+import { ContratosAgrariosService } from '../fluxo/contratos/agrario/contratos.agrarios.service';
+import { ContratosCivisService } from '../fluxo/contratos/civil/contratos.civis.service';
+import { ContratosCulturaisService } from '../fluxo/contratos/cultural/contratos.culturais.service';
+import { ContratosEmpresariaisService } from '../fluxo/contratos/empresarial/contratos.empresariais.service';
 import { FluxoContratoService } from '../fluxo/contratos/fluxo.contratos.service';
+import { ContratosImobiliariosService } from '../fluxo/contratos/imobiliario/contratos.imobiliarios.service';
+import { ContratosInstrumentosAdvocaticiosService } from '../fluxo/contratos/instrumentosAdvocacia/contratos.instrumentos.service';
 import { FluxoService } from '../fluxo/fluxo.service';
 import { PeticaoInicialAdministrativoService } from '../fluxo/pecas/direitos/administrativo/peticao.inicial.administrativo.service';
 import { PeticaoIntermediariaAdministrativoService } from '../fluxo/pecas/direitos/administrativo/peticao.intermed.administrativo.service';
@@ -75,6 +81,12 @@ import { WebhookService } from './webhook.service';
     UserService,
     ConversationService,
     ReplyService,
+    ContratosAgrariosService,
+    ContratosCivisService,
+    ContratosCulturaisService,
+    ContratosEmpresariaisService,
+    ContratosImobiliariosService,
+    ContratosInstrumentosAdvocaticiosService,
   ],
 })
 export class WebhookModule {}
