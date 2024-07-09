@@ -82,16 +82,13 @@ import { FluxoDocumentoService } from 'src/fluxo/documentos/fluxo.documento.serv
     UserService,
     ConversationService,
     ReplyService,
-<<<<<<< HEAD
     ContratosAgrariosService,
     ContratosCivisService,
     ContratosCulturaisService,
     ContratosEmpresariaisService,
     ContratosImobiliariosService,
     ContratosInstrumentosAdvocaticiosService,
-=======
     FluxoDocumentoService
->>>>>>> 8548b64277954ea278b543f3eed7b4cfc373e401
   ],
 })
 export class WebhookModule { }

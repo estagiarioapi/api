@@ -1,11 +1,15 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import axios from 'axios';
+import { ConversationService } from '../../../core/integrations/conversation.service';
 import { UserService } from '../../../core/integrations/user.service';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 
 @Injectable()
 export class ContratosAgrariosService {
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private conversationService: ConversationService,
+  ) {}
 
   async sendArrendamentoRural(phoneNumber: string) {
     if (!phoneNumber) {
@@ -48,6 +52,12 @@ export class ContratosAgrariosService {
         return false;
       }
     }
+
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
 
     return true;
   }
@@ -93,6 +103,12 @@ export class ContratosAgrariosService {
       }
     }
 
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
+
     return true;
   }
   async sendCompraVendaProdutosAgricolas(phoneNumber: string) {
@@ -136,6 +152,12 @@ export class ContratosAgrariosService {
         return false;
       }
     }
+
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
 
     return true;
   }
@@ -181,6 +203,12 @@ export class ContratosAgrariosService {
       }
     }
 
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
+
     return true;
   }
   async sendFornecimentoInsumosAgricolas(phoneNumber: string) {
@@ -225,6 +253,12 @@ export class ContratosAgrariosService {
       }
     }
 
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
+
     return true;
   }
   async sendGestaoPropriedadeRural(phoneNumber: string) {
@@ -268,6 +302,12 @@ export class ContratosAgrariosService {
         return false;
       }
     }
+
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
 
     return true;
   }

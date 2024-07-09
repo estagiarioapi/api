@@ -1,12 +1,14 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import axios from 'axios';
+import { ConversationService } from '../core/integrations/conversation.service';
+import { UserService } from '../core/integrations/user.service';
 import { FluxoContratoService } from './contratos/fluxo.contratos.service';
+import { FluxoDocumentoService } from './documentos/fluxo.documento.service';
 import { PecasDireitosService } from './pecas/direitos/pecas.direitos.service';
 import { FluxoDireitoPecaService } from './pecas/fluxo.direito.peca.service';
 import { PeticaoInicialService } from './pecas/menus/inicial/fluxo.peticao.inicial.service';
 import { PeticaoIntermediariaService } from './pecas/menus/intermediaria/fluxo.peticao.intermed.service';
 import { RecursoService } from './pecas/menus/recurso/fluxo.recurso.service';
-import { FluxoDocumentoService } from './documentos/fluxo.documento.service';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 const peticoesIniciais = [
   '85',
@@ -190,7 +192,6 @@ const recursos = [
   '257',
 ];
 
-<<<<<<< HEAD
 const contratos = [
   '19',
   '20',
@@ -253,11 +254,7 @@ const contratosEmpresariais = [
 const contratosAgrarios = ['42', '43', '44', '45', '46', '47'];
 const contratosCulturais = ['48', '49', '50', '51', '52', '53', '54', '55'];
 const instrumentosAdvocaticios = ['56', '57', '58', '59', '60', '61'];
-=======
-const documentosMenus = [
-  '1010', '1011', '1012', '1013'
-]
->>>>>>> 8548b64277954ea278b543f3eed7b4cfc373e401
+const documentosMenus = ['1010', '1011', '1012', '1013'];
 
 const menuRecursos = ['64', '67', '70', '73', '76', '79', '82'];
 const menuPeticaoIntermed = ['63', '66', '69', '72', '75', '78', '81', '84'];
@@ -283,8 +280,10 @@ export class FluxoService {
     private peticaoIntermedService: PeticaoIntermediariaService,
     private recursoService: RecursoService,
     private pecasService: PecasDireitosService,
-    private fluxoDocumentoService: FluxoDocumentoService
-  ) { }
+    private fluxoDocumentoService: FluxoDocumentoService,
+    private userService: UserService,
+    private conversationService: ConversationService,
+  ) {}
 
   async sendInteractiveMessage(phoneNumber: string) {
     if (!phoneNumber) {
@@ -324,8 +323,8 @@ export class FluxoService {
                 },
                 {
                   id: '1005',
-                  title: 'Análise Documentos'
-                }
+                  title: 'Análise Documentos',
+                },
               ],
             },
           ],
@@ -362,9 +361,9 @@ export class FluxoService {
     } else if (menuId === '4') {
       return this.sendContratosMenu(phoneNumber);
     } else if (menuId === '1005') {
-      return this.sendAnaliseDocumentos(phoneNumber)
+      return this.sendAnaliseDocumentos(phoneNumber);
     } else if (documentosMenus.includes(menuId)) {
-      return this.fluxoDocumentoService.sendCadaFluxo(menuId, phoneNumber)
+      return this.fluxoDocumentoService.sendCadaFluxo(menuId, phoneNumber);
     } else if (pecasProcessuaisDireitosMenu.includes(menuId)) {
       return this.sendPecasProcessuaisDireitosMenu(phoneNumber, menuId);
     } else if (tipoContratoMenu.includes(menuId)) {
@@ -446,6 +445,11 @@ export class FluxoService {
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
+    const user = await this.userService.findUser(phoneNumber);
+    if (!user) {
+      throw new BadRequestException('user out of database');
+    }
+    const assistant_id = 'asst_OshFRCvLJUIO7b5nkGodEq7H';
     const messages = [
       {
         text: 'Perfeito, chefe! Foi selecionada *Notificação Extrajudicial.* A partir disso, preciso que me *descreva o caso*, detalhando de *forma precisa* o ocorrido, para que eu possa entender melhor a situação e atender ao seu pedido da melhor maneira possível.',
@@ -478,6 +482,14 @@ export class FluxoService {
         return false;
       }
     }
+
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
+
+    return true;
   }
   async sendAnaliseDocumentos(phoneNumber: string) {
     if (!phoneNumber) {
@@ -517,11 +529,10 @@ export class FluxoService {
     }
 
     try {
-      const returnMenu = await this.sendAnaliseDocumentosMenu(phoneNumber)
+      const returnMenu = await this.sendAnaliseDocumentosMenu(phoneNumber);
     } catch (error) {
-      console.error('Error sending documents menu')
+      console.error('Error sending documents menu');
     }
-
   }
   async sendAnaliseDocumentosMenu(phoneNumber: string) {
     const messagePayloadMenu = {
@@ -555,7 +566,7 @@ export class FluxoService {
                 {
                   id: '1013',
                   title: 'Comparar documentos',
-                }
+                },
               ],
             },
           ],
