@@ -6,10 +6,13 @@ const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 
 @Injectable()
 export class PeticaoInicialEmpresarialService {
-  constructor(private userService: UserService, private conversationService: ConversationService) { }
+  constructor(
+    private userService: UserService,
+    private conversationService: ConversationService,
+  ) {}
 
   async sendExecPorQuantiaCerta(phoneNumber: string) {
-    const assistant_id = 'asst_X9wln1pRH5wVKBPBbBP1FFhk'
+    const assistant_id = 'asst_X9wln1pRH5wVKBPBbBP1FFhk';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -57,7 +60,7 @@ export class PeticaoInicialEmpresarialService {
   }
 
   async sendDissolucaoParcial(phoneNumber: string) {
-    const assistant_id = 'asst_nnY7Sr9D0U9K4AEyoOGXm6zj'
+    const assistant_id = 'asst_nnY7Sr9D0U9K4AEyoOGXm6zj';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -105,7 +108,7 @@ export class PeticaoInicialEmpresarialService {
   }
 
   async sendAcaoRenovatoria(phoneNumber: string) {
-    const assistant_id = 'asst_7r8mpXrqK5AznoWHpSudfayQ'
+    const assistant_id = 'asst_7r8mpXrqK5AznoWHpSudfayQ';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -153,7 +156,7 @@ export class PeticaoInicialEmpresarialService {
   }
 
   async sendResolucaoDeSociedade(phoneNumber: string) {
-    const assistant_id = 'asst_NRzLFvH7bOopRUKG3oGSmqt7'
+    const assistant_id = 'asst_NRzLFvH7bOopRUKG3oGSmqt7';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -201,7 +204,7 @@ export class PeticaoInicialEmpresarialService {
   }
 
   async sendAcaoMonitoria(phoneNumber: string) {
-    const assistant_id = 'asst_AwTjto0Cw6W8bBzy5Gv34eRZ'
+    const assistant_id = 'asst_AwTjto0Cw6W8bBzy5Gv34eRZ';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -249,7 +252,7 @@ export class PeticaoInicialEmpresarialService {
   }
 
   async sendObrigacaoDeNaoFazer(phoneNumber: string) {
-    const assistant_id = 'asst_EDOaTLH6HFRdpgbvNJo0zasx'
+    const assistant_id = 'asst_EDOaTLH6HFRdpgbvNJo0zasx';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -297,7 +300,7 @@ export class PeticaoInicialEmpresarialService {
   }
 
   async sendPeticaoInicial(phoneNumber: string) {
-    const assistant_id = 'asst_Ck9AMw3SLeV43HidGjvhfxfr'
+    const assistant_id = 'asst_Ck9AMw3SLeV43HidGjvhfxfr';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -345,7 +348,7 @@ export class PeticaoInicialEmpresarialService {
   }
 
   async sendAcaoRestituicao(phoneNumber: string) {
-    const assistant_id = 'asst_vUO7pHFxKhHZYYnq5syTIvou'
+    const assistant_id = 'asst_vUO7pHFxKhHZYYnq5syTIvou';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -393,7 +396,7 @@ export class PeticaoInicialEmpresarialService {
   }
 
   async sendAcaoRevocatoria(phoneNumber: string) {
-    const assistant_id = ''
+    const assistant_id = '';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }

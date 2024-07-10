@@ -5,10 +5,13 @@ import { UserService } from 'src/core/integrations/user.service';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 @Injectable()
 export class RecursosPenalService {
-  constructor(private userService: UserService, private conversationService: ConversationService) { }
+  constructor(
+    private userService: UserService,
+    private conversationService: ConversationService,
+  ) {}
 
   async sendApelacao(phoneNumber: string) {
-    const assistant_id = 'asst_qyAP53QR5ZSYWsDBJZbjyTV1'
+    const assistant_id = 'asst_qyAP53QR5ZSYWsDBJZbjyTV1';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -56,7 +59,7 @@ export class RecursosPenalService {
   }
 
   async sendRecursoSentidoEstrito(phoneNumber: string) {
-    const assistant_id = 'asst_H3Tx78m9xZG4stGRt7Pvh561'
+    const assistant_id = 'asst_H3Tx78m9xZG4stGRt7Pvh561';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -104,7 +107,7 @@ export class RecursosPenalService {
   }
 
   async sendAgravoEmExecucao(phoneNumber: string) {
-    const assistant_id = 'asst_rMLgOrxbxFvBUnzkYC44aB0g'
+    const assistant_id = 'asst_rMLgOrxbxFvBUnzkYC44aB0g';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -152,7 +155,7 @@ export class RecursosPenalService {
   }
 
   async sendRecursoOrdinarioConstitucional(phoneNumber: string) {
-    const assistant_id = 'asst_gvL5AMntAepIlAbh8Re90ce2'
+    const assistant_id = 'asst_gvL5AMntAepIlAbh8Re90ce2';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -200,7 +203,7 @@ export class RecursosPenalService {
   }
 
   async sendRecursoEspecial(phoneNumber: string) {
-    const assistant_id = 'asst_bIwT7srIn0JeisCJqLlRs5bF'
+    const assistant_id = 'asst_bIwT7srIn0JeisCJqLlRs5bF';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -248,7 +251,7 @@ export class RecursosPenalService {
   }
 
   async sendRecursoExtraordinario(phoneNumber: string) {
-    const assistant_id = 'asst_dotyC87mB2EnZOcXi6GUOzWs'
+    const assistant_id = 'asst_dotyC87mB2EnZOcXi6GUOzWs';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -296,7 +299,7 @@ export class RecursosPenalService {
   }
 
   async sendCartaTestemunhavel(phoneNumber: string) {
-    const assistant_id = 'asst_oFc2pCTrrzKmbCAqyNI0p591'
+    const assistant_id = 'asst_oFc2pCTrrzKmbCAqyNI0p591';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -344,7 +347,7 @@ export class RecursosPenalService {
   }
 
   async sendEmbargosDeDeclaracao(phoneNumber: string) {
-    const assistant_id = 'asst_KjjpvJcmjBWKP2LLkRUjlLbq'
+    const assistant_id = 'asst_KjjpvJcmjBWKP2LLkRUjlLbq';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -392,7 +395,7 @@ export class RecursosPenalService {
   }
 
   async sendEmbargosInfringentes(phoneNumber: string) {
-    const assistant_id = 'asst_HZwwgBPrk70IylF56mrGuVzS'
+    const assistant_id = 'asst_HZwwgBPrk70IylF56mrGuVzS';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -440,7 +443,7 @@ export class RecursosPenalService {
   }
 
   async sendContraAoRecursoApelacao(phoneNumber: string) {
-    const assistant_id = 'asst_QzKQk30xkXIqEtFGgjiTW48P'
+    const assistant_id = 'asst_QzKQk30xkXIqEtFGgjiTW48P';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }

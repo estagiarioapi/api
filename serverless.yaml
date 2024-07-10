@@ -32,10 +32,10 @@ functions:
           path: webhook
       - http:
           method: GET
-          path: webhook    
+          path: webhook
 
 package:
-    exclude:
+  exclude:
     - tests/**
     - docs/**
     - .git/**

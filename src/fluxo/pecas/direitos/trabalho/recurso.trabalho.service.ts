@@ -6,10 +6,13 @@ const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 
 @Injectable()
 export class RecursosTrabalhoService {
-  constructor(private userService: UserService, private conversationService: ConversationService) { }
+  constructor(
+    private userService: UserService,
+    private conversationService: ConversationService,
+  ) {}
 
   async sendRecursoOrdinario(phoneNumber: string) {
-    const assistant_id = 'asst_d4IchPyIPV0Eh7DvbL795ySv'
+    const assistant_id = 'asst_d4IchPyIPV0Eh7DvbL795ySv';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -57,7 +60,7 @@ export class RecursosTrabalhoService {
   }
 
   async sendAgravoPeticao(phoneNumber: string) {
-    const assistant_id = 'asst_DVwYHzsATao06vfXrJwZuRpE'
+    const assistant_id = 'asst_DVwYHzsATao06vfXrJwZuRpE';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -105,7 +108,7 @@ export class RecursosTrabalhoService {
   }
 
   async sendAgravoDeInstrumento(phoneNumber: string) {
-    const assistant_id = 'asst_Egodzt3U6BZPFjRdxBE39MHu'
+    const assistant_id = 'asst_Egodzt3U6BZPFjRdxBE39MHu';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -153,7 +156,7 @@ export class RecursosTrabalhoService {
   }
 
   async sendRecursoRevista(phoneNumber: string) {
-    const assistant_id = 'asst_e0FazXdexIhR9M8TeFnNWwtJ'
+    const assistant_id = 'asst_e0FazXdexIhR9M8TeFnNWwtJ';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }

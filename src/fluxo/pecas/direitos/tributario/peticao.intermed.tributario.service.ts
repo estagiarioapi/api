@@ -5,10 +5,13 @@ import { UserService } from 'src/core/integrations/user.service';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 @Injectable()
 export class PeticaoIntermediariaTributarioService {
-  constructor(private userService: UserService, private conversationService: ConversationService) { }
+  constructor(
+    private userService: UserService,
+    private conversationService: ConversationService,
+  ) {}
 
   async sendContestacao(phoneNumber: string) {
-    const assistant_id = 'asst_lJj3SYGkkhQYDz4R6r5jZyxz'
+    const assistant_id = 'asst_lJj3SYGkkhQYDz4R6r5jZyxz';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -56,7 +59,7 @@ export class PeticaoIntermediariaTributarioService {
   }
 
   async sendImpugnacaoContestacao(phoneNumber: string) {
-    const assistant_id = 'asst_b1ylWuKwSRyA3CgpBvA7Nyhx'
+    const assistant_id = 'asst_b1ylWuKwSRyA3CgpBvA7Nyhx';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -104,7 +107,7 @@ export class PeticaoIntermediariaTributarioService {
   }
 
   async sendContraEmbargosDeDeclaracao(phoneNumber: string) {
-    const assistant_id = 'asst_Rqrqd2HuEwWgjHri9t14r63K'
+    const assistant_id = 'asst_Rqrqd2HuEwWgjHri9t14r63K';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -152,7 +155,7 @@ export class PeticaoIntermediariaTributarioService {
   }
 
   async sendContraApelacao(phoneNumber: string) {
-    const assistant_id = 'asst_CwixYxaPIwHlymohW6oSXiSx'
+    const assistant_id = 'asst_CwixYxaPIwHlymohW6oSXiSx';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -200,7 +203,7 @@ export class PeticaoIntermediariaTributarioService {
   }
 
   async sendAlegacoesFinais(phoneNumber: string) {
-    const assistant_id = 'asst_wnGCrwO2UHI9lL1WWOEOK21F'
+    const assistant_id = 'asst_wnGCrwO2UHI9lL1WWOEOK21F';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -248,7 +251,7 @@ export class PeticaoIntermediariaTributarioService {
   }
 
   async sendContraAgravoDeInstrumento(phoneNumber: string) {
-    const assistant_id = 'asst_5qLWg4F1DHSOQwrG43Kjrxjw'
+    const assistant_id = 'asst_5qLWg4F1DHSOQwrG43Kjrxjw';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }

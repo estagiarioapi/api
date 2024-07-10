@@ -6,10 +6,13 @@ const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 
 @Injectable()
 export class PeticaoIntermedConstitucionalService {
-  constructor(private userService: UserService, private conversationService: ConversationService) { }
+  constructor(
+    private userService: UserService,
+    private conversationService: ConversationService,
+  ) {}
 
   async sendContestacao(phoneNumber: string) {
-    const assistant_id = 'asst_fhom4VTzNIUmZVVLcdMriWY4'
+    const assistant_id = 'asst_fhom4VTzNIUmZVVLcdMriWY4';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -57,7 +60,7 @@ export class PeticaoIntermedConstitucionalService {
   }
 
   async sendImpugnacaoContestacao(phoneNumber: string) {
-    const assistant_id = 'asst_Q77gufb3klA3my17LkHexBVj'
+    const assistant_id = 'asst_Q77gufb3klA3my17LkHexBVj';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -105,7 +108,7 @@ export class PeticaoIntermedConstitucionalService {
   }
 
   async sendContraEmbargosDeclaracao(phoneNumber: string) {
-    const assistant_id = 'asst_F9gmUxdtNlUrgy2JIY5HX35Q'
+    const assistant_id = 'asst_F9gmUxdtNlUrgy2JIY5HX35Q';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -153,7 +156,7 @@ export class PeticaoIntermedConstitucionalService {
   }
 
   async sendContraApelacao(phoneNumber: string) {
-    const assistant_id = 'asst_m6ouPIkaeM9qjJ1VtqxIHSSj'
+    const assistant_id = 'asst_m6ouPIkaeM9qjJ1VtqxIHSSj';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -201,7 +204,7 @@ export class PeticaoIntermedConstitucionalService {
   }
 
   async sendContraAgravoInstrumento(phoneNumber: string) {
-    const assistant_id = 'asst_kvrea7GIJef8hF72luKRajI2'
+    const assistant_id = 'asst_kvrea7GIJef8hF72luKRajI2';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -249,7 +252,7 @@ export class PeticaoIntermedConstitucionalService {
   }
 
   async sendAlegacoesFinais(phoneNumber: string) {
-    const assistant_id = ''
+    const assistant_id = '';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }

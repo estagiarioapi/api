@@ -6,10 +6,13 @@ const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 
 @Injectable()
 export class PeticaoIntermediariaPrevidenciarioService {
-  constructor(private userService: UserService, private conversationService: ConversationService) { }
+  constructor(
+    private userService: UserService,
+    private conversationService: ConversationService,
+  ) {}
 
   async sendContestacao(phoneNumber: string) {
-    const assistant_id = 'asst_A9zDvQ5GbfXPGg4T6sZzrpl3'
+    const assistant_id = 'asst_A9zDvQ5GbfXPGg4T6sZzrpl3';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -57,7 +60,7 @@ export class PeticaoIntermediariaPrevidenciarioService {
   }
 
   async sendImpugContestacao(phoneNumber: string) {
-    const assistant_id = 'asst_aPsAe3tjyDTjg7yzkB7dLGqU'
+    const assistant_id = 'asst_aPsAe3tjyDTjg7yzkB7dLGqU';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -74,7 +77,8 @@ export class PeticaoIntermediariaPrevidenciarioService {
       },
     ];
     const headers = {
-      Authorization: process.env.ACCESS_TOKEN, 'Content-Type': 'application/json',
+      Authorization: process.env.ACCESS_TOKEN,
+      'Content-Type': 'application/json',
     };
     for (const message of messages) {
       const messagePayload = {
@@ -104,7 +108,7 @@ export class PeticaoIntermediariaPrevidenciarioService {
   }
 
   async sendContraEmbargosDeclaracao(phoneNumber: string) {
-    const assistant_id = 'asst_DCqAXpuvynEeFlqk8ke9OlVG'
+    const assistant_id = 'asst_DCqAXpuvynEeFlqk8ke9OlVG';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -121,7 +125,8 @@ export class PeticaoIntermediariaPrevidenciarioService {
       },
     ];
     const headers = {
-      Authorization: process.env.ACCESS_TOKEN, 'Content-Type': 'application/json',
+      Authorization: process.env.ACCESS_TOKEN,
+      'Content-Type': 'application/json',
     };
     for (const message of messages) {
       const messagePayload = {
@@ -151,7 +156,7 @@ export class PeticaoIntermediariaPrevidenciarioService {
   }
 
   async sendContraApelacao(phoneNumber: string) {
-    const assistant_id = 'asst_jkcmK8LKqM4H6Or9mo4Pceu6'
+    const assistant_id = 'asst_jkcmK8LKqM4H6Or9mo4Pceu6';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -199,7 +204,7 @@ export class PeticaoIntermediariaPrevidenciarioService {
   }
 
   async sendContraAgravoInstrumento(phoneNumber: string) {
-    const assistant_id = 'asst_MwczZTG4EjuwbKwtWTaY5rBY'
+    const assistant_id = 'asst_MwczZTG4EjuwbKwtWTaY5rBY';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -216,7 +221,8 @@ export class PeticaoIntermediariaPrevidenciarioService {
       },
     ];
     const headers = {
-      Authorization: process.env.ACCESS_TOKEN, 'Content-Type': 'application/json',
+      Authorization: process.env.ACCESS_TOKEN,
+      'Content-Type': 'application/json',
     };
     for (const message of messages) {
       const messagePayload = {
@@ -246,7 +252,7 @@ export class PeticaoIntermediariaPrevidenciarioService {
   }
 
   async sendAlegacoesFinais(phoneNumber: string) {
-    const assistant_id = 'asst_lIgv9v6Tk4pjmK78VF5svZqW'
+    const assistant_id = 'asst_lIgv9v6Tk4pjmK78VF5svZqW';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -263,7 +269,8 @@ export class PeticaoIntermediariaPrevidenciarioService {
       },
     ];
     const headers = {
-      Authorization: process.env.ACCESS_TOKEN, 'Content-Type': 'application/json',
+      Authorization: process.env.ACCESS_TOKEN,
+      'Content-Type': 'application/json',
     };
     for (const message of messages) {
       const messagePayload = {

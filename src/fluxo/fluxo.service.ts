@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import axios from 'axios';
 import { ConversationService } from '../core/integrations/conversation.service';
 import { UserService } from '../core/integrations/user.service';
+import { ReplyService } from '../core/replyes/reply.service';
 import { FluxoContratoService } from './contratos/fluxo.contratos.service';
 import { FluxoDocumentoService } from './documentos/fluxo.documento.service';
 import { PecasDireitosService } from './pecas/direitos/pecas.direitos.service';
@@ -283,6 +284,7 @@ export class FluxoService {
     private fluxoDocumentoService: FluxoDocumentoService,
     private userService: UserService,
     private conversationService: ConversationService,
+    private replyService: ReplyService,
   ) {}
 
   async sendInteractiveMessage(phoneNumber: string) {
@@ -398,6 +400,20 @@ export class FluxoService {
       return this.pecasService.sendRecurso(phoneNumber, menuId);
     } else if (contratos.includes(menuId)) {
       return this.fluxoContratoService.sendCadaContrato(phoneNumber, menuId);
+    } else if (menuId === '1020') {
+      return this.replyService.replyAfterEditOptionSelected(phoneNumber);
+    } else if (menuId === '1021') {
+      const user = await this.userService.findUser(phoneNumber);
+      console.log('user', user);
+      const openedConversation =
+        await this.conversationService.findOpenedConversation(user.id);
+      console.log('opened:', openedConversation);
+      if (openedConversation) {
+        const ccvs = await this.conversationService.desactiveLastConversation(
+          openedConversation.id,
+        );
+      }
+      return await this.sendInteractiveMessage(phoneNumber);
     }
   }
   async sendAuxiliarJuridicoMenu(phoneNumber: string) {

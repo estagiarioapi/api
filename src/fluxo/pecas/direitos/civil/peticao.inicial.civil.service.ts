@@ -9,7 +9,7 @@ export class PeticaoIncialCivilService {
   constructor(
     private userService: UserService,
     private conversationService: ConversationService,
-  ) { }
+  ) {}
 
   async sendAcaoDeAlimentos(phoneNumber: string) {
     if (!phoneNumber) {

@@ -6,10 +6,13 @@ const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 
 @Injectable()
 export class PeticaoIntermediariaAdministrativoService {
-  constructor(private userService: UserService, private conversationService: ConversationService) { }
+  constructor(
+    private userService: UserService,
+    private conversationService: ConversationService,
+  ) {}
 
   async sendContestacao(phoneNumber: string) {
-    const assistant_id = 'asst_K1ZLYnDhJxuJE6Kx6lPhsuDx'
+    const assistant_id = 'asst_K1ZLYnDhJxuJE6Kx6lPhsuDx';
     const user = await this.userService.findUser(phoneNumber);
     if (!user) {
       throw new BadRequestException('user out of database');
@@ -57,7 +60,7 @@ export class PeticaoIntermediariaAdministrativoService {
   }
 
   async sendImpugnacaoContestacao(phoneNumber: string) {
-    const assistant_id = 'asst_FIxEWSgpCUN6LWxUh9hm6aeR'
+    const assistant_id = 'asst_FIxEWSgpCUN6LWxUh9hm6aeR';
     const user = await this.userService.findUser(phoneNumber);
     if (!user) {
       throw new BadRequestException('user out of database');
@@ -105,7 +108,7 @@ export class PeticaoIntermediariaAdministrativoService {
   }
 
   async sendContraEmbargosDeclaracao(phoneNumber: string) {
-    const assistant_id = 'asst_ueXymFx31iRvRsbq7aHyAdX6'
+    const assistant_id = 'asst_ueXymFx31iRvRsbq7aHyAdX6';
     const user = await this.userService.findUser(phoneNumber);
     if (!user) {
       throw new BadRequestException('user out of database');
@@ -153,7 +156,7 @@ export class PeticaoIntermediariaAdministrativoService {
   }
 
   async sendContraApelacao(phoneNumber: string) {
-    const assistant_id = 'asst_XaPo1DVrHepJb2ZwpNDhlEH2'
+    const assistant_id = 'asst_XaPo1DVrHepJb2ZwpNDhlEH2';
     const user = await this.userService.findUser(phoneNumber);
     if (!user) {
       throw new BadRequestException('user out of database');
@@ -201,7 +204,7 @@ export class PeticaoIntermediariaAdministrativoService {
   }
 
   async sendContraAgravoInstrumento(phoneNumber: string) {
-    const assistant_id = 'asst_Q71pg1BxJo3h1KhNMpSvpg3b'
+    const assistant_id = 'asst_Q71pg1BxJo3h1KhNMpSvpg3b';
     const user = await this.userService.findUser(phoneNumber);
     if (!user) {
       throw new BadRequestException('user out of database');
@@ -249,7 +252,7 @@ export class PeticaoIntermediariaAdministrativoService {
   }
 
   async sendAlegacoesFinais(phoneNumber: string) {
-    const assistant_id = 'asst_HyFedaXSIPVqv33DKQ6Rb6oA'
+    const assistant_id = 'asst_HyFedaXSIPVqv33DKQ6Rb6oA';
     const user = await this.userService.findUser(phoneNumber);
     if (!user) {
       throw new BadRequestException('user out of database');

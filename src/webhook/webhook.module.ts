@@ -88,7 +88,7 @@ import { FluxoDocumentoService } from 'src/fluxo/documentos/fluxo.documento.serv
     ContratosEmpresariaisService,
     ContratosImobiliariosService,
     ContratosInstrumentosAdvocaticiosService,
-    FluxoDocumentoService
+    FluxoDocumentoService,
   ],
 })
-export class WebhookModule { }
+export class WebhookModule {}

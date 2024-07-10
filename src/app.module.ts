@@ -7,4 +7,4 @@ import { WebhookModule } from './webhook/webhook.module';
   controllers: [],
   providers: [],
 })
-export class AppModule { }
+export class AppModule {}

@@ -374,6 +374,7 @@ export class WebhookService {
         }
         /* if(user selecionou uma opção, e no momento só tem a assistant_id, sem a thread criada e salva na sua conversa) */
         if (conversationOpened.assistantId && !conversationOpened.threadId) {
+          let respostaGpt;
           threadCreated = await this.conversationService.createConversation(
             conversationOpened.assistantId,
             transcript,
@@ -388,9 +389,21 @@ export class WebhookService {
           }
           const conversationUpdatedOpened =
             await this.conversationService.findOpenedConversation(user.id);
-          const respostaGpt = await this.userService.getMessages(
+
+          respostaGpt = await this.userService.getMessages(
             conversationUpdatedOpened.threadId,
           );
+
+          if (!respostaGpt) {
+            let tentativa = 0;
+            while (!respostaGpt && tentativa < 5) {
+              tentativa++;
+              respostaGpt = await this.userService.getMessages(
+                conversationUpdatedOpened.threadId,
+              );
+            }
+          }
+
           if (respostaGpt.data.response != transcript) {
             const message = {
               type: 'text',
@@ -407,14 +420,68 @@ export class WebhookService {
               conversationMessage,
             );
           }
-          if (respostaGpt && respostaGpt.data && respostaGpt.data.response) {
-            const maxChar = 4096;
-            let response = respostaGpt.data.response;
+          // if (respostaGpt && respostaGpt.data && respostaGpt.data.response) {
+          //   const maxChar = 4096;
+          //   let response = respostaGpt.data.response;
 
-            while (response.length > 0) {
-              let part = response.substring(0, maxChar);
-              response = response.substring(maxChar);
-              await this.replyService.replyAnswerGpt(sender, part);
+          //   while (response.length > 0) {
+          //     let part = response.substring(0, maxChar);
+          //     response = response.substring(maxChar);
+          //     await this.replyService.replyAnswerGpt(sender, part);
+          //   }
+          // }
+
+          const splitMessage = (message, maxLength) => {
+            let parts = [];
+            while (message.length > maxLength) {
+              let part = message.slice(0, maxLength);
+              message = message.slice(maxLength);
+              parts.push(part);
+            }
+            parts.push(message);
+            return parts;
+          };
+
+          let answerGptResult = false;
+
+          if (respostaGpt.data.response.length > 3800) {
+            const parts = splitMessage(respostaGpt.data.response, 3800);
+            for (const part of parts) {
+              answerGptResult = await this.replyService.replyAnswerGpt(
+                sender,
+                part,
+              );
+            }
+          } else {
+            answerGptResult = await this.replyService.replyAnswerGpt(
+              sender,
+              respostaGpt.data.response,
+            );
+          }
+
+          if (answerGptResult) {
+            if (
+              respostaGpt.data.isResult &&
+              conversationOpened.assistantId === 'asst_OshFRCvLJUIO7b5nkGodEq7H'
+            ) {
+              return await this.replyService.replyAfterAnswerNotificacao(
+                sender,
+              );
+            }
+            if (
+              respostaGpt.data.isResult &&
+              contratosAssistants.includes(conversationOpened.assistantId)
+            ) {
+              return await this.replyService.replyAfterAnswerContrato(sender);
+            }
+            if (
+              respostaGpt.data.isResult &&
+              !contratosAssistants.includes(conversationOpened.assistantId) &&
+              conversationOpened.assistantId !=
+                'asst_PnosQim2RndvcNgW0yQiKx1M' &&
+              conversationOpened.assistantId != 'asst_OshFRCvLJUIO7b5nkGodEq7H'
+            ) {
+              return await this.replyService.replyAfterAnswerPeca(sender);
             }
           }
 
@@ -438,6 +505,7 @@ export class WebhookService {
           respostaGpt = await this.userService.getMessages(
             conversationUpdatedOpened.threadId,
           );
+
           let tentativa = 0;
           while (!respostaGpt && tentativa < 5) {
             tentativa++;
@@ -445,6 +513,7 @@ export class WebhookService {
               conversationUpdatedOpened.threadId,
             );
           }
+
           if (respostaGpt.data.response != transcript) {
             const message = {
               type: 'text',
@@ -464,14 +533,68 @@ export class WebhookService {
               conversationMessage,
             );
 
-            if (respostaGpt && respostaGpt.data && respostaGpt.data.response) {
-              const maxChar = 4096;
-              let response = respostaGpt.data.response;
+            // if (respostaGpt && respostaGpt.data && respostaGpt.data.response) {
+            //   const maxChar = 4096;
+            //   let response = respostaGpt.data.response;
 
-              while (response.length > 0) {
-                let part = response.substring(0, maxChar);
-                response = response.substring(maxChar);
-                await this.replyService.replyAnswerGpt(sender, part);
+            //   while (response.length > 0) {
+            //     let part = response.substring(0, maxChar);
+            //     response = response.substring(maxChar);
+            //   }
+            // }
+            const splitMessage = (message, maxLength) => {
+              let parts = [];
+              while (message.length > maxLength) {
+                let part = message.slice(0, maxLength);
+                message = message.slice(maxLength);
+                parts.push(part);
+              }
+              parts.push(message);
+              return parts;
+            };
+
+            let answerGptResult = false;
+
+            if (respostaGpt.data.response.length > 3800) {
+              const parts = splitMessage(respostaGpt.data.response, 3800);
+              for (const part of parts) {
+                answerGptResult = await this.replyService.replyAnswerGpt(
+                  sender,
+                  part,
+                );
+              }
+            } else {
+              answerGptResult = await this.replyService.replyAnswerGpt(
+                sender,
+                respostaGpt.data.response,
+              );
+            }
+
+            if (answerGptResult) {
+              if (
+                respostaGpt.data.isResult &&
+                conversationOpened.assistantId ===
+                  'asst_OshFRCvLJUIO7b5nkGodEq7H'
+              ) {
+                return await this.replyService.replyAfterAnswerNotificacao(
+                  sender,
+                );
+              }
+              if (
+                respostaGpt.data.isResult &&
+                contratosAssistants.includes(conversationOpened.assistantId)
+              ) {
+                return await this.replyService.replyAfterAnswerContrato(sender);
+              }
+              if (
+                respostaGpt.data.isResult &&
+                !contratosAssistants.includes(conversationOpened.assistantId) &&
+                conversationOpened.assistantId !=
+                  'asst_PnosQim2RndvcNgW0yQiKx1M' &&
+                conversationOpened.assistantId !=
+                  'asst_OshFRCvLJUIO7b5nkGodEq7H'
+              ) {
+                return await this.replyService.replyAfterAnswerPeca(sender);
               }
             }
             return true;
@@ -534,11 +657,21 @@ export class WebhookService {
                 threadCreated.thread_id,
               );
           }
+          let respostaGpt;
           const conversationUpdatedOpened =
             await this.conversationService.findOpenedConversation(user.id);
-          const respostaGpt = await this.userService.getMessages(
+          respostaGpt = await this.userService.getMessages(
             conversationUpdatedOpened.threadId,
           );
+          if (!respostaGpt) {
+            let tentativa = 0;
+            while (!respostaGpt && tentativa < 5) {
+              tentativa++;
+              respostaGpt = await this.userService.getMessages(
+                conversationUpdatedOpened.threadId,
+              );
+            }
+          }
           if (respostaGpt.data.response != text) {
             const message = {
               type: 'text',
@@ -555,27 +688,66 @@ export class WebhookService {
               conversationMessage,
             );
           }
-          // if (respostaGpt && respostaGpt.data && respostaGpt.data.response) {
-          //   const maxChar = 4096;
-          //   let response = respostaGpt.data.response;
 
-          //   while (response.length > 0) {
-          //     let part = response.substring(0, maxChar);
-          //     response = response.substring(maxChar);
-          //   }
+          const splitMessage = (message, maxLength) => {
+            let parts = [];
+            while (message.length > maxLength) {
+              let part = message.slice(0, maxLength);
+              message = message.slice(maxLength);
+              parts.push(part);
+            }
+            parts.push(message);
+            return parts;
+          };
 
-          //   return true
-          // }
-          await this.replyService.replyAnswerGpt(
-            sender,
-            respostaGpt.data.response,
-          );
+          let answerGptResult = false;
+
+          if (respostaGpt.data.response.length > 3800) {
+            const parts = splitMessage(respostaGpt.data.response, 3800);
+            for (const part of parts) {
+              answerGptResult = await this.replyService.replyAnswerGpt(
+                sender,
+                part,
+              );
+            }
+          } else {
+            answerGptResult = await this.replyService.replyAnswerGpt(
+              sender,
+              respostaGpt.data.response,
+            );
+          }
+
+          if (answerGptResult) {
+            if (
+              respostaGpt.data.isResult &&
+              conversationOpened.assistantId === 'asst_OshFRCvLJUIO7b5nkGodEq7H'
+            ) {
+              return await this.replyService.replyAfterAnswerNotificacao(
+                sender,
+              );
+            }
+            if (
+              respostaGpt.data.isResult &&
+              contratosAssistants.includes(conversationOpened.assistantId)
+            ) {
+              return await this.replyService.replyAfterAnswerContrato(sender);
+            }
+            if (
+              respostaGpt.data.isResult &&
+              !contratosAssistants.includes(conversationOpened.assistantId) &&
+              conversationOpened.assistantId !=
+                'asst_PnosQim2RndvcNgW0yQiKx1M' &&
+              conversationOpened.assistantId != 'asst_OshFRCvLJUIO7b5nkGodEq7H'
+            ) {
+              return await this.replyService.replyAfterAnswerPeca(sender);
+            }
+          }
 
           return true;
         }
 
         if (conversationOpened.threadId) {
-          let respostaGpt;
+          let respostaGpt = null;
           const conversationUpdatedOpened =
             await this.conversationService.findOpenedConversation(user.id);
 
@@ -608,15 +780,19 @@ export class WebhookService {
             conversationUpdatedOpened.threadId,
             conversationUpdatedOpened.assistantId,
           );
+
           respostaGpt = await this.userService.getMessages(
             conversationUpdatedOpened.threadId,
           );
-          let tentativa = 0;
-          while (!respostaGpt && tentativa < 5) {
-            tentativa++;
-            respostaGpt = await this.userService.getMessages(
-              conversationUpdatedOpened.threadId,
-            );
+
+          if (!respostaGpt) {
+            let tentativa = 0;
+            while (!respostaGpt && tentativa < 5) {
+              tentativa++;
+              respostaGpt = await this.userService.getMessages(
+                conversationUpdatedOpened.threadId,
+              );
+            }
           }
           if (respostaGpt.data.response != text) {
             const message = {
@@ -637,23 +813,70 @@ export class WebhookService {
               conversationMessage,
             );
 
-            if (respostaGpt && respostaGpt.data && respostaGpt.data.response) {
-              const maxChar = 4096;
-              let response = respostaGpt.data.response;
-
-              while (response.length > 0) {
-                let part = response.substring(0, maxChar);
-                response = response.substring(maxChar);
-                await this.replyService.replyAnswerGpt(sender, part);
+            const splitMessage = (message, maxLength) => {
+              let parts = [];
+              while (message.length > maxLength) {
+                let part = message.slice(0, maxLength);
+                message = message.slice(maxLength);
+                parts.push(part);
               }
-              return true;
+              parts.push(message);
+              return parts;
+            };
+
+            let answerGptResult = false;
+
+            if (respostaGpt.data.response.length > 3800) {
+              const parts = splitMessage(respostaGpt.data.response, 3800);
+              for (const part of parts) {
+                answerGptResult = await this.replyService.replyAnswerGpt(
+                  sender,
+                  part,
+                );
+              }
+            } else {
+              answerGptResult = await this.replyService.replyAnswerGpt(
+                sender,
+                respostaGpt.data.response,
+              );
             }
+
+            if (answerGptResult) {
+              if (
+                respostaGpt.data.isResult &&
+                conversationOpened.assistantId ===
+                  'asst_OshFRCvLJUIO7b5nkGodEq7H'
+              ) {
+                return await this.replyService.replyAfterAnswerNotificacao(
+                  sender,
+                );
+              }
+              if (
+                respostaGpt.data.isResult &&
+                contratosAssistants.includes(conversationOpened.assistantId)
+              ) {
+                return await this.replyService.replyAfterAnswerContrato(sender);
+              }
+              if (
+                respostaGpt.data.isResult &&
+                !contratosAssistants.includes(conversationOpened.assistantId) &&
+                conversationOpened.assistantId !=
+                  'asst_PnosQim2RndvcNgW0yQiKx1M' &&
+                conversationOpened.assistantId !=
+                  'asst_OshFRCvLJUIO7b5nkGodEq7H'
+              ) {
+                return await this.replyService.replyAfterAnswerPeca(sender);
+              }
+            }
+
             return true;
           }
         }
-      } else if (message.interactive) {
+      } else if (message.interactive.list_reply) {
         const menu = message.interactive.list_reply.id;
-
+        return this.fluxoService.sendInteractiveMenu(menu, senderNumber);
+      } else if (message.interactive.button_reply) {
+        const menu = message.interactive.button_reply.id;
         return this.fluxoService.sendInteractiveMenu(menu, senderNumber);
       } else {
         throw new Error('Unsupported message type');

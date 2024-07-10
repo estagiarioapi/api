@@ -4,7 +4,7 @@ const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 
 @Injectable()
 export class RecursoService {
-  constructor() { }
+  constructor() {}
   async sendDireitoCivil(phoneNumber: string) {
     const message = {
       recipient_type: 'individual',

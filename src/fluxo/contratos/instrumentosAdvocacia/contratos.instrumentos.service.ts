@@ -304,10 +304,10 @@ export class ContratosInstrumentosAdvocaticiosService {
     }
 
     const updateUserData =
-    await this.conversationService.createConversationInDb(
-      assistant_id,
-      user.id,
-    );
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
 
     return true;
   }

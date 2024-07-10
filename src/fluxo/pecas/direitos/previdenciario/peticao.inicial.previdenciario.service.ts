@@ -6,10 +6,13 @@ const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 
 @Injectable()
 export class PeticaoInicialPrevidenciarioService {
-  constructor(private userService: UserService, private conversationService: ConversationService) { }
+  constructor(
+    private userService: UserService,
+    private conversationService: ConversationService,
+  ) {}
 
   async sendConcessaoAposentadoriaSeguradoEspecial(phoneNumber: string) {
-    const assistant_id = 'asst_t19UAD1BfA0n4WHHJJrRfgMU'
+    const assistant_id = 'asst_t19UAD1BfA0n4WHHJJrRfgMU';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -57,7 +60,7 @@ export class PeticaoInicialPrevidenciarioService {
   }
 
   async sendConcessaoAposentadoriaEspecial(phoneNumber: string) {
-    const assistant_id = 'asst_YjJLNjDgxV3pAgJyKD89umzF'
+    const assistant_id = 'asst_YjJLNjDgxV3pAgJyKD89umzF';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -105,7 +108,7 @@ export class PeticaoInicialPrevidenciarioService {
   }
 
   async sendConcessaoAposentadoriaPorIdade(phoneNumber: string) {
-    const assistant_id = 'asst_Rd12vab1tfI2Xaon0cMwd40h'
+    const assistant_id = 'asst_Rd12vab1tfI2Xaon0cMwd40h';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -153,7 +156,7 @@ export class PeticaoInicialPrevidenciarioService {
   }
 
   async sendConversaoTempoDeServicoEspecial(phoneNumber: string) {
-    const assistant_id = 'asst_hCaiSkbUgnRNRKY1uEA815kq'
+    const assistant_id = 'asst_hCaiSkbUgnRNRKY1uEA815kq';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -201,7 +204,7 @@ export class PeticaoInicialPrevidenciarioService {
   }
 
   async sendAposentadoriaPorInvalidez(phoneNumber: string) {
-    const assistant_id = 'asst_kCOCanKkRPzCEFDAgazBVoYS'
+    const assistant_id = 'asst_kCOCanKkRPzCEFDAgazBVoYS';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -249,7 +252,7 @@ export class PeticaoInicialPrevidenciarioService {
   }
 
   async sendConcessaoAuxilioDoenca(phoneNumber: string) {
-    const assistant_id = 'asst_PdPcyBZHSYGM3gEWEUIqOxec'
+    const assistant_id = 'asst_PdPcyBZHSYGM3gEWEUIqOxec';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -297,7 +300,7 @@ export class PeticaoInicialPrevidenciarioService {
   }
 
   async sendAmparoSocial(phoneNumber: string) {
-    const assistant_id = 'asst_XhJQowGYqlJdi7pDya4hw41u'
+    const assistant_id = 'asst_XhJQowGYqlJdi7pDya4hw41u';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -345,7 +348,7 @@ export class PeticaoInicialPrevidenciarioService {
   }
 
   async sendConcessaoSalarioMaternidade(phoneNumber: string) {
-    const assistant_id = 'asst_5wDJ0QrZJIbzd0n59zAmWaZK'
+    const assistant_id = 'asst_5wDJ0QrZJIbzd0n59zAmWaZK';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -393,7 +396,7 @@ export class PeticaoInicialPrevidenciarioService {
   }
 
   async sendConcessaoAuxilioAcidente(phoneNumber: string) {
-    const assistant_id = 'asst_rVfciuSBS5O1pPj3mkF549TG'
+    const assistant_id = 'asst_rVfciuSBS5O1pPj3mkF549TG';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }

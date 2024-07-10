@@ -13,7 +13,7 @@ export function detectMenu(message: string): boolean {
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '');
 
-  return entryPointsMenu.some(e => {
+  return entryPointsMenu.some((e) => {
     const normalizedEntry = e
       .toLowerCase()
       .normalize('NFD')

@@ -39,7 +39,6 @@ export class UserService {
   }
 
   async getMessages(thread_id: string) {
-    console.log('thread:', thread_id);
     if (!thread_id) {
       throw new BadRequestException('thread_id is required');
     }

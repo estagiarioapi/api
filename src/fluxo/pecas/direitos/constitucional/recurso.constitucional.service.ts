@@ -6,10 +6,13 @@ const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 
 @Injectable()
 export class RecursosConstitucionalService {
-  constructor(private userService: UserService, private conversationService: ConversationService) { }
+  constructor(
+    private userService: UserService,
+    private conversationService: ConversationService,
+  ) {}
 
   async sendApelacao(phoneNumber: string) {
-    const assistant_id = 'asst_SblgpcYsRkokn2yRrfjRfude'
+    const assistant_id = 'asst_SblgpcYsRkokn2yRrfjRfude';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -57,7 +60,7 @@ export class RecursosConstitucionalService {
   }
 
   async sendAgravoInstrumento(phoneNumber: string) {
-    const assistant_id = 'asst_bLTwv6QiT2na7ZNpbVYOHlh6'
+    const assistant_id = 'asst_bLTwv6QiT2na7ZNpbVYOHlh6';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -105,7 +108,7 @@ export class RecursosConstitucionalService {
   }
 
   async sendAgravoInterno(phoneNumber: string) {
-    const assistant_id = 'asst_Z8jZLx8XBc5WmSF8YPhgBnky'
+    const assistant_id = 'asst_Z8jZLx8XBc5WmSF8YPhgBnky';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -153,7 +156,7 @@ export class RecursosConstitucionalService {
   }
 
   async sendEmbargosDeclaracao(phoneNumber: string) {
-    const assistant_id = 'asst_kETkEKH8XKv8g2FC6meBoqql'
+    const assistant_id = 'asst_kETkEKH8XKv8g2FC6meBoqql';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -201,7 +204,7 @@ export class RecursosConstitucionalService {
   }
 
   async sendRecursoOrdinario(phoneNumber: string) {
-    const assistant_id = 'asst_0fxiG9SPR8HV9ehqtTevIO8P'
+    const assistant_id = 'asst_0fxiG9SPR8HV9ehqtTevIO8P';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -249,7 +252,7 @@ export class RecursosConstitucionalService {
   }
 
   async sendRecursoEspecial(phoneNumber: string) {
-    const assistant_id = 'asst_z3Ge4BUDfxKhIMZZDEeIGdJ9'
+    const assistant_id = 'asst_z3Ge4BUDfxKhIMZZDEeIGdJ9';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -297,7 +300,7 @@ export class RecursosConstitucionalService {
   }
 
   async sendRecursoExtraordinario(phoneNumber: string) {
-    const assistant_id = 'asst_MjdwybQT1JEX56ZK398jO0S1'
+    const assistant_id = 'asst_MjdwybQT1JEX56ZK398jO0S1';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -345,7 +348,7 @@ export class RecursosConstitucionalService {
   }
 
   async sendAgravoRecursoEspecialExtraordinario(phoneNumber: string) {
-    const assistant_id = 'asst_B4nWz811q9xkUXBsaxypwOVW'
+    const assistant_id = 'asst_B4nWz811q9xkUXBsaxypwOVW';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -393,7 +396,7 @@ export class RecursosConstitucionalService {
   }
 
   async sendEmbargosDivergencia(phoneNumber: string) {
-    const assistant_id = 'asst_JLVxUkGhTX7rhX9hAHUacHjR'
+    const assistant_id = 'asst_JLVxUkGhTX7rhX9hAHUacHjR';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }

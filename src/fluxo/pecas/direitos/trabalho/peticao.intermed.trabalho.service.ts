@@ -6,10 +6,13 @@ const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 
 @Injectable()
 export class PeticaoIntermediariaTrabalhoService {
-  constructor(private userService: UserService, private conversationService: ConversationService) { }
+  constructor(
+    private userService: UserService,
+    private conversationService: ConversationService,
+  ) {}
 
   async sendContestacao(phoneNumber: string) {
-    const assistant_id = 'asst_MQmhx8trQX6gwm2nbR12Eept'
+    const assistant_id = 'asst_MQmhx8trQX6gwm2nbR12Eept';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -57,7 +60,7 @@ export class PeticaoIntermediariaTrabalhoService {
   }
 
   async sendReconvencao(phoneNumber: string) {
-    const assistant_id = 'asst_Vdk2mgTYxLJHPAvuM00S6FTZ'
+    const assistant_id = 'asst_Vdk2mgTYxLJHPAvuM00S6FTZ';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -105,7 +108,7 @@ export class PeticaoIntermediariaTrabalhoService {
   }
 
   async sendContraRecursoOrdinario(phoneNumber: string) {
-    const assistant_id = 'asst_DtpaSfN2naSNbyPkRmoa7n6B'
+    const assistant_id = 'asst_DtpaSfN2naSNbyPkRmoa7n6B';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -153,7 +156,7 @@ export class PeticaoIntermediariaTrabalhoService {
   }
 
   async sendEmbargosExecucao(phoneNumber: string) {
-    const assistant_id = 'asst_Z0DmlvA5fWf8rWaOohekJE00'
+    const assistant_id = 'asst_Z0DmlvA5fWf8rWaOohekJE00';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -201,7 +204,7 @@ export class PeticaoIntermediariaTrabalhoService {
   }
 
   async sendReplica(phoneNumber: string) {
-    const assistant_id = 'asst_rF198QAnvjJK45QZGDt2qTwm'
+    const assistant_id = 'asst_rF198QAnvjJK45QZGDt2qTwm';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -249,7 +252,7 @@ export class PeticaoIntermediariaTrabalhoService {
   }
 
   async sendContraRecursoDeRevista(phoneNumber: string) {
-    const assistant_id = 'asst_VqneCsAWm55p7deyGguAsP37'
+    const assistant_id = 'asst_VqneCsAWm55p7deyGguAsP37';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -297,7 +300,7 @@ export class PeticaoIntermediariaTrabalhoService {
   }
 
   async sendAlegacoesFinais(phoneNumber: string) {
-    const assistant_id = 'asst_uLwsNQKc15zmVWpB6X5xcrDr'
+    const assistant_id = 'asst_uLwsNQKc15zmVWpB6X5xcrDr';
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }

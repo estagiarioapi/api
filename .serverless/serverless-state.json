@@ -228,7 +228,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverless-estagiario/dev/1720571811485-2024-07-10T00:36:51.485Z/serverless-estagiario.zip"
+                "S3Key": "serverless/serverless-estagiario/dev/1720587856669-2024-07-10T05:04:16.669Z/serverless-estagiario.zip"
               },
               "Handler": "s_main.handler",
               "Runtime": "nodejs20.x",
@@ -253,14 +253,14 @@
               "MainLogGroup"
             ]
           },
-          "MainLambdaVersionP4h4N7YRkjraulb6Mxu3qmmAl3lN7IHbAGhJfNTUw": {
+          "MainLambdaVersionZX0QskwYfUyeR4V0kncJ9whPBf4upIhmOWUnumXShPA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "MainLambdaFunction"
               },
-              "CodeSha256": "5q28hloCWU7y4xgSuoPBzwAK/7H1IQCvwg/ZDKwEmF0="
+              "CodeSha256": "6LQhSxoXGaZ1+uJ30OXmlwrT8kYUehNHI4AscA+jsUw="
             }
           },
           "ApiGatewayRestApi": {
@@ -492,7 +492,7 @@
               "MainLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1720571789621": {
+          "ApiGatewayDeployment1720587833890": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -568,7 +568,7 @@
           "MainLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "MainLambdaVersionP4h4N7YRkjraulb6Mxu3qmmAl3lN7IHbAGhJfNTUw"
+              "Ref": "MainLambdaVersionZX0QskwYfUyeR4V0kncJ9whPBf4upIhmOWUnumXShPA"
             },
             "Export": {
               "Name": "sls-serverless-estagiario-dev-MainLambdaFunctionQualifiedArn"
@@ -729,7 +729,7 @@
         "timeout": 6,
         "runtime": "nodejs20.x",
         "vpc": {},
-        "versionLogicalId": "MainLambdaVersionP4h4N7YRkjraulb6Mxu3qmmAl3lN7IHbAGhJfNTUw"
+        "versionLogicalId": "MainLambdaVersionZX0QskwYfUyeR4V0kncJ9whPBf4upIhmOWUnumXShPA"
       }
     },
     "configValidationMode": "warn",
@@ -762,7 +762,7 @@
           "serverless_sdk/**"
         ],
         "artifact": "C:\\Users\\Otavio\\Documents\\GitHub\\api\\.serverless\\serverless-estagiario.zip",
-        "artifactDirectoryName": "serverless/serverless-estagiario/dev/1720571811485-2024-07-10T00:36:51.485Z"
+        "artifactDirectoryName": "serverless/serverless-estagiario/dev/1720587856669-2024-07-10T05:04:16.669Z"
       }
     },
     "app": "serverless-estagiario",
@@ -775,7 +775,7 @@
     "artifact": "C:\\Users\\Otavio\\Documents\\GitHub\\api\\.serverless\\serverless-estagiario.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/serverless-estagiario/dev/1720571811485-2024-07-10T00:36:51.485Z",
+    "artifactDirectoryName": "serverless/serverless-estagiario/dev/1720587856669-2024-07-10T05:04:16.669Z",
     "artifact": "serverless-estagiario.zip"
   }
 }
