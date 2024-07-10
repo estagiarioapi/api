@@ -62,7 +62,7 @@ export class WebhookService {
     private userService: UserService,
     private conversationService: ConversationService,
     private replyService: ReplyService,
-  ) { }
+  ) {}
 
   async processMessage(event: any): Promise<any> {
     try {
@@ -422,12 +422,22 @@ export class WebhookService {
         }
 
         if (conversationOpened.threadId) {
-          let respostaGpt
-          const conversationUpdatedOpened = await this.conversationService.findOpenedConversation(user.id);
+          let respostaGpt;
+          const conversationUpdatedOpened =
+            await this.conversationService.findOpenedConversation(user.id);
           await this.replyService.replyMessagePeca(sender);
-          const createNewMessageOpenAI = await this.conversationService.createNewMessageOpenAI(conversationUpdatedOpened.threadId, transcript);
-          const runThread = await this.conversationService.runThread(conversationUpdatedOpened.threadId, conversationUpdatedOpened.assistantId);
-          respostaGpt = await this.userService.getMessages(conversationUpdatedOpened.threadId,);
+          const createNewMessageOpenAI =
+            await this.conversationService.createNewMessageOpenAI(
+              conversationUpdatedOpened.threadId,
+              transcript,
+            );
+          const runThread = await this.conversationService.runThread(
+            conversationUpdatedOpened.threadId,
+            conversationUpdatedOpened.assistantId,
+          );
+          respostaGpt = await this.userService.getMessages(
+            conversationUpdatedOpened.threadId,
+          );
           let tentativa = 0;
           while (!respostaGpt && tentativa < 5) {
             tentativa++;
@@ -481,7 +491,6 @@ export class WebhookService {
           return this.fluxoService.sendInteractiveMessage(sender);
         }
 
-
         let threadCreated;
         let threadUpdated;
         const conversationOpened =
@@ -496,17 +505,26 @@ export class WebhookService {
             text,
           );
           if (threadCreated) {
-
+            console.log(conversationOpened);
             if (contratosAssistants.includes(conversationOpened.assistantId)) {
-              await this.replyService.replyMessageContrato(sender)
+              await this.replyService.replyMessageContrato(sender);
             }
-            if (conversationOpened.assistantId === 'asst_PnosQim2RndvcNgW0yQiKx1M') {
-              await this.replyService.replyMessageAuxiliar(sender)
+            if (
+              conversationOpened.assistantId === 'asst_PnosQim2RndvcNgW0yQiKx1M'
+            ) {
+              await this.replyService.replyMessageAuxiliar(sender);
             }
-            if (conversationOpened.assistantId === 'asst_OshFRCvLJUIO7b5nkGodEq7H') {
-              await this.replyService.replyMessageNotificacao(sender)
+            if (
+              conversationOpened.assistantId === 'asst_OshFRCvLJUIO7b5nkGodEq7H'
+            ) {
+              await this.replyService.replyMessageNotificacao(sender);
             }
-            if (!contratosAssistants.includes(conversationOpened.assistantId) && conversationOpened.assistantId != 'asst_PnosQim2RndvcNgW0yQiKx1M' && conversationOpened.assistantId != 'asst_OshFRCvLJUIO7b5nkGodEq7H') {
+            if (
+              !contratosAssistants.includes(conversationOpened.assistantId) &&
+              conversationOpened.assistantId !=
+                'asst_PnosQim2RndvcNgW0yQiKx1M' &&
+              conversationOpened.assistantId != 'asst_OshFRCvLJUIO7b5nkGodEq7H'
+            ) {
               await this.replyService.replyMessagePeca(sender);
             }
 
@@ -516,7 +534,8 @@ export class WebhookService {
                 threadCreated.thread_id,
               );
           }
-          const conversationUpdatedOpened = await this.conversationService.findOpenedConversation(user.id);
+          const conversationUpdatedOpened =
+            await this.conversationService.findOpenedConversation(user.id);
           const respostaGpt = await this.userService.getMessages(
             conversationUpdatedOpened.threadId,
           );
@@ -547,29 +566,51 @@ export class WebhookService {
 
           //   return true
           // }
-          await this.replyService.replyAnswerGpt(sender, respostaGpt.data.response);
+          await this.replyService.replyAnswerGpt(
+            sender,
+            respostaGpt.data.response,
+          );
 
           return true;
         }
 
         if (conversationOpened.threadId) {
-          let respostaGpt
-          const conversationUpdatedOpened = await this.conversationService.findOpenedConversation(user.id);
+          let respostaGpt;
+          const conversationUpdatedOpened =
+            await this.conversationService.findOpenedConversation(user.id);
+
           if (contratosAssistants.includes(conversationOpened.assistantId)) {
-            await this.replyService.replyMessageContrato(sender)
+            await this.replyService.replyMessageContrato(sender);
           }
-          if (conversationOpened.assistantId === 'asst_PnosQim2RndvcNgW0yQiKx1M') {
-            await this.replyService.replyMessageAuxiliar(sender)
+          if (
+            conversationOpened.assistantId === 'asst_PnosQim2RndvcNgW0yQiKx1M'
+          ) {
+            await this.replyService.replyMessageAuxiliar(sender);
           }
-          if (conversationOpened.assistantId === 'asst_OshFRCvLJUIO7b5nkGodEq7H') {
-            await this.replyService.replyMessageNotificacao(sender)
+          if (
+            conversationOpened.assistantId === 'asst_OshFRCvLJUIO7b5nkGodEq7H'
+          ) {
+            await this.replyService.replyMessageNotificacao(sender);
           }
-          if (!contratosAssistants.includes(conversationOpened.assistantId) && conversationOpened.assistantId != 'asst_PnosQim2RndvcNgW0yQiKx1M' && conversationOpened.assistantId != 'asst_OshFRCvLJUIO7b5nkGodEq7H') {
+          if (
+            !contratosAssistants.includes(conversationOpened.assistantId) &&
+            conversationOpened.assistantId != 'asst_PnosQim2RndvcNgW0yQiKx1M' &&
+            conversationOpened.assistantId != 'asst_OshFRCvLJUIO7b5nkGodEq7H'
+          ) {
             await this.replyService.replyMessagePeca(sender);
           }
-          const createNewMessageOpenAI = await this.conversationService.createNewMessageOpenAI(conversationUpdatedOpened.threadId, text,);
-          const runThread = await this.conversationService.runThread(conversationUpdatedOpened.threadId, conversationUpdatedOpened.assistantId);
-          respostaGpt = await this.userService.getMessages(conversationUpdatedOpened.threadId,);
+          const createNewMessageOpenAI =
+            await this.conversationService.createNewMessageOpenAI(
+              conversationUpdatedOpened.threadId,
+              text,
+            );
+          const runThread = await this.conversationService.runThread(
+            conversationUpdatedOpened.threadId,
+            conversationUpdatedOpened.assistantId,
+          );
+          respostaGpt = await this.userService.getMessages(
+            conversationUpdatedOpened.threadId,
+          );
           let tentativa = 0;
           while (!respostaGpt && tentativa < 5) {
             tentativa++;
@@ -605,7 +646,7 @@ export class WebhookService {
                 response = response.substring(maxChar);
                 await this.replyService.replyAnswerGpt(sender, part);
               }
-              return true
+              return true;
             }
             return true;
           }

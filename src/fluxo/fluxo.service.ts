@@ -404,6 +404,11 @@ export class FluxoService {
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
+    const assistant_id = 'asst_PnosQim2RndvcNgW0yQiKx1M';
+    const user = await this.userService.findUser(phoneNumber);
+    if (!user) {
+      throw new BadRequestException('user out of database');
+    }
     const messages = [
       {
         text: 'Você selecionou a funcionalidade de *Auxiliar Jurídico.* Nessa função, você poderá enviar suas dúvidas para que eu possa responder. Também ofereço suporte direcionado às suas necessidades legais, isso inclui esclarecimentos sobre legislação, interpretações jurídicas e orientações sobre como proceder diante de um caso, ao me enviar o fato, visando facilitar suas decisões e ações legais. 👨‍⚖️',
@@ -438,6 +443,12 @@ export class FluxoService {
         return false;
       }
     }
+
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
 
     return true;
   }
