@@ -6,6 +6,7 @@ useDotenv: true
 
 plugins:
   - serverless-offline
+  - serverless-dotenv-plugin
 
 provider:
   name: aws
@@ -32,10 +33,10 @@ functions:
           path: webhook
       - http:
           method: GET
-          path: webhook    
+          path: webhook
 
 package:
-    exclude:
+  exclude:
     - tests/**
     - docs/**
     - .git/**
