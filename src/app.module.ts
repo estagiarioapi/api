@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { FluxoModule } from './fluxo/fluxo.module';
+import { FluxoModule } from './menu/menu.module';
 import { WebhookModule } from './webhook/webhook.module';
 
 @Module({
@@ -7,4 +7,4 @@ import { WebhookModule } from './webhook/webhook.module';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule { }
