@@ -367,18 +367,21 @@ export class WebhookService {
         );
         let threadCreated;
         let threadUpdated;
+
+        /* Verifica se o usuário possui alguma conversa em aberto */
         const conversationOpened =
           await this.conversationService.findOpenedConversation(user.id);
-        if (!conversationOpened) {
-          return "você precisa selecionar uma opção, ou se desejar voltar ao menu digite 'menu'.";
-        }
+
         /* if(user selecionou uma opção, e no momento só tem a assistant_id, sem a thread criada e salva na sua conversa) */
         if (conversationOpened.assistantId && !conversationOpened.threadId) {
           let respostaGpt;
+          /* Nesse momento é chamado a api da OpenAI e uma thread é criada e já ativada, com a mensagem e a assistant desejada */
           threadCreated = await this.conversationService.createConversation(
             conversationOpened.assistantId,
             transcript,
           );
+
+          /* Nesse momento ele verifica se a thread foi criada, e retorna a mensagem de aguarde para o usuário, e após isso salva a thread na conversa do usuário */
           if (threadCreated) {
             await this.replyService.replyMessagePeca(sender);
             threadUpdated =
@@ -387,13 +390,17 @@ export class WebhookService {
                 threadCreated.thread_id,
               );
           }
+
+          /* Nesse momento ele chama a conversa aberta do usuário para captar a threadId */
           const conversationUpdatedOpened =
             await this.conversationService.findOpenedConversation(user.id);
 
+          /* Nesse momento chamamos a função getMessages para conseguir a resposta que o bot retornou */
           respostaGpt = await this.userService.getMessages(
             conversationUpdatedOpened.threadId,
           );
 
+          /* Caso a resposta a cima retorne false, criamos um looping para ele rodar até pegar a mensagem. (respostaGpt vem false por causa do tamanho da petição que vem grande, por isso as vezes vem sem resposta) */
           if (!respostaGpt) {
             let tentativa = 0;
             while (!respostaGpt && tentativa < 5) {
@@ -404,6 +411,7 @@ export class WebhookService {
             }
           }
 
+          /* Nesse momento verificamos se a resposta do gpt é diferente do input, se sim criamos uma mensagem e colocamos dentro de uma conversation na nossa base */
           if (respostaGpt.data.response != transcript) {
             const message = {
               type: 'text',
@@ -420,17 +428,8 @@ export class WebhookService {
               conversationMessage,
             );
           }
-          // if (respostaGpt && respostaGpt.data && respostaGpt.data.response) {
-          //   const maxChar = 4096;
-          //   let response = respostaGpt.data.response;
 
-          //   while (response.length > 0) {
-          //     let part = response.substring(0, maxChar);
-          //     response = response.substring(maxChar);
-          //     await this.replyService.replyAnswerGpt(sender, part);
-          //   }
-          // }
-
+          /* Função que divide a mensagem caso exceda 3800 caracteres */
           const splitMessage = (message, maxLength) => {
             let parts = [];
             while (message.length > maxLength) {
@@ -444,6 +443,7 @@ export class WebhookService {
 
           let answerGptResult = false;
 
+          /* Nesse momento verificamos se o tamanho da resposta excede 3800 (limite da api do wpp é 4096), se exceder ele dividi a mensagem. */
           if (respostaGpt.data.response.length > 3800) {
             const parts = splitMessage(respostaGpt.data.response, 3800);
             for (const part of parts) {
@@ -459,6 +459,7 @@ export class WebhookService {
             );
           }
 
+          /* Nesse momento verificamos se a resposta veio toda correta e não aconteceu nenhum bug, caso tudo certo ele verifica se é uma peça/contrato final e retorna uma mensagem com menu após a resposta do gpt. */
           if (answerGptResult) {
             if (
               respostaGpt.data.isResult &&
@@ -488,24 +489,58 @@ export class WebhookService {
           return true;
         }
 
+        /* Nesse momento verificamos se existe alguma thread na conversa em aberto do usuário */
         if (conversationOpened.threadId) {
           let respostaGpt;
+
+          /* Chama a conversa em aberto do usuário */
           const conversationUpdatedOpened =
             await this.conversationService.findOpenedConversation(user.id);
-          await this.replyService.replyMessagePeca(sender);
+
+          /* Se não tiver uma conversa em aberto ele retorna, se tiver ele verifica qual é a assistant do usuário e ve se é de contrato, peça, notificação ou auxiliar, e retorna a mensagem de aguarde de acordo. */
+          if (!conversationOpened) {
+            return "você precisa selecionar uma opção, ou se desejar voltar ao menu digite 'menu'.";
+          }
+          if (contratosAssistants.includes(conversationOpened.assistantId)) {
+            await this.replyService.replyMessageContrato(sender);
+          }
+          if (
+            conversationOpened.assistantId === 'asst_PnosQim2RndvcNgW0yQiKx1M'
+          ) {
+            await this.replyService.replyMessageAuxiliar(sender);
+          }
+          if (
+            conversationOpened.assistantId === 'asst_OshFRCvLJUIO7b5nkGodEq7H'
+          ) {
+            await this.replyService.replyMessageNotificacao(sender);
+          }
+          if (
+            !contratosAssistants.includes(conversationOpened.assistantId) &&
+            conversationOpened.assistantId != 'asst_PnosQim2RndvcNgW0yQiKx1M' &&
+            conversationOpened.assistantId != 'asst_OshFRCvLJUIO7b5nkGodEq7H'
+          ) {
+            await this.replyService.replyMessagePeca(sender);
+          }
+
+          /* Nesse momento ele cria uma mensagem com a thread desejada */
           const createNewMessageOpenAI =
             await this.conversationService.createNewMessageOpenAI(
               conversationUpdatedOpened.threadId,
               transcript,
             );
+
+          /* Nesse momento é feito run na thread e ela é executada */
           const runThread = await this.conversationService.runThread(
             conversationUpdatedOpened.threadId,
             conversationUpdatedOpened.assistantId,
           );
+
+          /* Nesse momento chamamos a função getMessages para conseguir a resposta que o bot retornou */
           respostaGpt = await this.userService.getMessages(
             conversationUpdatedOpened.threadId,
           );
 
+          /* Caso a resposta a cima retorne false, criamos um looping para ele rodar até pegar a mensagem. (respostaGpt vem false por causa do tamanho da petição que vem grande, por isso as vezes vem sem resposta) */
           let tentativa = 0;
           while (!respostaGpt && tentativa < 5) {
             tentativa++;
@@ -514,6 +549,7 @@ export class WebhookService {
             );
           }
 
+          /* Nesse momento verificamos se a resposta do gpt é diferente do input, se sim criamos uma mensagem e colocamos dentro de uma conversation na nossa base */
           if (respostaGpt.data.response != transcript) {
             const message = {
               type: 'text',
@@ -533,15 +569,7 @@ export class WebhookService {
               conversationMessage,
             );
 
-            // if (respostaGpt && respostaGpt.data && respostaGpt.data.response) {
-            //   const maxChar = 4096;
-            //   let response = respostaGpt.data.response;
-
-            //   while (response.length > 0) {
-            //     let part = response.substring(0, maxChar);
-            //     response = response.substring(maxChar);
-            //   }
-            // }
+            /* Função que divide a mensagem caso exceda 3800 caracteres */
             const splitMessage = (message, maxLength) => {
               let parts = [];
               while (message.length > maxLength) {
@@ -555,6 +583,7 @@ export class WebhookService {
 
             let answerGptResult = false;
 
+            /* Nesse momento temos verificamos se o tamanho da resposta excede 3800 (limite da api do wpp é 4096), se exceder ele dividi a mensagem. */
             if (respostaGpt.data.response.length > 3800) {
               const parts = splitMessage(respostaGpt.data.response, 3800);
               for (const part of parts) {
@@ -570,6 +599,7 @@ export class WebhookService {
               );
             }
 
+            /* Nesse momento verificamos se a resposta veio toda correta e não aconteceu nenhum bug, caso tudo certo ele verifica se é uma peça/contrato final e retorna uma mensagem com menu após a resposta do gpt. */
             if (answerGptResult) {
               if (
                 respostaGpt.data.isResult &&
