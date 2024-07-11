@@ -43,6 +43,7 @@ import { WebhookController } from './webhook.controller';
 import { WebhookService } from './webhook.service';
 import { FluxoDocumentoService } from 'src/menu/documentos/fluxo.documento.service';
 import { ThreadService } from 'src/thread/thread.service';
+import { DocumentoService } from 'src/menu/documentos/documentos.service';
 
 @Module({
   imports: [],
@@ -90,7 +91,8 @@ import { ThreadService } from 'src/thread/thread.service';
     ContratosImobiliariosService,
     ContratosInstrumentosAdvocaticiosService,
     FluxoDocumentoService,
-    ThreadService
+    ThreadService,
+    DocumentoService
   ],
 })
 export class WebhookModule { }

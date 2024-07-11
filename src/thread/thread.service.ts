@@ -7,11 +7,11 @@ import { MenuService } from "src/menu/menu.service";
 import { contratosAssistants } from "src/core/utils/cache";
 import { processText } from "src/core/utils/processText";
 import { processAudio } from "src/core/utils/processAudio";
-import { processDocument } from "src/core/utils/processDocument";
+import { DocumentoService } from "src/menu/documentos/documentos.service";
 
 @Injectable()
 export class ThreadService {
-    constructor(private replyService: ReplyService, private conversationService: ConversationService, private menuService: MenuService, private userService: UserService) { }
+    constructor(private replyService: ReplyService, private conversationService: ConversationService, private menuService: MenuService, private userService: UserService, private documentService: DocumentoService) { }
     async conversation(message, senderNumber) {
         if (message.text) {
             const { text, sender } = processText(message, senderNumber);
@@ -27,14 +27,32 @@ export class ThreadService {
                 }
                 return this.menuService.sendInteractiveMessage(sender);
             }
+
+            const conversationOpened = await this.conversationService.findOpenedConversation(user.id);
+            if (conversationOpened.assistantId === 'asst_Hv2WQuoOA4ncLSbysZBCoTkc') {
+                return await this.documentService.createThreadAndGetMessage(message, senderNumber)
+            }
+
             let threadCreated;
             let threadUpdated;
-            const conversationOpened = await this.conversationService.findOpenedConversation(user.id);
-
             // Verifica se não existe uma conversa aberta
             if (!conversationOpened) {
                 return "você precisa selecionar uma opção, ou se desejar voltar ao menu digite 'menu'.";
             }
+            // Cria uma mensagem na base
+            const messageInput = {
+                type: 'text',
+                value: text,
+            };
+            const messageInDb = await this.conversationService.createMessage(messageInput);
+
+            // Cria uma conversa com a mensagem na base
+            const conversationMessage = {
+                conversationId: conversationOpened.id,
+                messageId: messageInDb.id,
+                isInput: true,
+            };
+            await this.conversationService.createConversationMessage(conversationMessage);
 
             // Verifica se o usuário selecionou uma opção, mas ainda não tem a thread criada e salva na conversa
             if (conversationOpened.assistantId && !conversationOpened.threadId) {
@@ -537,21 +555,21 @@ export class ThreadService {
                 }
             }
 
-        } else if (message.document) {
-            const { threadId, runId, sender } = await processDocument(
-                message,
-                senderNumber,
-            );
-            console.log(threadId, runId, sender);
-            return {
-                statusCode: 200,
-                body: JSON.stringify({
-                    message: 'Document processed and sent successfully',
-                    thread_id: threadId,
-                    run_id: runId,
-                    sender_number: sender,
-                }),
-            };
         }
+    }
+
+    async documentConversation(document, senderNumber: string) {
+        const documentProcessed = await this.documentService.processDocument(
+            document,
+            senderNumber,
+        );
+
+        return {
+            statusCode: 200,
+            body: JSON.stringify({
+                message: 'Document processed and sent successfully',
+                document: documentProcessed
+            }),
+        };
     }
 }

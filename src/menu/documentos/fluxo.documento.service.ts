@@ -1,16 +1,25 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import axios from 'axios';
+import { ConversationService } from 'src/core/integrations/conversation.service';
+import { UserService } from 'src/core/integrations/user.service';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 
 @Injectable()
 export class FluxoDocumentoService {
+  constructor(private conversationService: ConversationService, private userService: UserService) { }
   async sendExtrairInformacoes(phoneNumber: string) {
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
+    const user = await this.userService.findUser(phoneNumber);
+    console.log(user);
+    if (!user) {
+      throw new BadRequestException('user out of database');
+    }
+    const assistant_id = 'asst_Hv2WQuoOA4ncLSbysZBCoTkc';
     const messages = [
       {
-        text: 'Você selecionou a opção de *extrair informações de documentos.* Nessa funcionalidade, você deverá *enviar um documento e aguardar a minha confirmação de leitura.* Após a confirmação, poderei responder a questionamentos a respeito das informações que constam no documento.',
+        text: 'Você selecionou a opção de *Extrair informações de documentos.* Nessa funcionalidade, você deverá *enviar um documento e aguardar a minha confirmação de leitura.* Após a confirmação, poderei responder a questionamentos a respeito das informações que constam no documento.',
       },
       {
         text: '*Envie seu documento!*',
@@ -38,6 +47,12 @@ export class FluxoDocumentoService {
       }
     }
 
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
+
     return true;
   }
 
@@ -45,6 +60,12 @@ export class FluxoDocumentoService {
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
+    const user = await this.userService.findUser(phoneNumber);
+    console.log(user);
+    if (!user) {
+      throw new BadRequestException('user out of database');
+    }
+    const assistant_id = 'asst_Hv2WQuoOA4ncLSbysZBCoTkc';
     const messages = [
       {
         text: 'Você selecionou a opção de *resumir documentos.* Nessa funcionalidade, você deverá *enviar um documento e aguardar que eu gere o resumo.* Não é necessário enviar uma mensagem após o envio do arquivo; automaticamente produzirei um resumo selecionando as informações principais do documento enviado.',
@@ -75,6 +96,12 @@ export class FluxoDocumentoService {
       }
     }
 
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
+
     return true;
   }
 
@@ -82,6 +109,12 @@ export class FluxoDocumentoService {
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
+    const user = await this.userService.findUser(phoneNumber);
+    console.log(user);
+    if (!user) {
+      throw new BadRequestException('user out of database');
+    }
+    const assistant_id = 'asst_Hv2WQuoOA4ncLSbysZBCoTkc';
     const messages = [
       {
         text: 'Você selecionou a opção de *analisar documentos.* Nessa funcionalidade, você deverá *enviar um documento e aguardar a minha confirmação de leitura.* Não é necessário enviar uma mensagem após o envio do arquivo; automaticamente produzirei a análise do conteúdo, considerando os pontos fortes e fracos contidos no documento.',
@@ -112,6 +145,12 @@ export class FluxoDocumentoService {
       }
     }
 
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
+
     return true;
   }
 
@@ -119,6 +158,12 @@ export class FluxoDocumentoService {
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
+    const user = await this.userService.findUser(phoneNumber);
+    console.log(user);
+    if (!user) {
+      throw new BadRequestException('user out of database');
+    }
+    const assistant_id = 'asst_Hv2WQuoOA4ncLSbysZBCoTkc';
     const messages = [
       {
         text: 'Você selecionou a opção de *comparar documentos.* Nessa funcionalidade, você deverá *enviar os dois documentos e aguardar minha confirmação de leitura.* Após a confirmação, você poderá me informar o que deseja que eu compare entre os documentos, como, por exemplo: quais são as teses defendidas em cada petição? Quais cláusulas estão sendo confrontadas entre si? Entre outros questionamentos..',
@@ -148,6 +193,12 @@ export class FluxoDocumentoService {
         return false;
       }
     }
+
+    const updateUserData =
+      await this.conversationService.createConversationInDb(
+        assistant_id,
+        user.id,
+      );
 
     return true;
   }

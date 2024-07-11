@@ -5,6 +5,10 @@ import { promises as fs } from 'fs';
 import { UserService } from '../core/integrations/user.service';
 import { MenuService } from 'src/menu/menu.service';
 import { ThreadService } from 'src/thread/thread.service';
+import { ConversationService } from 'src/core/integrations/conversation.service';
+import { DocumentoService } from 'src/menu/documentos/documentos.service';
+import { detectMenu } from 'src/core/utils/detectMenu';
+import { processText } from 'src/core/utils/processText';
 
 @Injectable()
 export class WebhookService {
@@ -23,16 +27,15 @@ export class WebhookService {
       const message = changes.messages[0];
       const senderNumber = message.from;
       const user = await this.userService.findUser(senderNumber);
-
       if (!user) {
         throw new BadRequestException('User not found in database');
       }
-      if (message.document) {
+      if (message.text) {
         return await this.threadService.conversation(message, senderNumber)
-      } else if (message.audio) {
+      } if (message.audio) {
         return await this.threadService.conversation(message, senderNumber)
-      } else if (message.text) {
-        return await this.threadService.conversation(message, senderNumber)
+      } else if (message.document) {
+        return await this.threadService.documentConversation(message, senderNumber)
       } else if (message.interactive.list_reply) {
         const menu = message.interactive.list_reply.id;
         return this.menuService.sendInteractiveMenu(menu, senderNumber);

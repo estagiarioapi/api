@@ -2,8 +2,8 @@ import axios from "axios";
 
 export async function createThreadWithFile(
   fileId: string,
-  userMessage: string,
-  vectorStoreId: string,
+  input: string,
+  vectorStoreId: string
 ) {
   const response = await axios.post(
     'https://api.openai.com/v1/threads',
@@ -11,10 +11,7 @@ export async function createThreadWithFile(
       messages: [
         {
           role: 'user',
-          content: userMessage,
-          attachments: [
-            { file_id: fileId, tools: [{ type: 'file_search' }] },
-          ],
+          content: input
         },
       ],
       tool_resources: {
@@ -24,7 +21,7 @@ export async function createThreadWithFile(
     {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: process.env.OPENAI_KEY,
+        Authorization: 'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
         'OpenAI-Beta': 'assistants=v2',
       },
     },

@@ -41,6 +41,7 @@ import { PeticaoIntermediariaService } from './pecas/menus/intermediaria/fluxo.p
 import { RecursoService } from './pecas/menus/recurso/fluxo.recurso.service';
 import { MenuService } from './menu.service';
 import { ThreadService } from 'src/thread/thread.service';
+import { DocumentoService } from './documentos/documentos.service';
 
 @Module({
   providers: [
@@ -85,7 +86,8 @@ import { ThreadService } from 'src/thread/thread.service';
     ContratosImobiliariosService,
     ContratosInstrumentosAdvocaticiosService,
     FluxoDocumentoService,
-    ThreadService
+    ThreadService,
+    DocumentoService
   ],
   controllers: [],
 })
