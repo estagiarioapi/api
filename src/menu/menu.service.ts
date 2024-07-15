@@ -145,16 +145,18 @@ export class MenuService {
       return this.replyService.replyAfterEditOptionSelected(phoneNumber);
     } else if (menuId === '1021') {
       const user = await this.userService.findUser(phoneNumber);
-      console.log('user', user);
       const openedConversation =
         await this.conversationService.findOpenedConversation(user.id);
-      console.log('opened:', openedConversation);
       if (openedConversation) {
         const ccvs = await this.conversationService.desactiveLastConversation(
           openedConversation.id,
         );
       }
       return await this.sendInteractiveMessage(phoneNumber);
+    } else if(menuId === '1022') {
+      return await this.replyService.replyLeadOptionYes(phoneNumber)
+    } else if(menuId === '1023') {
+      return await this.replyService.replyLeadOptionNo(phoneNumber)
     }
   }
   async sendAuxiliarJuridicoMenu(phoneNumber: string) {

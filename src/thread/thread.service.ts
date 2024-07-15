@@ -29,8 +29,9 @@ export class ThreadService {
             }
 
             const conversationOpened = await this.conversationService.findOpenedConversation(user.id);
-            if (conversationOpened.assistantId === 'asst_Hv2WQuoOA4ncLSbysZBCoTkc') {
-                return await this.documentService.createThreadAndGetMessage(message, senderNumber)
+            if (conversationOpened.assistantId === 'asst_iZq3asK7GzPlLRKt7H2fF9K7') {
+                await this.replyService.replyInputDocumentoRecebido(sender)
+                return await this.documentService.createThreadAndGetMessage(text, senderNumber)
             }
 
             let threadCreated;
@@ -559,6 +560,19 @@ export class ThreadService {
     }
 
     async documentConversation(document, senderNumber: string) {
+        const user = await this.userService.findUser(senderNumber);
+        if (!user) {
+            throw new BadRequestException('user not found in database');
+        }
+        const conversationOpened = await this.conversationService.findOpenedConversation(user.id);
+        if (!conversationOpened) {
+            throw new BadRequestException("você precisa selecionar uma opção, ou se desejar voltar ao menu digite 'menu'.")
+        }
+        if(conversationOpened.assistantId === '' ) {
+
+        } else {
+
+        }
         const documentProcessed = await this.documentService.processDocument(
             document,
             senderNumber,
@@ -571,5 +585,16 @@ export class ThreadService {
                 document: documentProcessed
             }),
         };
+    }
+
+    async leadConversation(message, senderNumber: string) {
+        const lead = await this.userService.getLead(senderNumber)
+        if(message.text){
+            const { text, sender } = processText(message, senderNumber);
+            if(text == 'Oi, EstagIArio! Quero entrar para a lista de espera.') {
+                const firstReply = await this.replyService.replyLead(senderNumber, lead.waitListNumber)
+                const replyOption = await this.replyService.replyLeadOption(sender)
+            }
+        }
     }
 }

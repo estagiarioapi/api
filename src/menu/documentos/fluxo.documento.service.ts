@@ -16,7 +16,7 @@ export class FluxoDocumentoService {
     if (!user) {
       throw new BadRequestException('user out of database');
     }
-    const assistant_id = 'asst_Hv2WQuoOA4ncLSbysZBCoTkc';
+    const assistant_id = 'asst_iZq3asK7GzPlLRKt7H2fF9K7';
     const messages = [
       {
         text: 'Você selecionou a opção de *Extrair informações de documentos.* Nessa funcionalidade, você deverá *enviar um documento e aguardar a minha confirmação de leitura.* Após a confirmação, poderei responder a questionamentos a respeito das informações que constam no documento.',
@@ -65,10 +65,10 @@ export class FluxoDocumentoService {
     if (!user) {
       throw new BadRequestException('user out of database');
     }
-    const assistant_id = 'asst_Hv2WQuoOA4ncLSbysZBCoTkc';
+    const assistant_id = 'asst_iZq3asK7GzPlLRKt7H2fF9K7';
     const messages = [
       {
-        text: 'Você selecionou a opção de *resumir documentos.* Nessa funcionalidade, você deverá *enviar um documento e aguardar que eu gere o resumo.* Não é necessário enviar uma mensagem após o envio do arquivo; automaticamente produzirei um resumo selecionando as informações principais do documento enviado.',
+        text: 'Você selecionou a opção de *Resumir documentos.* Nessa funcionalidade, você deverá *enviar um documento e aguardar que eu gere o resumo.* Não é necessário enviar uma mensagem após o envio do arquivo; automaticamente produzirei um resumo selecionando as informações principais do documento enviado.',
       },
       {
         text: '*Envie seu documento!*',
@@ -114,10 +114,10 @@ export class FluxoDocumentoService {
     if (!user) {
       throw new BadRequestException('user out of database');
     }
-    const assistant_id = 'asst_Hv2WQuoOA4ncLSbysZBCoTkc';
+    const assistant_id = 'asst_iZq3asK7GzPlLRKt7H2fF9K7';
     const messages = [
       {
-        text: 'Você selecionou a opção de *analisar documentos.* Nessa funcionalidade, você deverá *enviar um documento e aguardar a minha confirmação de leitura.* Não é necessário enviar uma mensagem após o envio do arquivo; automaticamente produzirei a análise do conteúdo, considerando os pontos fortes e fracos contidos no documento.',
+        text: 'Você selecionou a opção de *Analisar documentos.* Nessa funcionalidade, você deverá *enviar um documento e aguardar a minha confirmação de leitura.* Não é necessário enviar uma mensagem após o envio do arquivo; automaticamente produzirei a análise do conteúdo, considerando os pontos fortes e fracos contidos no documento.',
       },
       {
         text: '*Envie seu documento!*',
@@ -163,10 +163,10 @@ export class FluxoDocumentoService {
     if (!user) {
       throw new BadRequestException('user out of database');
     }
-    const assistant_id = 'asst_Hv2WQuoOA4ncLSbysZBCoTkc';
+    const assistant_id = 'asst_iZq3asK7GzPlLRKt7H2fF9K7';
     const messages = [
       {
-        text: 'Você selecionou a opção de *comparar documentos.* Nessa funcionalidade, você deverá *enviar os dois documentos e aguardar minha confirmação de leitura.* Após a confirmação, você poderá me informar o que deseja que eu compare entre os documentos, como, por exemplo: quais são as teses defendidas em cada petição? Quais cláusulas estão sendo confrontadas entre si? Entre outros questionamentos..',
+        text: 'Você selecionou a opção de *Comparar documentos.* Nessa funcionalidade, você deverá *enviar os dois documentos e aguardar minha confirmação de leitura.* Após a confirmação, você poderá me informar o que deseja que eu compare entre os documentos, como, por exemplo: quais são as teses defendidas em cada petição? Quais cláusulas estão sendo confrontadas entre si? Entre outros questionamentos..',
       },
       {
         text: '*Envie seu documento!*',

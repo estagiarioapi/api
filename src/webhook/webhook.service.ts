@@ -27,23 +27,36 @@ export class WebhookService {
       const message = changes.messages[0];
       const senderNumber = message.from;
       const user = await this.userService.findUser(senderNumber);
-      if (!user) {
-        throw new BadRequestException('User not found in database');
-      }
-      if (message.text) {
-        return await this.threadService.conversation(message, senderNumber)
-      } if (message.audio) {
-        return await this.threadService.conversation(message, senderNumber)
-      } else if (message.document) {
-        return await this.threadService.documentConversation(message, senderNumber)
-      } else if (message.interactive.list_reply) {
-        const menu = message.interactive.list_reply.id;
-        return this.menuService.sendInteractiveMenu(menu, senderNumber);
-      } else if (message.interactive.button_reply) {
-        const menu = message.interactive.button_reply.id;
-        return this.menuService.sendInteractiveMenu(menu, senderNumber);
-      } else {
-        throw new Error('Unsupported message type');
+      const lead = await this.userService.getLead(senderNumber)
+      
+      if(user) {
+        if (message.text) {
+          return await this.threadService.conversation(message, senderNumber)
+        } if (message.audio) {
+          return await this.threadService.conversation(message, senderNumber)
+        } else if (message.document) {
+          return await this.threadService.documentConversation(message, senderNumber)
+        } else if (message.interactive.list_reply) {
+          const menu = message.interactive.list_reply.id;
+          return this.menuService.sendInteractiveMenu(menu, senderNumber);
+        } else if (message.interactive.button_reply) {
+          const menu = message.interactive.button_reply.id;
+          return this.menuService.sendInteractiveMenu(menu, senderNumber);
+        } else {
+          throw new Error('Unsupported message type');
+        }
+      } else if (lead) {
+        if (message.text) {
+          return await this.threadService.leadConversation(message, senderNumber)
+        } else if (message.interactive.list_reply) {
+          const menu = message.interactive.list_reply.id;
+          return this.menuService.sendInteractiveMenu(menu, senderNumber);
+        } else if (message.interactive.button_reply) {
+          const menu = message.interactive.button_reply.id;
+          return this.menuService.sendInteractiveMenu(menu, senderNumber);
+        } else {
+          throw new Error('Unsupported message type');
+        }
       }
     } catch (error) {
       console.error('Error processing message:', error);

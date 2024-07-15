@@ -328,4 +328,202 @@ export class ReplyService {
 
     return true;
   }
+
+  async replyDocumentoRecebido(phoneNumber: string) {
+    if (!phoneNumber) {
+      throw new BadRequestException('Favor fornecer o numero do usuário');
+    }
+    const headers = {
+      Authorization:
+        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      'Content-Type': 'application/json',
+    };
+    const messagePayload = {
+      messaging_product: 'whatsapp',
+      recipient_type: 'individual',
+      to: phoneNumber,
+      type: 'text',
+      text: {
+        body: '📄 Pronto, Chefe! Agora pode me fazer questionamentos a respeito das informações contidas no arquivo.',
+      },
+    };
+    try {
+      const response = await axios.post(url, messagePayload, { headers });
+      if (response.status !== 200) throw new Error('Failed to send message');
+    } catch (error) {
+      console.error('Error sending message:', error);
+      return false;
+    }
+
+    return true;
+  }
+
+  async replyInputDocumentoRecebido(phoneNumber: string) {
+    if (!phoneNumber) {
+      throw new BadRequestException('Favor fornecer o numero do usuário');
+    }
+    const headers = {
+      Authorization:
+        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      'Content-Type': 'application/json',
+    };
+    const messagePayload = {
+      messaging_product: 'whatsapp',
+      recipient_type: 'individual',
+      to: phoneNumber,
+      type: 'text',
+      text: {
+        body: '✍️ Entendido. Já estou gerando sua resposta, chefe! | Tempo médio de resposta: 30 segundos',
+      },
+    };
+    try {
+      const response = await axios.post(url, messagePayload, { headers });
+      if (response.status !== 200) throw new Error('Failed to send message');
+    } catch (error) {
+      console.error('Error sending message:', error);
+      return false;
+    }
+
+    return true;
+  }
+  
+  async replyLead(phoneNumber: string, waitListNumber: number) {
+    if (!phoneNumber) {
+      throw new BadRequestException('Favor fornecer o numero do usuário');
+    }
+    const messages = [
+      {
+        text: 'Olá, chefe! Prazer, sou o EstagIArio, seu novo assistente jurídico!',
+      },
+      {
+        text: 'Toda nossa conversa é privada e criptografada, protegendo todos os dados e informações transacionadas nesse chat. Por aqui: (link site) você pode consultar nossa Política de Cuidados com a Privacidade.',
+      },
+      {
+        text: 'Você está na lista de espera, o que significa que está a um passo de ter o assistente jurídico mais eficiente do mercado, dedicado ao seu dia a dia',
+      },
+      {
+        text: `Sua posição atual é *n.º ${waitListNumber}*`,
+      },
+    ];
+    const headers = {
+      Authorization:
+        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh', 'Content-Type': 'application/json',
+    };
+    for (const message of messages) {
+      const messagePayload = {
+        messaging_product: 'whatsapp',
+        recipient_type: 'individual',
+        to: phoneNumber,
+        type: 'text',
+        text: { body: message.text },
+      };
+
+      try {
+        const response = await axios.post(url, messagePayload, { headers });
+        if (response.status !== 200) throw new Error('Failed to send message');
+      } catch (error) {
+        console.error('Error sending message:', error);
+        return false;
+      }
+  }
+  }
+
+  async replyLeadOption(phoneNumber: string) {
+    if (!phoneNumber) {
+      throw new BadRequestException('Favor fornecer o numero do usuário');
+    }
+    const headers = {
+      Authorization:
+        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      'Content-Type': 'application/json',
+    };
+    const messagePayload = {
+      messaging_product: 'whatsapp',
+      recipient_type: 'individual',
+      to: phoneNumber,
+      type: 'interactive',
+      interactive: {
+        type: 'button',
+        body: {
+          text: 'Devido ao grande número de inscritos na nossa lista de espera, os acessos ao período de teste gratuito estão sendo liberados gradualmente. Contudo, preparamos algo especial para você, por ser um pioneiro dessa revolução jurídica. Quer conferir, chefe? ',
+        },
+        action: {
+          buttons: [
+            {
+              type: 'reply',
+              reply: {
+                id: '1022',
+                title: 'Sim',
+              },
+            },
+            {
+              type: 'reply',
+              reply: {
+                id: '1023',
+                title: 'Não',
+              },
+            },
+          ],
+        },
+      },
+    };
+  }
+  
+  async replyLeadOptionYes(phoneNumber: string) {
+    if (!phoneNumber) {
+      throw new BadRequestException('Favor fornecer o numero do usuário');
+    }
+    const headers = {
+      Authorization:
+        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      'Content-Type': 'application/json',
+    };
+    const messagePayload = {
+      messaging_product: 'whatsapp',
+      recipient_type: 'individual',
+      to: phoneNumber,
+      type: 'text',
+      text: {
+        body: 'Estaremos liberando três convites que você poderá enviar para colegas (profissionais jurídicos), possibilitando adiantar sua posição na fila a cada novo cadastro pelo seu link. \nSegue abaixo o link com seu convite. Estaremos te atualizando sobre o seu avanço na fila de espera \n*Obrigado desde já! Seja bem vindo ao futuro da advocacia. \nEssa promoção possui validade de 48 horas.*',
+      },
+    };
+    try {
+      const response = await axios.post(url, messagePayload, { headers });
+      if (response.status !== 200) throw new Error('Failed to send message');
+    } catch (error) {
+      console.error('Error sending message:', error);
+      return false;
+    }
+
+    return true;
+  }
+
+  async replyLeadOptionNo(phoneNumber: string) {
+    if (!phoneNumber) {
+      throw new BadRequestException('Favor fornecer o numero do usuário');
+    }
+    const headers = {
+      Authorization:
+        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      'Content-Type': 'application/json',
+    };
+    const messagePayload = {
+      messaging_product: 'whatsapp',
+      recipient_type: 'individual',
+      to: phoneNumber,
+      type: 'text',
+      text: {
+        body: 'Ok! Assim que chegar sua posição na fila, enviaremos uma mensagem te informando. Obrigado desde já!',
+      },
+    };
+    try {
+      const response = await axios.post(url, messagePayload, { headers });
+      if (response.status !== 200) throw new Error('Failed to send message');
+    } catch (error) {
+      console.error('Error sending message:', error);
+      return false;
+    }
+
+    return true;
+  }
 }

@@ -4,12 +4,11 @@ import FormData from 'form-data';
 import { promises as fs } from 'fs';
 import { BadRequestException, Injectable } from "@nestjs/common";
 import { UserService } from "src/core/integrations/user.service";
-import { detectMenu } from "src/core/utils/detectMenu";
-import { MenuService } from "../menu.service";
+import { ReplyService } from "src/core/replyes/reply.service";
 
 @Injectable()
 export class DocumentoService {
-    constructor(private conversationService: ConversationService, private userService: UserService, private menuService: MenuService) { }
+    constructor(private conversationService: ConversationService, private userService: UserService, private replyService: ReplyService) { }
 
     async processDocument(messageReceived, senderNumber) {
         const user = await this.userService.findUser(senderNumber);
@@ -22,7 +21,6 @@ export class DocumentoService {
         }
         const documentId = messageReceived.document.id;
         const fileName = messageReceived.document.filename;
-        const mimeType = messageReceived.document.mime_type;
 
         const urlDownload = `https://graph.facebook.com/v14.0/${documentId}`;
         const documentResponse = await axios.get(urlDownload, {
@@ -65,16 +63,18 @@ export class DocumentoService {
 
         await this.conversationService.createConversationMessage(conversationMessage);
 
-        // Step : Create a new Vector Store
-        const newVectorStore = await this.createVectorStore(senderNumber)
+        if (!conversationOpened.vectorStoreId) {
+            // Step: Create a new Vector Store
+            const newVectorStore = await this.createVectorStore(senderNumber)
 
-        // Step: Alterar o vector store da conversa
-        const updateConversation = await this.conversationService.updateVectorStoreInBd(conversationOpened.id, newVectorStore.id);
+            // Step: Alterar o vector store da conversa
+            const updateConversation = await this.conversationService.updateVectorStoreInBd(conversationOpened.id, newVectorStore.id);
+            await this.replyService.replyDocumentoRecebido(senderNumber)
+        }
 
-        // Step : Add the file to the existing vector store
-        const fileVectorStore = await this.addFileToVectorStore(fileId, newVectorStore.id);
-
-        console.log('fileVectorStore', fileVectorStore)
+        const conversationOpenedUpdated = await this.conversationService.findOpenedConversation(user.id);
+        const fileVectorStore = await this.addFileToVectorStore(fileId, conversationOpenedUpdated.vectorStoreId);
+        console.log(conversationOpened)
         return { fileVectorStore, messageInDb };
     }
 
@@ -84,7 +84,7 @@ export class DocumentoService {
             { file_id: fileId },
             {
                 headers: {
-                    Authorization: 'Bearer sk-proj-Az96Q8yXAonC8lEBq0mLT3BlbkFJcWClrLaidIdCQYJiBpZA',
+                    Authorization: 'Bearer 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',
                     'Content-Type': 'application/json',
                     'OpenAI-Beta': 'assistants=v2',
                 },
@@ -104,30 +104,83 @@ export class DocumentoService {
         if (!conversationOpened) {
             throw new BadRequestException("você precisa selecionar uma opção, ou se desejar voltar ao menu digite 'menu'.")
         }
+        const messageUser = {
+            type: 'text',
+            value: message,
+        };
+        const messageInUserDb = await this.conversationService.createMessage(messageUser);
+
+        // Cria uma conversa com a mensagem na base
+        const conversationMessageUser = {
+            conversationId: conversationOpened.id,
+            messageId: messageInUserDb.id,
+            isInput: true,
+        };
+        await this.conversationService.createConversationMessage(conversationMessageUser);
         const conversation = await this.conversationService.getConversationMessage(conversationOpened.id)
-
-        let fileId = null;
-        for (let i = 0; i < conversation.length; i++) {
-            if (conversation[i].message.type === "document") {
-                fileId = conversation[i].message.value;
-                break;
-            }
-        }
-        if (!fileId) {
-            throw new BadRequestException('fileId unknow')
-        }
-
+        console.log(conversation)
         const threadId = await this.createThreadWithFile(
             message,
             conversationOpened.vectorStoreId,
         );
+        console.log('threadId:', threadId)
 
-        const runId = await this.runThread(threadId, conversationOpened.assistant_id);
+        const runId = await this.runThread(threadId, conversationOpened.assistantId);
 
         const threadUpdated = await this.conversationService.updateConversationInDb(
             conversationOpened.id,
             threadId,
         );
+
+        let respostaGpt
+        // Chama a função getMessages para conseguir a resposta que o bot retornou
+        respostaGpt = await this.userService.getMessages(threadId);
+
+        // Looping para tentar pegar a resposta caso a primeira tentativa falhe
+        if (!respostaGpt) {
+            let tentativa = 0;
+            while (!respostaGpt && tentativa < 5) {
+                tentativa++;
+                respostaGpt = await this.userService.getMessages(threadId);
+            }
+        }
+
+        const messageInput = {
+            type: 'text',
+            value: respostaGpt.data.response,
+        };
+        const messageInDb = await this.conversationService.createMessage(messageInput);
+        const conversationMessage = {
+            conversationId: conversationOpened.id,
+            messageId: messageInDb.id,
+            isInput: false,
+        };
+        await this.conversationService.createConversationMessage(conversationMessage);
+
+        // Função que divide a mensagem caso exceda 3800 caracteres
+        const splitMessage = (message, maxLength) => {
+            let parts = [];
+            while (message.length > maxLength) {
+                let part = message.slice(0, maxLength);
+                message = message.slice(maxLength);
+                parts.push(part);
+            }
+            parts.push(message);
+            return parts;
+        };
+
+        let answerGptResult = false;
+
+        // Verifica se o tamanho da resposta excede 3800 caracteres e divide a mensagem se necessário
+        if (respostaGpt.data.response.length > 3800) {
+            const parts = splitMessage(respostaGpt.data.response, 3800);
+            for (const part of parts) {
+                answerGptResult = await this.replyService.replyAnswerGpt(sender, part);
+            }
+        } else {
+            answerGptResult = await this.replyService.replyAnswerGpt(sender, respostaGpt.data.response);
+        }
+
     }
 
     async createVectorStore(phoneNumber: string) {
@@ -135,7 +188,7 @@ export class DocumentoService {
 
         const requestOptions = {
             headers: {
-                'Authorization': 'Bearer sk-proj-Az96Q8yXAonC8lEBq0mLT3BlbkFJcWClrLaidIdCQYJiBpZA',
+                'Authorization': 'Bearer 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',
                 'Content-Type': 'application/json',
                 'OpenAI-Beta': 'assistants=v2'
             }
@@ -172,7 +225,7 @@ export class DocumentoService {
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: 'Bearer sk-proj-Az96Q8yXAonC8lEBq0mLT3BlbkFJcWClrLaidIdCQYJiBpZA',
+                    Authorization: 'Bearer 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',
                     'OpenAI-Beta': 'assistants=v2',
                 },
             },
@@ -191,7 +244,7 @@ export class DocumentoService {
 
             const response = await axios.post('https://api.openai.com/v1/files', form, {
                 headers: {
-                    'Authorization': `Bearer sk-proj-Az96Q8yXAonC8lEBq0mLT3BlbkFJcWClrLaidIdCQYJiBpZA`,
+                    'Authorization': `Bearer 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`,
                     ...form.getHeaders(),
                 },
             });
@@ -211,7 +264,7 @@ export class DocumentoService {
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: 'Bearer sk-proj-Az96Q8yXAonC8lEBq0mLT3BlbkFJcWClrLaidIdCQYJiBpZA',
+                    Authorization: 'Bearer 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',
                     'OpenAI-Beta': 'assistants=v2',
                 },
             },
