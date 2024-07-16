@@ -27,8 +27,14 @@ export class ContratosEmpresariaisService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Sociedade*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Quais são as contribuições de capital ou outros recursos que cada sócio trará para a sociedade? 2. Como serão distribuídos os lucros e geridos os prejuízos? 3. Qual é o processo para a entrada de novos sócios ou saída de sócios existentes?',
+        text: '1. Quais são as contribuições de capital ou outros recursos que cada sócio trará para a sociedade?\n2. Como serão distribuídos os lucros e geridos os prejuízos?\n3. Qual é o processo para a entrada de novos sócios ou saída de sócios existentes?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -77,8 +83,14 @@ export class ContratosEmpresariaisService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Franquia*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Quais são as obrigações e direitos do franqueador e do franqueado? 2. Existe uma taxa inicial ou royalties contínuos a serem pagos? 3. Como é tratada a questão da exclusividade territorial?',
+        text: '1. Quais são as obrigações e direitos do franqueador e do franqueado?\n2. Existe uma taxa inicial ou royalties contínuos a serem pagos?\n3. Como é tratada a questão da exclusividade territorial?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -127,8 +139,14 @@ export class ContratosEmpresariaisService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Fornecimento*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Qual é a quantidade e frequência de entrega dos produtos ou serviços? 2. Existem cláusulas de ajuste de preço ou indexação? 3. Como será tratado o não cumprimento das obrigações contratuais?',
+        text: '1. Qual é a quantidade e frequência de entrega dos produtos ou serviços?\n2. Existem cláusulas de ajuste de preço ou indexação?\n3. Como será tratado o não cumprimento das obrigações contratuais?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -177,8 +195,14 @@ export class ContratosEmpresariaisService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Distribuição*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Quais são as metas de vendas e os territórios cobertos pelo contrato? 2. Como será tratada a exclusividade de distribuição? 3. Existem requisitos específicos para promoção e marketing dos produtos?',
+        text: '1. Quais são as metas de vendas e os territórios cobertos pelo contrato?\n2. Como será tratada a exclusividade de distribuição?\n3. Existem requisitos específicos para promoção e marketing dos produtos?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -227,8 +251,14 @@ export class ContratosEmpresariaisService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Licença de Uso de Marca ou Patente*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Qual é o escopo da licença (quais produtos ou serviços estão incluídos)? 2. Existem restrições geográficas ou de mercado para o uso da marca ou patente? 3. Como e quando serão realizados os pagamentos dos royalties?',
+        text: '1. Qual é o escopo da licença (quais produtos ou serviços estão incluídos)?\n2. Existem restrições geográficas ou de mercado para o uso da marca ou patente?\n3. Como e quando serão realizados os pagamentos dos royalties?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -277,8 +307,15 @@ export class ContratosEmpresariaisService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Acordo de Acionistas*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Quais são os direitos e deveres dos acionistas? 2. Como serão resolvidas as disputas entre os acionistas? 3. Quais são as cláusulas para entrada e saída de acionistas?',
+        text: '1. Quais são os direitos e deveres dos acionistas?\n2. Como serão resolvidas as disputas entre os acionistas?\n3. Quais são as cláusulas para entrada e saída de acionistas?',
       },
+      
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -327,8 +364,14 @@ export class ContratosEmpresariaisService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Parceria*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Qual é o objetivo específico da parceria e o período de duração do contrato? 2. Como serão partilhados os resultados financeiros ou outros benefícios da parceria? 3. Quais são as responsabilidades e obrigações de cada parceiro?',
+        text: '1. Qual é o objetivo específico da parceria e o período de duração do contrato?\n2. Como serão partilhados os resultados financeiros ou outros benefícios da parceria?\n3. Quais são as responsabilidades e obrigações de cada parceiro?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -377,8 +420,14 @@ export class ContratosEmpresariaisService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Factoring*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Quais são os termos para a transferência de recebíveis? 2. Como será calculada a taxa de desconto ou os juros aplicados? 3. Existem condições especiais para casos de inadimplência dos devedores originais?',
+        text: '1. Quais são os termos para a transferência de recebíveis?\n2. Como será calculada a taxa de desconto ou os juros aplicados?\n3. Existem condições especiais para casos de inadimplência dos devedores originais?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -426,8 +475,14 @@ export class ContratosEmpresariaisService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato Social*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Quais são os detalhes da empresa e dos sócios (razão social, CNPJ, endereço, dados dos sócios)? 2.Qual é o objeto social da empresa e como será sua administração (atividades, forma de administração, representação perante terceiros)? 3.Como serão divididos os direitos e deveres dos sócios (capital social, distribuição de lucros, resolução de conflitos, alterações contratuais)?',
+        text: '1. Quais são os detalhes da empresa e dos sócios (razão social, CNPJ, endereço, dados dos sócios)?\n2.Qual é o objeto social da empresa e como será sua administração (atividades, forma de administração, representação perante terceiros)?\n3.Como serão divididos os direitos e deveres dos sócios (capital social, distribuição de lucros, resolução de conflitos, alterações contratuais)?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:

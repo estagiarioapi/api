@@ -28,8 +28,14 @@ export class ContratosCivisService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Compra e Venda*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Quais são os bens exatos que estão sendo vendidos? 2. Quais são os termos de pagamento, incluindo o preço, forma de pagamento e eventuais penalidades por atraso? 3. Existem garantias ou condições específicas relativas à qualidade ou entrega dos bens?',
+        text: '1. Quais são os bens exatos que estão sendo vendidos?\n2. Quais são os termos de pagamento, incluindo o preço, forma de pagamento e eventuais penalidades por atraso?\n3. Existem garantias ou condições específicas relativas à qualidade ou entrega dos bens?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -77,8 +83,14 @@ export class ContratosCivisService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Prestação de Serviços*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Qual é o escopo exato dos serviços a serem prestados? 2. Como será feita a remuneração e quais são os termos de pagamento? 3. Existem cláusulas de confidencialidade ou exclusividade?',
+        text: '1. Qual é o escopo exato dos serviços a serem prestados?\n2. Como será feita a remuneração e quais são os termos de pagamento?\n3. Existem cláusulas de confidencialidade ou exclusividade?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -127,8 +139,14 @@ export class ContratosCivisService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Empreitada*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Quais são os detalhes específicos do projeto ou obra a ser realizada? 2. Como será estruturado o pagamento (por exemplo, pagamento por etapas, à vista, após a conclusão)? 3. Como serão resolvidos possíveis conflitos ou atrasos na entrega do projeto?',
+        text: '1. Quais são os detalhes específicos do projeto ou obra a ser realizada?\n2. Como será estruturado o pagamento (por exemplo, pagamento por etapas, à vista, após a conclusão)?\n3. Como serão resolvidos possíveis conflitos ou atrasos na entrega do projeto?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -177,8 +195,14 @@ export class ContratosCivisService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Distrato*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Quais são as condições originais do contrato que estão sendo rescindidas? 2. Existem penalidades ou obrigações financeiras associadas ao distrato? 3. Como será o processo de finalização e quais são os prazos para cumprimento das obrigações remanescentes após o distrato?',
+        text: '1. Quais são as condições originais do contrato que estão sendo rescindidas?\n2. Existem penalidades ou obrigações financeiras associadas ao distrato?\n3. Como será o processo de finalização e quais são os prazos para cumprimento das obrigações remanescentes após o distrato?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -227,8 +251,14 @@ export class ContratosCivisService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Comodato*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Qual é a descrição detalhada do bem emprestado (natureza, características)? 2. Qual é o prazo de duração do empréstimo e as condições de devolução do bem? 3. Quais são as responsabilidades do comodatário em relação à conservação e uso do bem?',
+        text: '1. Qual é a descrição detalhada do bem emprestado (natureza, características)?\n2. Qual é o prazo de duração do empréstimo e as condições de devolução do bem?\n3. Quais são as responsabilidades do comodatário em relação à conservação e uso do bem?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -277,8 +307,14 @@ export class ContratosCivisService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Depósito*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Qual é a descrição detalhada do bem a ser depositado (natureza, valor, características)? 2. Qual é o prazo de duração do depósito e as condições para retirada do bem? 3. Quais são as responsabilidades do depositário em relação à guarda e conservação do bem?',
+        text: '1. Qual é a descrição detalhada do bem a ser depositado (natureza, valor, características)?\n2. Qual é o prazo de duração do depósito e as condições para retirada do bem?\n3. Quais são as responsabilidades do depositário em relação à guarda e conservação do bem?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -327,8 +363,14 @@ export class ContratosCivisService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Doação*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Qual é a descrição detalhada do bem a ser doado (natureza, valor, características)? 2. Se houver, quais são as condições e encargos associados à doação? 3. Quais são os direitos e responsabilidades do doador e do donatário?',
+        text: '1. Qual é a descrição detalhada do bem a ser doado (natureza, valor, características)?\n2. Se houver, quais são as condições e encargos associados à doação?\n3. Quais são os direitos e responsabilidades do doador e do donatário?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
