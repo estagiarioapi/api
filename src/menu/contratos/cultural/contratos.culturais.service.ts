@@ -27,8 +27,14 @@ export class ContratosCulturaisService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Patrocinio Cultural*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Qual é a descrição detalhada do projeto cultural a ser patrocinado (natureza, objetivos, duração)? 2. Qual é o valor do patrocínio e as condições de pagamento (parcelas, cronograma)? 3. Quais são as contrapartidas oferecidas ao patrocinador (visibilidade, publicidade, benefícios)?',
+        text: '1. Qual é a descrição detalhada do projeto cultural a ser patrocinado (natureza, objetivos, duração)?\n2. Qual é o valor do patrocínio e as condições de pagamento (parcelas, cronograma)?\n3. Quais são as contrapartidas oferecidas ao patrocinador (visibilidade, publicidade, benefícios)?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -77,8 +83,14 @@ export class ContratosCulturaisService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Parceria Cultural*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Quais são as responsabilidades e contribuições de cada parceiro no projeto cultural? 2. Qual é o cronograma de atividades e a duração da parceria? 3. Quais são as condições para a rescisão da parceria e a divisão de resultados?',
+        text: '1. Quais são as responsabilidades e contribuições de cada parceiro no projeto cultural?\n2. Qual é o cronograma de atividades e a duração da parceria?\n3. Quais são as condições para a rescisão da parceria e a divisão de resultados?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -127,8 +139,14 @@ export class ContratosCulturaisService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Co-produção de Eventos*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Qual é a descrição detalhada do evento a ser co-produzido (natureza, local, data)? 2. Quais são as responsabilidades e contribuições de cada co-produtor? 3. Qual é a forma de divisão dos lucros e das despesas do evento?',
+        text: '1. Qual é a descrição detalhada do evento a ser co-produzido (natureza, local, data)?\n2. Quais são as responsabilidades e contribuições de cada co-produtor?\n3. Qual é a forma de divisão dos lucros e das despesas do evento?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -177,8 +195,14 @@ export class ContratosCulturaisService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Cessão de Direitos Autorais*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Quais são as obras ou direitos autorais a serem cedidos (descrição detalhada, abrangência)? 2. Qual é a duração e a extensão territorial da cessão dos direitos? 3. Qual é a remuneração pela cessão dos direitos autorais e as condições de pagamento?',
+        text: '1. Quais são as obras ou direitos autorais a serem cedidos (descrição detalhada, abrangência)?\n2. Qual é a duração e a extensão territorial da cessão dos direitos?\n3. Qual é a remuneração pela cessão dos direitos autorais e as condições de pagamento?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -227,8 +251,14 @@ export class ContratosCulturaisService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Prestação de Serviços Artísticos*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Quais são os serviços artísticos a serem prestados (descrição detalhada, natureza)? 2. Qual é a duração dos serviços e as condições de pagamento? 3. Quais são as responsabilidades do artista e as condições para a rescisão do contrato?',
+        text: '1. Quais são os serviços artísticos a serem prestados (descrição detalhada, natureza)?\n2. Qual é a duração dos serviços e as condições de pagamento?\n3. Quais são as responsabilidades do artista e as condições para a rescisão do contrato?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -277,8 +307,14 @@ export class ContratosCulturaisService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Realização de Show*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Qual é a descrição detalhada do show ou espetáculo (natureza, local, data, duração)? 2. Qual é o valor do cachê e as condições de pagamento ao artista? 3. Quais são as responsabilidades do produtor e do artista em relação à organização e realização do evento?',
+        text: '1. Qual é a descrição detalhada do show ou espetáculo (natureza, local, data, duração)?\n2. Qual é o valor do cachê e as condições de pagamento ao artista?\n3. Quais são as responsabilidades do produtor e do artista em relação à organização e realização do evento?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -327,8 +363,14 @@ export class ContratosCulturaisService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Distribuição de Obras*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Quais são as obras a serem distribuídas (descrição detalhada, formato, quantidade)? 2. Qual é a área de distribuição e a duração do contrato? 3. Qual é a forma de remuneração do distribuidor e as condições de pagamento?',
+        text: '1. Quais são as obras a serem distribuídas (descrição detalhada, formato, quantidade)?\n2. Qual é a área de distribuição e a duração do contrato?\n3. Qual é a forma de remuneração do distribuidor e as condições de pagamento?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -377,8 +419,14 @@ export class ContratosCulturaisService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Agenciamento Físico*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Quais são os serviços de agenciamento a serem prestados (descrição detalhada, abrangência)? 2. Qual é a duração do contrato de agenciamento e as condições para rescisão? 3. Qual é a forma de remuneração do agente artístico e as condições de pagamento?',
+        text: '1. Quais são os serviços de agenciamento a serem prestados (descrição detalhada, abrangência)?\n2. Qual é a duração do contrato de agenciamento e as condições para rescisão?\n3. Qual é a forma de remuneração do agente artístico e as condições de pagamento?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:

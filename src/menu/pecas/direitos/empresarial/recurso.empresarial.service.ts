@@ -27,6 +27,9 @@ export class RecursosEmpresarialService {
       {
         text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization: process.env.ACCESS_TOKEN,
@@ -75,6 +78,9 @@ export class RecursosEmpresarialService {
       {
         text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization: process.env.ACCESS_TOKEN,
@@ -123,6 +129,9 @@ export class RecursosEmpresarialService {
       {
         text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization: process.env.ACCESS_TOKEN,
@@ -171,6 +180,9 @@ export class RecursosEmpresarialService {
       {
         text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization: process.env.ACCESS_TOKEN,
@@ -219,6 +231,9 @@ export class RecursosEmpresarialService {
       {
         text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization: process.env.ACCESS_TOKEN,
@@ -239,6 +254,9 @@ export class RecursosEmpresarialService {
       } catch (error) {
         console.error('Error sending message:', error);
         return false;
+      }
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
       }
     }
 
@@ -267,6 +285,9 @@ export class RecursosEmpresarialService {
       {
         text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization: process.env.ACCESS_TOKEN,
@@ -315,6 +336,9 @@ export class RecursosEmpresarialService {
       {
         text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization: process.env.ACCESS_TOKEN,
@@ -363,6 +387,9 @@ export class RecursosEmpresarialService {
       {
         text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization: process.env.ACCESS_TOKEN,
@@ -411,6 +438,9 @@ export class RecursosEmpresarialService {
       {
         text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization: process.env.ACCESS_TOKEN,
@@ -459,6 +489,9 @@ export class RecursosEmpresarialService {
       {
         text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization: process.env.ACCESS_TOKEN,

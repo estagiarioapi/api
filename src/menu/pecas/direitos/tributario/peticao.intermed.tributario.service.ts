@@ -26,6 +26,9 @@ export class PeticaoIntermediariaTributarioService {
       {
         text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization: process.env.ACCESS_TOKEN,
@@ -74,6 +77,9 @@ export class PeticaoIntermediariaTributarioService {
       {
         text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization: process.env.ACCESS_TOKEN,
@@ -122,6 +128,9 @@ export class PeticaoIntermediariaTributarioService {
       {
         text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization: process.env.ACCESS_TOKEN,
@@ -170,6 +179,9 @@ export class PeticaoIntermediariaTributarioService {
       {
         text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization: process.env.ACCESS_TOKEN,
@@ -218,6 +230,9 @@ export class PeticaoIntermediariaTributarioService {
       {
         text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization: process.env.ACCESS_TOKEN,
@@ -266,6 +281,9 @@ export class PeticaoIntermediariaTributarioService {
       {
         text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization: process.env.ACCESS_TOKEN,

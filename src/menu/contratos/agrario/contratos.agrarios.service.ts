@@ -27,8 +27,14 @@ export class ContratosAgrariosService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Arrendamento Rural*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Qual é a descrição detalhada da área rural a ser arrendada (localização, tamanho, características)? 2. Qual é o prazo de duração do arrendamento e as condições de renovação? 3. Qual é o valor do arrendamento e as condições de pagamento (parcelas, reajustes)?',
+        text: '1. Qual é a descrição detalhada da área rural a ser arrendada (localização, tamanho, características)?\n2. Qual é o prazo de duração do arrendamento e as condições de renovação?\n3. Qual é o valor do arrendamento e as condições de pagamento (parcelas, reajustes)?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -77,8 +83,14 @@ export class ContratosAgrariosService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Parceria Rural*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Quais são as responsabilidades e contribuições de cada parceiro na atividade rural? 2. Qual é o cronograma de atividades e a duração da parceria? 3. Quais são as condições para a divisão de resultados e a responsabilidade por perdas?',
+        text: '1. Quais são as responsabilidades e contribuições de cada parceiro na atividade rural?\n2. Qual é o cronograma de atividades e a duração da parceria?\n3. Quais são as condições para a divisão de resultados e a responsabilidade por perdas?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -127,8 +139,14 @@ export class ContratosAgrariosService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Compra e Venda de Produtos Agrícolas*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Qual é a descrição detalhada dos produtos agrícolas a serem comprados e vendidos (tipo, quantidade, qualidade)? 2. Qual é o preço dos produtos e as condições de pagamento (à vista, a prazo, forma de entrega)? 3. Quais são as responsabilidades do vendedor e do comprador em relação ao transporte e à qualidade dos produtos?',
+        text: '1. Qual é a descrição detalhada dos produtos agrícolas a serem comprados e vendidos (tipo, quantidade, qualidade)?\n2. Qual é o preço dos produtos e as condições de pagamento (à vista, a prazo, forma de entrega)?\n3. Quais são as responsabilidades do vendedor e do comprador em relação ao transporte e à qualidade dos produtos?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -177,8 +195,14 @@ export class ContratosAgrariosService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Comodato de Imóvel Rural*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Qual é a descrição detalhada do imóvel rural a ser cedido em comodato (localização, tamanho, características)? 2. Qual é o prazo de duração do comodato e as condições para a devolução do imóvel? 3. Quais são as responsabilidades do comodatário em relação à conservação e uso do imóvel?',
+        text: '1. Qual é a descrição detalhada do imóvel rural a ser cedido em comodato (localização, tamanho, características)?\n2. Qual é o prazo de duração do comodato e as condições para a devolução do imóvel?\n3. Quais são as responsabilidades do comodatário em relação à conservação e uso do imóvel?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -227,8 +251,14 @@ export class ContratosAgrariosService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Fornecimento de Insumos Agrícolas*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Quais são os insumos agrícolas a serem fornecidos (descrição detalhada, quantidade)? 2. Qual é o prazo de fornecimento e as condições de entrega dos insumos? 3. Qual é o preço dos insumos e as condições de pagamento (à vista, a prazo)?',
+        text: '1. Quais são os insumos agrícolas a serem fornecidos (descrição detalhada, quantidade)?\n2. Qual é o prazo de fornecimento e as condições de entrega dos insumos?\n3. Qual é o preço dos insumos e as condições de pagamento (à vista, a prazo)?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
@@ -277,8 +307,14 @@ export class ContratosAgrariosService {
         text: 'Perfeito, chefe! Foi selecionado *Contrato de Gestão de Propriedade Rural*. A partir disso, irei te fazer três perguntas para que eu possa entender melhor o seu caso e atender o seu pedido da melhor maneira',
       },
       {
-        text: '1. Quais são os serviços de gestão a serem prestados na propriedade rural (administração, planejamento)? 2. Qual é o prazo de duração do contrato de gestão e as condições de renovação? 3. Qual é a remuneração pelo serviço de gestão e as condições de pagamento?',
+        text: '1. Quais são os serviços de gestão a serem prestados na propriedade rural (administração, planejamento)?\n2. Qual é o prazo de duração do contrato de gestão e as condições de renovação?\n3. Qual é a remuneração pelo serviço de gestão e as condições de pagamento?',
       },
+      {
+        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+      },
+      {
+        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
+      }
     ];
     const headers = {
       Authorization:
