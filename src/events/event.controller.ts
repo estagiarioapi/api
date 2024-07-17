@@ -1,12 +1,15 @@
-import { Controller, Get, Param } from "@nestjs/common";
+import { Body, Controller, Post } from '@nestjs/common';
+import { EventService } from './event.service';
 
 @Controller('event')
 export class EventController {
-    constructor() {}
+  constructor(private readonly service: EventService) {}
 
-    @Get()
-    async receiveEvent(@Param() phoneNumber: string, @Param() modelName: string) {
-        console.log(phoneNumber, modelName)
-        return { phoneNumber, modelName }
-    }
+  @Post('sendMessageTemplate')
+  async sendMessageTemplate(
+    @Body()
+    { phoneNumber, modelName }: { phoneNumber: string; modelName: string },
+  ) {
+    return this.service.sendMessageTemplate(phoneNumber, modelName);
+  }
 }

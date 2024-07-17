@@ -1,22 +1,15 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import axios from 'axios';
-import FormData from 'form-data';
-import { promises as fs } from 'fs';
 import { UserService } from '../core/integrations/user.service';
 import { MenuService } from 'src/menu/menu.service';
 import { ThreadService } from 'src/thread/thread.service';
-import { ConversationService } from 'src/core/integrations/conversation.service';
-import { DocumentoService } from 'src/menu/documentos/documentos.service';
-import { detectMenu } from 'src/core/utils/detectMenu';
-import { processText } from 'src/core/utils/processText';
 
 @Injectable()
 export class WebhookService {
   constructor(
     private menuService: MenuService,
     private userService: UserService,
-    private threadService: ThreadService
-  ) { }
+    private threadService: ThreadService,
+  ) {}
 
   async handler(event: any) {
     try {
@@ -27,15 +20,19 @@ export class WebhookService {
       const message = changes.messages[0];
       const senderNumber = message.from;
       const user = await this.userService.findUser(senderNumber);
-      const lead = await this.userService.getLead(senderNumber)
-      
-      if(user) {
+      const lead = await this.userService.getLead(senderNumber);
+
+      if (user) {
         if (message.text) {
-          return await this.threadService.conversation(message, senderNumber)
-        } if (message.audio) {
-          return await this.threadService.conversation(message, senderNumber)
+          return await this.threadService.conversation(message, senderNumber);
+        }
+        if (message.audio) {
+          return await this.threadService.conversation(message, senderNumber);
         } else if (message.document) {
-          return await this.threadService.documentConversation(message, senderNumber)
+          return await this.threadService.documentConversation(
+            message,
+            senderNumber,
+          );
         } else if (message.interactive.list_reply) {
           const menu = message.interactive.list_reply.id;
           return this.menuService.sendInteractiveMenu(menu, senderNumber);
@@ -47,7 +44,10 @@ export class WebhookService {
         }
       } else if (lead) {
         if (message.text) {
-          return await this.threadService.leadConversation(message, senderNumber)
+          return await this.threadService.leadConversation(
+            message,
+            senderNumber,
+          );
         } else if (message.interactive.list_reply) {
           const menu = message.interactive.list_reply.id;
           return this.menuService.sendInteractiveMenu(menu, senderNumber);
