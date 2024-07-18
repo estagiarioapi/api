@@ -9,7 +9,7 @@ export class WebhookService {
     private menuService: MenuService,
     private userService: UserService,
     private threadService: ThreadService,
-  ) {}
+  ) { }
 
   async handler(event: any) {
     try {
@@ -25,8 +25,7 @@ export class WebhookService {
       if (user) {
         if (message.text) {
           return await this.threadService.conversation(message, senderNumber);
-        }
-        if (message.audio) {
+        } if (message.audio) {
           return await this.threadService.conversation(message, senderNumber);
         } else if (message.document) {
           return await this.threadService.documentConversation(
