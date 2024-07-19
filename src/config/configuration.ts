@@ -1,8 +1,18 @@
-/* eslint-disable prettier/prettier */
+import * as path from 'path';
+
+export function isProduction() {
+  return process.env.NODE_ENV === 'production';
+}
+
+export function envPath() {
+  return path.join(
+    process.cwd(),
+    `.env${isProduction() ? `` : '.development'}`,
+  );
+}
+
 export default function configuration() {
   return {
-    NODE_ENV: process.env.NODE_ENV,
-    OPENAI_KEY: process.env.OPENAI_KEY,
-    ACCESS_TOKEN: process.env.ACCESS_TOKEN,
+    ...process.env,
   };
 }
