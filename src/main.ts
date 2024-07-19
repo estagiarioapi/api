@@ -7,11 +7,15 @@ let server: Handler;
 
 async function bootstrap(): Promise<Handler> {
   const app = await NestFactory.create(AppModule);
-  await app.init();
+  await app.listen(3000);
+  return null as any;
+  // await app.init();
 
-  const expressApp = app.getHttpAdapter().getInstance();
-  return serverlessExpress({ app: expressApp });
+  // const expressApp = app.getHttpAdapter().getInstance();
+  // return serverlessExpress({ app: expressApp });
 }
+
+bootstrap();
 
 export const handler: Handler = async (
   event: any,

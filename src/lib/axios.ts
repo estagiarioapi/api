@@ -8,3 +8,10 @@ export const wppApi = axios.default.create({
     'Content-Type': 'application/json',
   },
 });
+
+export const dataCoreApi = axios.default.create({
+  baseURL: 'https://datacore-development.up.railway.app',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});

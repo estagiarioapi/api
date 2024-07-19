@@ -10,7 +10,18 @@ import { FluxoDireitoPecaService } from './pecas/fluxo.direito.peca.service';
 import { PeticaoInicialService } from './pecas/menus/inicial/fluxo.peticao.inicial.service';
 import { PeticaoIntermediariaService } from './pecas/menus/intermediaria/fluxo.peticao.intermed.service';
 import { RecursoService } from './pecas/menus/recurso/fluxo.recurso.service';
-import { contratos, documentosMenus, menuPeticaoInicial, menuPeticaoIntermed, menuRecursos, pecasProcessuaisDireitosMenu, peticoesIniciais, peticoesIntermediarias, recursos, tipoContratoMenu } from 'src/core/utils/cache';
+import {
+  contratos,
+  documentosMenus,
+  menuPeticaoInicial,
+  menuPeticaoIntermed,
+  menuRecursos,
+  pecasProcessuaisDireitosMenu,
+  peticoesIniciais,
+  peticoesIntermediarias,
+  recursos,
+  tipoContratoMenu,
+} from 'src/core/utils/cache';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 
 @Injectable()
@@ -26,7 +37,7 @@ export class MenuService {
     private userService: UserService,
     private conversationService: ConversationService,
     private replyService: ReplyService,
-  ) { }
+  ) {}
 
   async sendInteractiveMessage(phoneNumber: string) {
     if (!phoneNumber) {
@@ -153,10 +164,10 @@ export class MenuService {
         );
       }
       return await this.sendInteractiveMessage(phoneNumber);
-    } else if(menuId === '1022') {
-      return await this.replyService.replyLeadOptionYes(phoneNumber)
-    } else if(menuId === '1023') {
-      return await this.replyService.replyLeadOptionNo(phoneNumber)
+    } else if (menuId === '1022') {
+      return await this.replyService.replyLeadOptionYes(phoneNumber);
+    } else if (menuId === '1023') {
+      return await this.replyService.replyLeadOptionNo(phoneNumber);
     }
   }
   async sendAuxiliarJuridicoMenu(phoneNumber: string) {

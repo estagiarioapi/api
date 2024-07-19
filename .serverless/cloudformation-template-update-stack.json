@@ -208,11 +208,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-<<<<<<< HEAD
-          "S3Key": "serverless/serverless-estagiario/dev/1721265253191-2024-07-18T01:14:13.191Z/serverless-estagiario.zip"
-=======
-          "S3Key": "serverless/serverless-estagiario/dev/1721356987286-2024-07-19T02:43:07.286Z/serverless-estagiario.zip"
->>>>>>> 2c18ba39c649923f14ce8fd8c68b56ed9158a727
+          "S3Key": "serverless/serverless-estagiario/dev/1721404099980-2024-07-19T15:48:19.980Z/serverless-estagiario.zip"
         },
         "Handler": "s_main.handler",
         "Runtime": "nodejs20.x",
@@ -221,7 +217,7 @@
         "Timeout": 6,
         "Environment": {
           "Variables": {
-            "ACCESS_TOKEN": "Bearer EAARMCGe1MUcBO2khquDWAFbZAx7cwKGPbK96IlVIPFIUQXPvFNdwL9gIclSAzcyBcB0bxMtp0s1UWRTLtp1oxPSZAB7knwgKUVc2TSUVNMkGgwQrewZAYZAzdpq9bHrbcFHUZCNg9UR82oqNBNQYx5G20PHSWNA1LIQVLcECtYXgO100IQJsg96KA3tVnGepbH4HMYNc7uAgCqsrDI7wZD",
+            "ACCESS_TOKEN": "Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh",
             "OPENAI_KEY": "Bearer sk-proj-Az96Q8yXAonC8lEBq0mLT3BlbkFJcWClrLaidIdCQYJiBpZA"
           }
         },
@@ -236,22 +232,14 @@
         "MainLogGroup"
       ]
     },
-<<<<<<< HEAD
-    "MainLambdaVersiont1pELU69g1anP2uM5tdxkLMrlv3XAiE4HpOz6JwzM": {
-=======
-    "MainLambdaVersionKQCiW3IOkNFHBh4NrltBBIDRVbZtaKQY0TVZMJWT0OM": {
->>>>>>> 2c18ba39c649923f14ce8fd8c68b56ed9158a727
+    "MainLambdaVersion9ngm9KFBTRqLXMqBweDMIh9FpNYduXpgAOWoRD8c": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "MainLambdaFunction"
         },
-<<<<<<< HEAD
-        "CodeSha256": "fPwG8xwWqQu2ZLILPmhGJd6GbJ2/sfvSNCCGXvAx2VQ="
-=======
-        "CodeSha256": "FDrqOueIRpGRIFrXXjlH4kRFPjcxR7S5A2m7DGnYjEY="
->>>>>>> 2c18ba39c649923f14ce8fd8c68b56ed9158a727
+        "CodeSha256": "u2BOYaY/V+emOyeqKg5qn1T2294tbqaWY2ZINcJ6XEM="
       }
     },
     "ApiGatewayRestApi": {
@@ -483,11 +471,7 @@
         "MainLambdaPermissionApiGateway"
       ]
     },
-<<<<<<< HEAD
-    "ApiGatewayDeployment1721265225907": {
-=======
-    "ApiGatewayDeployment1721356967085": {
->>>>>>> 2c18ba39c649923f14ce8fd8c68b56ed9158a727
+    "ApiGatewayDeployment1721404073626": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -563,11 +547,7 @@
     "MainLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-<<<<<<< HEAD
-        "Ref": "MainLambdaVersiont1pELU69g1anP2uM5tdxkLMrlv3XAiE4HpOz6JwzM"
-=======
-        "Ref": "MainLambdaVersionKQCiW3IOkNFHBh4NrltBBIDRVbZtaKQY0TVZMJWT0OM"
->>>>>>> 2c18ba39c649923f14ce8fd8c68b56ed9158a727
+        "Ref": "MainLambdaVersion9ngm9KFBTRqLXMqBweDMIh9FpNYduXpgAOWoRD8c"
       },
       "Export": {
         "Name": "sls-serverless-estagiario-dev-MainLambdaFunctionQualifiedArn"
