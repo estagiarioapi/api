@@ -22,6 +22,25 @@ export class ConversationService {
     }
   }
 
+  async updateVectorStoreInBd(id: number, vectorStoreId: string) {
+    if (!id) {
+      throw new BadRequestException('conversation id is required');
+    }
+    const data = {
+      vectorStoreId
+    };
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+    const url = `https://datacore-production.up.railway.app/conversation/${id}`;
+    try {
+      const response = await axios.put(url, data, { headers });
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   async desactiveLastConversation(id: number) {
     if (!id) {
       throw new BadRequestException('conversation id is required');
