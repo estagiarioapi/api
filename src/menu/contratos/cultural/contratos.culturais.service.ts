@@ -30,15 +30,14 @@ export class ContratosCulturaisService {
         text: '1. Qual é a descrição detalhada do projeto cultural a ser patrocinado (natureza, objetivos, duração)?\n2. Qual é o valor do patrocínio e as condições de pagamento (parcelas, cronograma)?\n3. Quais são as contrapartidas oferecidas ao patrocinador (visibilidade, publicidade, benefícios)?',
       },
       {
-        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+        text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
       {
-        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
-      }
+        text: 'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.',
+      },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -86,15 +85,14 @@ export class ContratosCulturaisService {
         text: '1. Quais são as responsabilidades e contribuições de cada parceiro no projeto cultural?\n2. Qual é o cronograma de atividades e a duração da parceria?\n3. Quais são as condições para a rescisão da parceria e a divisão de resultados?',
       },
       {
-        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+        text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
       {
-        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
-      }
+        text: 'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.',
+      },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -142,15 +140,14 @@ export class ContratosCulturaisService {
         text: '1. Qual é a descrição detalhada do evento a ser co-produzido (natureza, local, data)?\n2. Quais são as responsabilidades e contribuições de cada co-produtor?\n3. Qual é a forma de divisão dos lucros e das despesas do evento?',
       },
       {
-        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+        text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
       {
-        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
-      }
+        text: 'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.',
+      },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -198,15 +195,14 @@ export class ContratosCulturaisService {
         text: '1. Quais são as obras ou direitos autorais a serem cedidos (descrição detalhada, abrangência)?\n2. Qual é a duração e a extensão territorial da cessão dos direitos?\n3. Qual é a remuneração pela cessão dos direitos autorais e as condições de pagamento?',
       },
       {
-        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+        text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
       {
-        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
-      }
+        text: 'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.',
+      },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -254,15 +250,14 @@ export class ContratosCulturaisService {
         text: '1. Quais são os serviços artísticos a serem prestados (descrição detalhada, natureza)?\n2. Qual é a duração dos serviços e as condições de pagamento?\n3. Quais são as responsabilidades do artista e as condições para a rescisão do contrato?',
       },
       {
-        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+        text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
       {
-        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
-      }
+        text: 'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.',
+      },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -310,15 +305,14 @@ export class ContratosCulturaisService {
         text: '1. Qual é a descrição detalhada do show ou espetáculo (natureza, local, data, duração)?\n2. Qual é o valor do cachê e as condições de pagamento ao artista?\n3. Quais são as responsabilidades do produtor e do artista em relação à organização e realização do evento?',
       },
       {
-        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+        text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
       {
-        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
-      }
+        text: 'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.',
+      },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -366,15 +360,14 @@ export class ContratosCulturaisService {
         text: '1. Quais são as obras a serem distribuídas (descrição detalhada, formato, quantidade)?\n2. Qual é a área de distribuição e a duração do contrato?\n3. Qual é a forma de remuneração do distribuidor e as condições de pagamento?',
       },
       {
-        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+        text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
       {
-        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
-      }
+        text: 'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.',
+      },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -422,15 +415,14 @@ export class ContratosCulturaisService {
         text: '1. Quais são os serviços de agenciamento a serem prestados (descrição detalhada, abrangência)?\n2. Qual é a duração do contrato de agenciamento e as condições para rescisão?\n3. Qual é a forma de remuneração do agente artístico e as condições de pagamento?',
       },
       {
-        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+        text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
       {
-        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
-      }
+        text: 'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.',
+      },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {

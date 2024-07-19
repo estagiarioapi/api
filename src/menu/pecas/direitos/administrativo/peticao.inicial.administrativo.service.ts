@@ -29,12 +29,11 @@ export class PeticaoInicialAdministrativoService {
         text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
       {
-        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
-      }
+        text: 'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.',
+      },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -81,8 +80,8 @@ export class PeticaoInicialAdministrativoService {
         text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
       {
-        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
-      }
+        text: 'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.',
+      },
     ];
     const headers = {
       Authorization: process.env.ACCESS_TOKEN,
@@ -132,8 +131,8 @@ export class PeticaoInicialAdministrativoService {
         text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
       {
-        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
-      }
+        text: 'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.',
+      },
     ];
     const headers = {
       Authorization: process.env.ACCESS_TOKEN,
@@ -183,8 +182,8 @@ export class PeticaoInicialAdministrativoService {
         text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
       {
-        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
-      }
+        text: 'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.',
+      },
     ];
     const headers = {
       Authorization: process.env.ACCESS_TOKEN,
@@ -234,8 +233,8 @@ export class PeticaoInicialAdministrativoService {
         text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
       {
-        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
-      }
+        text: 'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.',
+      },
     ];
     const headers = {
       Authorization: process.env.ACCESS_TOKEN,
@@ -285,8 +284,8 @@ export class PeticaoInicialAdministrativoService {
         text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
       {
-        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
-      }
+        text: 'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.',
+      },
     ];
     const headers = {
       Authorization: process.env.ACCESS_TOKEN,
@@ -336,8 +335,8 @@ export class PeticaoInicialAdministrativoService {
         text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
       {
-        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
-      }
+        text: 'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.',
+      },
     ];
     const headers = {
       Authorization: process.env.ACCESS_TOKEN,

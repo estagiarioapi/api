@@ -1,5 +1,17 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import axios from 'axios';
+import {
+  contratos,
+  documentosMenus,
+  menuPeticaoInicial,
+  menuPeticaoIntermed,
+  menuRecursos,
+  pecasProcessuaisDireitosMenu,
+  peticoesIniciais,
+  peticoesIntermediarias,
+  recursos,
+  tipoContratoMenu,
+} from 'src/core/utils/cache';
 import { ConversationService } from '../core/integrations/conversation.service';
 import { UserService } from '../core/integrations/user.service';
 import { ReplyService } from '../core/replyes/reply.service';
@@ -10,7 +22,6 @@ import { FluxoDireitoPecaService } from './pecas/fluxo.direito.peca.service';
 import { PeticaoInicialService } from './pecas/menus/inicial/fluxo.peticao.inicial.service';
 import { PeticaoIntermediariaService } from './pecas/menus/intermediaria/fluxo.peticao.intermed.service';
 import { RecursoService } from './pecas/menus/recurso/fluxo.recurso.service';
-import { contratos, documentosMenus, menuPeticaoInicial, menuPeticaoIntermed, menuRecursos, pecasProcessuaisDireitosMenu, peticoesIniciais, peticoesIntermediarias, recursos, tipoContratoMenu } from 'src/core/utils/cache';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 
 @Injectable()
@@ -26,7 +37,7 @@ export class MenuService {
     private userService: UserService,
     private conversationService: ConversationService,
     private replyService: ReplyService,
-  ) { }
+  ) {}
 
   async sendInteractiveMessage(phoneNumber: string) {
     if (!phoneNumber) {
@@ -77,8 +88,7 @@ export class MenuService {
 
     try {
       const headers = {
-        Authorization:
-          'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+        Authorization: process.env.ACCESS_TOKEN,
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
@@ -153,10 +163,10 @@ export class MenuService {
         );
       }
       return await this.sendInteractiveMessage(phoneNumber);
-    } else if(menuId === '1022') {
-      return await this.replyService.replyLeadOptionYes(phoneNumber)
-    } else if(menuId === '1023') {
-      return await this.replyService.replyLeadOptionNo(phoneNumber)
+    } else if (menuId === '1022') {
+      return await this.replyService.replyLeadOptionYes(phoneNumber);
+    } else if (menuId === '1023') {
+      return await this.replyService.replyLeadOptionNo(phoneNumber);
     }
   }
   async sendAuxiliarJuridicoMenu(phoneNumber: string) {
@@ -180,8 +190,7 @@ export class MenuService {
       },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
 
       'Content-Type': 'application/json',
     };
@@ -230,8 +239,7 @@ export class MenuService {
     ];
 
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
 
@@ -275,8 +283,7 @@ export class MenuService {
     ];
 
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
 
@@ -345,8 +352,7 @@ export class MenuService {
     };
 
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
 
@@ -419,8 +425,7 @@ export class MenuService {
 
     try {
       const headers = {
-        Authorization:
-          'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+        Authorization: process.env.ACCESS_TOKEN,
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });
@@ -583,8 +588,7 @@ export class MenuService {
     };
     try {
       const headers = {
-        Authorization:
-          'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+        Authorization: process.env.ACCESS_TOKEN,
         'Content-Type': 'application/json',
       };
       const response = await axios.post(url, message, { headers });

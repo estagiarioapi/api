@@ -114,7 +114,7 @@ export class ThreadService {
           await this.conversationService.findOpenedConversation(user.id);
 
         // Chama a função getMessages para conseguir a resposta que o bot retornou
-        respostaGpt = await this.userService.getMessages(
+        respostaGpt = await this.conversationService.getMessages(
           conversationUpdatedOpened.threadId,
         );
 
@@ -123,7 +123,7 @@ export class ThreadService {
           let tentativa = 0;
           while (!respostaGpt && tentativa < 5) {
             tentativa++;
-            respostaGpt = await this.userService.getMessages(
+            respostaGpt = await this.conversationService.getMessages(
               conversationUpdatedOpened.threadId,
             );
           }
@@ -243,7 +243,7 @@ export class ThreadService {
         );
 
         // Chama a função getMessages para conseguir a resposta que o bot retornou
-        respostaGpt = await this.userService.getMessages(
+        respostaGpt = await this.conversationService.getMessages(
           conversationUpdatedOpened.threadId,
         );
 
@@ -252,7 +252,7 @@ export class ThreadService {
           let tentativa = 0;
           while (!respostaGpt && tentativa < 5) {
             tentativa++;
-            respostaGpt = await this.userService.getMessages(
+            respostaGpt = await this.conversationService.getMessages(
               conversationUpdatedOpened.threadId,
             );
           }
@@ -374,7 +374,7 @@ export class ThreadService {
           await this.conversationService.findOpenedConversation(user.id);
 
         /* Nesse momento chamamos a função getMessages para conseguir a resposta que o bot retornou */
-        respostaGpt = await this.userService.getMessages(
+        respostaGpt = await this.conversationService.getMessages(
           conversationUpdatedOpened.threadId,
         );
 
@@ -383,7 +383,7 @@ export class ThreadService {
           let tentativa = 0;
           while (!respostaGpt && tentativa < 5) {
             tentativa++;
-            respostaGpt = await this.userService.getMessages(
+            respostaGpt = await this.conversationService.getMessages(
               conversationUpdatedOpened.threadId,
             );
           }
@@ -511,7 +511,7 @@ export class ThreadService {
         );
 
         /* Nesse momento chamamos a função getMessages para conseguir a resposta que o bot retornou */
-        respostaGpt = await this.userService.getMessages(
+        respostaGpt = await this.conversationService.getMessages(
           conversationUpdatedOpened.threadId,
         );
 
@@ -519,7 +519,7 @@ export class ThreadService {
         let tentativa = 0;
         while (!respostaGpt && tentativa < 5) {
           tentativa++;
-          respostaGpt = await this.userService.getMessages(
+          respostaGpt = await this.conversationService.getMessages(
             conversationUpdatedOpened.threadId,
           );
         }

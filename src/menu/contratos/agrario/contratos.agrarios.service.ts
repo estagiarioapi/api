@@ -30,15 +30,14 @@ export class ContratosAgrariosService {
         text: '1. Qual é a descrição detalhada da área rural a ser arrendada (localização, tamanho, características)?\n2. Qual é o prazo de duração do arrendamento e as condições de renovação?\n3. Qual é o valor do arrendamento e as condições de pagamento (parcelas, reajustes)?',
       },
       {
-        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+        text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
       {
-        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
-      }
+        text: 'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.',
+      },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -86,15 +85,14 @@ export class ContratosAgrariosService {
         text: '1. Quais são as responsabilidades e contribuições de cada parceiro na atividade rural?\n2. Qual é o cronograma de atividades e a duração da parceria?\n3. Quais são as condições para a divisão de resultados e a responsabilidade por perdas?',
       },
       {
-        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+        text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
       {
-        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
-      }
+        text: 'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.',
+      },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -142,15 +140,14 @@ export class ContratosAgrariosService {
         text: '1. Qual é a descrição detalhada dos produtos agrícolas a serem comprados e vendidos (tipo, quantidade, qualidade)?\n2. Qual é o preço dos produtos e as condições de pagamento (à vista, a prazo, forma de entrega)?\n3. Quais são as responsabilidades do vendedor e do comprador em relação ao transporte e à qualidade dos produtos?',
       },
       {
-        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+        text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
       {
-        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
-      }
+        text: 'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.',
+      },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -198,15 +195,14 @@ export class ContratosAgrariosService {
         text: '1. Qual é a descrição detalhada do imóvel rural a ser cedido em comodato (localização, tamanho, características)?\n2. Qual é o prazo de duração do comodato e as condições para a devolução do imóvel?\n3. Quais são as responsabilidades do comodatário em relação à conservação e uso do imóvel?',
       },
       {
-        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+        text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
       {
-        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
-      }
+        text: 'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.',
+      },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -254,15 +250,14 @@ export class ContratosAgrariosService {
         text: '1. Quais são os insumos agrícolas a serem fornecidos (descrição detalhada, quantidade)?\n2. Qual é o prazo de fornecimento e as condições de entrega dos insumos?\n3. Qual é o preço dos insumos e as condições de pagamento (à vista, a prazo)?',
       },
       {
-        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+        text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
       {
-        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
-      }
+        text: 'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.',
+      },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -310,15 +305,14 @@ export class ContratosAgrariosService {
         text: '1. Quais são os serviços de gestão a serem prestados na propriedade rural (administração, planejamento)?\n2. Qual é o prazo de duração do contrato de gestão e as condições de renovação?\n3. Qual é a remuneração pelo serviço de gestão e as condições de pagamento?',
       },
       {
-        text:'*Descreva o caso concreto, detalhadamente, em uma única mensagem.*'
+        text: '*Descreva o caso concreto, detalhadamente, em uma única mensagem.*',
       },
       {
-        text:'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.'
-      }
+        text: 'Ou, se desejar retornar ao menu com todas as funcionalidades, envie “menu”.',
+      },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {

@@ -27,7 +27,7 @@ export class ConversationService {
       throw new BadRequestException('conversation id is required');
     }
     const data = {
-      vectorStoreId
+      vectorStoreId,
     };
     const headers = {
       'Content-Type': 'application/json',
@@ -224,6 +224,22 @@ export class ConversationService {
     try {
       const response = await axios.post(url, data, { headers });
       return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async getMessages(thread_id: string) {
+    if (!thread_id) {
+      throw new BadRequestException('thread_id is required');
+    }
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+    const url = `https://datacore-production.up.railway.app/conversation/message/${thread_id}`;
+    try {
+      const response = await axios.get(url, { headers });
+      return response;
     } catch (error) {
       console.error(error);
     }

@@ -9,8 +9,7 @@ export class ReplyService {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     const messagePayload = {
@@ -38,8 +37,7 @@ export class ReplyService {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     const messagePayload = {
@@ -67,8 +65,7 @@ export class ReplyService {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     const messagePayload = {
@@ -96,8 +93,7 @@ export class ReplyService {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     const messagePayload = {
@@ -125,8 +121,7 @@ export class ReplyService {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     const messagePayload = {
@@ -155,8 +150,7 @@ export class ReplyService {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     const messagePayload = {
@@ -205,8 +199,7 @@ export class ReplyService {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     const messagePayload = {
@@ -255,8 +248,7 @@ export class ReplyService {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     const messagePayload = {
@@ -305,8 +297,7 @@ export class ReplyService {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     const messagePayload = {
@@ -334,8 +325,7 @@ export class ReplyService {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     const messagePayload = {
@@ -363,8 +353,7 @@ export class ReplyService {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     const messagePayload = {
@@ -403,8 +392,7 @@ export class ReplyService {
       },
     ];
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     for (const message of messages) {
@@ -431,8 +419,7 @@ export class ReplyService {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     const messagePayload = {
@@ -479,8 +466,7 @@ export class ReplyService {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     const messagePayload = {
@@ -508,8 +494,7 @@ export class ReplyService {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
     const headers = {
-      Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
     };
     const messagePayload = {

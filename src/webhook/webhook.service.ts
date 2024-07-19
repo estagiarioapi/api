@@ -21,7 +21,6 @@ export class WebhookService {
       const senderNumber = message.from;
       const user = await this.userService.findUser(senderNumber);
       const lead = await this.userService.getLead(senderNumber);
-      console.log('lead:', lead);
 
       if (user) {
         if (message.text) {
