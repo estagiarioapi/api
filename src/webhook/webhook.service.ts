@@ -1,4 +1,5 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Cache, CACHE_MANAGER } from '@nestjs/cache-manager';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { MenuService } from 'src/menu/menu.service';
 import { ThreadService } from 'src/thread/thread.service';
 import { UserService } from '../core/integrations/user.service';
@@ -9,6 +10,7 @@ export class WebhookService {
     private menuService: MenuService,
     private userService: UserService,
     private threadService: ThreadService,
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
   ) {}
 
   async handler(event: any) {
@@ -19,8 +21,12 @@ export class WebhookService {
       }
       const message = changes.messages[0];
       const senderNumber = message.from;
-      const user = await this.userService.findUser(senderNumber);
-      const lead = await this.userService.getLead(senderNumber);
+      const [user, lead] = await Promise.all([
+        this.userService.findUser(senderNumber),
+        this.userService.getLead(senderNumber),
+      ]);
+
+      this.cacheManager.set(senderNumber, { user, lead });
 
       if (user) {
         if (message.text) {

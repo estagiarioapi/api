@@ -1,9 +1,19 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { CACHE_MANAGER, Cache } from '@nestjs/cache-manager';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import axios from 'axios';
+import { WhatsappService } from '../integrations/whatsapp/whatsapp.service';
+import { Assertion } from '../utils/assertionConcern';
+import { UserService } from '../integrations/user.service';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 
 @Injectable()
 export class ReplyService {
+  constructor(
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
+    private whats: WhatsappService,
+    private user: UserService,
+  ) {}
+
   async replyMessagePeca(phoneNumber: string) {
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
@@ -465,6 +475,7 @@ export class ReplyService {
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
+<<<<<<< HEAD
     const headers = {
       Authorization: process.env.ACCESS_TOKEN,
       'Content-Type': 'application/json',
@@ -476,11 +487,32 @@ export class ReplyService {
       type: 'text',
       text: {
         body: 'Estaremos liberando três convites que você poderá enviar para colegas (profissionais jurídicos), possibilitando adiantar sua posição na fila a cada novo cadastro pelo seu link. \nSegue abaixo o link com seu convite. Estaremos te atualizando sobre o seu avanço na fila de espera \n*Obrigado desde já! Seja bem vindo ao futuro da advocacia. \nEssa promoção possui validade de 48 horas.*',
+=======
+
+    const inviter = (await this.cacheManager.get<any>(phoneNumber)).lead;
+
+    const messages = [
+      'Estaremos liberando três convites que você poderá enviar para colegas (profissionais jurídicos), possibilitando adiantar sua posição na fila a cada novo cadastro pelo seu link. \nSegue abaixo o link com seu convite. Estaremos te atualizando sobre o seu avanço na fila de espera \n\n *Obrigado desde já! Seja bem vindo ao futuro da advocacia.* \n*Essa promoção possui validade de 48 horas.*',
+      {
+        type: 'text',
+        preview_url: true,
+        text: {
+          preview_url: true,
+          body: `https://estagiarioia.com.br?incode=${inviter.inviteCode}`,
+        },
+>>>>>>> 17643501229b523d939c05cdd522491cbcff7a27
       },
-    };
+    ];
+
     try {
-      const response = await axios.post(url, messagePayload, { headers });
-      if (response.status !== 200) throw new Error('Failed to send message');
+      const response = await this.whats.sendMessagesWithTimeout(
+        phoneNumber,
+        messages,
+        3000,
+      );
+
+      response.forEach((res) => Assertion.responseIsSuccess(res));
+      this.user.leadAccept(phoneNumber);
     } catch (error) {
       console.error('Error sending message:', error);
       return false;

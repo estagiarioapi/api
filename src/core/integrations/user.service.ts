@@ -1,5 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import axios from 'axios';
+import { dataCoreApi } from 'src/lib/axios';
 
 @Injectable()
 export class UserService {
@@ -49,6 +50,18 @@ export class UserService {
     const url = `https://datacore-development.up.railway.app/lead/AuthorizedPhone/${phone}`;
     try {
       const response = await axios.get(url, { headers });
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async leadAccept(phone: string) {
+    if (!phone) {
+      throw new BadRequestException('phone is required');
+    }
+    try {
+      const response = await dataCoreApi.put(`/lead/accept/${phone}`);
       return response.data;
     } catch (error) {
       console.error(error);
