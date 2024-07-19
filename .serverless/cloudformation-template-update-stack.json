@@ -208,7 +208,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverless-estagiario/dev/1721238420566-2024-07-17T17:47:00.566Z/serverless-estagiario.zip"
+          "S3Key": "serverless/serverless-estagiario/dev/1721356987286-2024-07-19T02:43:07.286Z/serverless-estagiario.zip"
         },
         "Handler": "s_main.handler",
         "Runtime": "nodejs20.x",
@@ -217,7 +217,7 @@
         "Timeout": 6,
         "Environment": {
           "Variables": {
-            "ACCESS_TOKEN": "Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh",
+            "ACCESS_TOKEN": "Bearer EAARMCGe1MUcBO2khquDWAFbZAx7cwKGPbK96IlVIPFIUQXPvFNdwL9gIclSAzcyBcB0bxMtp0s1UWRTLtp1oxPSZAB7knwgKUVc2TSUVNMkGgwQrewZAYZAzdpq9bHrbcFHUZCNg9UR82oqNBNQYx5G20PHSWNA1LIQVLcECtYXgO100IQJsg96KA3tVnGepbH4HMYNc7uAgCqsrDI7wZD",
             "OPENAI_KEY": "Bearer sk-proj-Az96Q8yXAonC8lEBq0mLT3BlbkFJcWClrLaidIdCQYJiBpZA"
           }
         },
@@ -232,14 +232,14 @@
         "MainLogGroup"
       ]
     },
-    "MainLambdaVersionBJJvEAxa3DX9fH3CfNkQqy1gjFDC8rrjUqVqvunxi0": {
+    "MainLambdaVersionKQCiW3IOkNFHBh4NrltBBIDRVbZtaKQY0TVZMJWT0OM": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "MainLambdaFunction"
         },
-        "CodeSha256": "7kbMyf/lvn+ZYYchgUA8Rp0LsxEkb+R8cFO+bwh/4KM="
+        "CodeSha256": "FDrqOueIRpGRIFrXXjlH4kRFPjcxR7S5A2m7DGnYjEY="
       }
     },
     "ApiGatewayRestApi": {
@@ -471,7 +471,7 @@
         "MainLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1721238385089": {
+    "ApiGatewayDeployment1721356967085": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -547,7 +547,7 @@
     "MainLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "MainLambdaVersionBJJvEAxa3DX9fH3CfNkQqy1gjFDC8rrjUqVqvunxi0"
+        "Ref": "MainLambdaVersionKQCiW3IOkNFHBh4NrltBBIDRVbZtaKQY0TVZMJWT0OM"
       },
       "Export": {
         "Name": "sls-serverless-estagiario-dev-MainLambdaFunctionQualifiedArn"

@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { UserService } from '../core/integrations/user.service';
 import { MenuService } from 'src/menu/menu.service';
 import { ThreadService } from 'src/thread/thread.service';
+import { UserService } from '../core/integrations/user.service';
 
 @Injectable()
 export class WebhookService {
@@ -9,7 +9,7 @@ export class WebhookService {
     private menuService: MenuService,
     private userService: UserService,
     private threadService: ThreadService,
-  ) { }
+  ) {}
 
   async handler(event: any) {
     try {
@@ -21,11 +21,13 @@ export class WebhookService {
       const senderNumber = message.from;
       const user = await this.userService.findUser(senderNumber);
       const lead = await this.userService.getLead(senderNumber);
+      console.log('lead:', lead);
 
       if (user) {
         if (message.text) {
           return await this.threadService.conversation(message, senderNumber);
-        } if (message.audio) {
+        }
+        if (message.audio) {
           return await this.threadService.conversation(message, senderNumber);
         } else if (message.document) {
           return await this.threadService.documentConversation(

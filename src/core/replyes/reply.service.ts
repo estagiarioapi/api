@@ -386,28 +386,26 @@ export class ReplyService {
 
     return true;
   }
-  
+
   async replyLead(phoneNumber: string, waitListNumber: number) {
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
     const messages = [
       {
-        text: 'Olá, chefe! Prazer, sou o EstagIArio, seu novo assistente jurídico!',
+        text: 'Olá, chefe! Prazer, sou o *EstagIArio*, seu novo assistente jurídico! 🧑‍⚖️',
       },
       {
-        text: 'Toda nossa conversa é privada e criptografada, protegendo todos os dados e informações transacionadas nesse chat. Por aqui: (link site) você pode consultar nossa Política de Cuidados com a Privacidade.',
+        text: 'Você está na *lista de espera*, o que significa que está a um passo de ter o *assistente jurídico* mais eficiente do mercado, dedicado ao seu dia a dia',
       },
       {
-        text: 'Você está na lista de espera, o que significa que está a um passo de ter o assistente jurídico mais eficiente do mercado, dedicado ao seu dia a dia',
-      },
-      {
-        text: `Sua posição atual é *n.º ${waitListNumber}*`,
+        text: `➡️ Sua posição atual é *n.º ${waitListNumber}*`,
       },
     ];
     const headers = {
       Authorization:
-        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh', 'Content-Type': 'application/json',
+        'Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh',
+      'Content-Type': 'application/json',
     };
     for (const message of messages) {
       const messagePayload = {
@@ -425,7 +423,7 @@ export class ReplyService {
         console.error('Error sending message:', error);
         return false;
       }
-  }
+    }
   }
 
   async replyLeadOption(phoneNumber: string) {
@@ -467,8 +465,15 @@ export class ReplyService {
         },
       },
     };
+    try {
+      const response = await axios.post(url, messagePayload, { headers });
+      if (response.status !== 200) throw new Error('Failed to send message');
+    } catch (error) {
+      console.error('Error sending message:', error);
+      return false;
+    }
   }
-  
+
   async replyLeadOptionYes(phoneNumber: string) {
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
