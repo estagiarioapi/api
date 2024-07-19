@@ -208,7 +208,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverless-estagiario/dev/1721238420566-2024-07-17T17:47:00.566Z/serverless-estagiario.zip"
+          "S3Key": "serverless/serverless-estagiario/dev/1721265253191-2024-07-18T01:14:13.191Z/serverless-estagiario.zip"
         },
         "Handler": "s_main.handler",
         "Runtime": "nodejs20.x",
@@ -232,14 +232,14 @@
         "MainLogGroup"
       ]
     },
-    "MainLambdaVersionBJJvEAxa3DX9fH3CfNkQqy1gjFDC8rrjUqVqvunxi0": {
+    "MainLambdaVersiont1pELU69g1anP2uM5tdxkLMrlv3XAiE4HpOz6JwzM": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "MainLambdaFunction"
         },
-        "CodeSha256": "7kbMyf/lvn+ZYYchgUA8Rp0LsxEkb+R8cFO+bwh/4KM="
+        "CodeSha256": "fPwG8xwWqQu2ZLILPmhGJd6GbJ2/sfvSNCCGXvAx2VQ="
       }
     },
     "ApiGatewayRestApi": {
@@ -471,7 +471,7 @@
         "MainLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1721238385089": {
+    "ApiGatewayDeployment1721265225907": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -547,7 +547,7 @@
     "MainLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "MainLambdaVersionBJJvEAxa3DX9fH3CfNkQqy1gjFDC8rrjUqVqvunxi0"
+        "Ref": "MainLambdaVersiont1pELU69g1anP2uM5tdxkLMrlv3XAiE4HpOz6JwzM"
       },
       "Export": {
         "Name": "sls-serverless-estagiario-dev-MainLambdaFunctionQualifiedArn"
