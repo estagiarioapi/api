@@ -2,12 +2,13 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { ConversationService } from 'src/core/integrations/conversation.service';
 import { UserService } from 'src/core/integrations/user.service';
 import { ReplyService } from 'src/core/replyes/reply.service';
-import { detectMenu } from 'src/core/utils/detectMenu';
-import { MenuService } from 'src/menu/menu.service';
 import { contratosAssistants } from 'src/core/utils/cache';
-import { processText } from 'src/core/utils/processText';
+import { detectMenu } from 'src/core/utils/detectMenu';
 import { processAudio } from 'src/core/utils/processAudio';
+import { processText } from 'src/core/utils/processText';
+import { EventService } from 'src/events/event.service';
 import { DocumentoService } from 'src/menu/documentos/documentos.service';
+import { MenuService } from 'src/menu/menu.service';
 
 @Injectable()
 export class ThreadService {
@@ -17,6 +18,7 @@ export class ThreadService {
     private menuService: MenuService,
     private userService: UserService,
     private documentService: DocumentoService,
+    private eventService: EventService,
   ) {}
   async conversation(message, senderNumber) {
     if (message.text) {
@@ -39,8 +41,7 @@ export class ThreadService {
 
       const conversationOpened =
         await this.conversationService.findOpenedConversation(user.id);
-      if (conversationOpened.assistantId === 'asst_iZq3asK7GzPlLRKt7H2fF9K7') {
-        await this.replyService.replyInputDocumentoRecebido(sender);
+      if (conversationOpened.assistantId === 'asst_Hv2WQuoOA4ncLSbysZBCoTkc') {
         return await this.documentService.createThreadAndGetMessage(
           text,
           senderNumber,
@@ -148,9 +149,9 @@ export class ThreadService {
 
         // Função que divide a mensagem caso exceda 3800 caracteres
         const splitMessage = (message, maxLength) => {
-          const parts = [];
+          let parts = [];
           while (message.length > maxLength) {
-            const part = message.slice(0, maxLength);
+            let part = message.slice(0, maxLength);
             message = message.slice(maxLength);
             parts.push(part);
           }
@@ -279,9 +280,9 @@ export class ThreadService {
 
           // Função que divide a mensagem caso exceda 3800 caracteres
           const splitMessage = (message, maxLength) => {
-            const parts = [];
+            let parts = [];
             while (message.length > maxLength) {
-              const part = message.slice(0, maxLength);
+              let part = message.slice(0, maxLength);
               message = message.slice(maxLength);
               parts.push(part);
             }
@@ -408,9 +409,9 @@ export class ThreadService {
 
         /* Função que divide a mensagem caso exceda 3800 caracteres */
         const splitMessage = (message, maxLength) => {
-          const parts = [];
+          let parts = [];
           while (message.length > maxLength) {
-            const part = message.slice(0, maxLength);
+            let part = message.slice(0, maxLength);
             message = message.slice(maxLength);
             parts.push(part);
           }
@@ -545,9 +546,9 @@ export class ThreadService {
 
           /* Função que divide a mensagem caso exceda 3800 caracteres */
           const splitMessage = (message, maxLength) => {
-            const parts = [];
+            let parts = [];
             while (message.length > maxLength) {
-              const part = message.slice(0, maxLength);
+              let part = message.slice(0, maxLength);
               message = message.slice(maxLength);
               parts.push(part);
             }
@@ -606,20 +607,6 @@ export class ThreadService {
   }
 
   async documentConversation(document, senderNumber: string) {
-    const user = await this.userService.findUser(senderNumber);
-    if (!user) {
-      throw new BadRequestException('user not found in database');
-    }
-    const conversationOpened =
-      await this.conversationService.findOpenedConversation(user.id);
-    if (!conversationOpened) {
-      throw new BadRequestException(
-        "você precisa selecionar uma opção, ou se desejar voltar ao menu digite 'menu'.",
-      );
-    }
-    if (conversationOpened.assistantId === '') {
-    } else {
-    }
     const documentProcessed = await this.documentService.processDocument(
       document,
       senderNumber,
@@ -636,14 +623,18 @@ export class ThreadService {
 
   async leadConversation(message, senderNumber: string) {
     const lead = await this.userService.getLead(senderNumber);
+    if (!lead) {
+      throw new BadRequestException('lead not found');
+    }
     if (message.text) {
-      const { text, sender } = processText(message, senderNumber);
-      if (text == 'Oi, EstagIArio! Quero entrar para a lista de espera.') {
-        const firstReply = await this.replyService.replyLead(
-          senderNumber,
-          lead.waitListNumber,
-        );
-        const replyOption = await this.replyService.replyLeadOption(sender);
+      try {
+        const { text, sender } = processText(message, senderNumber);
+        if (text == 'Oi, EstagIArio! Quero entrar para a lista de espera.') {
+          await this.replyService.replyLead(senderNumber, lead.waitListNumber);
+          await this.replyService.replyLeadOption(senderNumber);
+        }
+      } catch (error) {
+        console.log(error);
       }
     }
   }

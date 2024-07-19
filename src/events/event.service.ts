@@ -1,9 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { Logger } from 'src/core/utils/logger';
+import { UserService } from 'src/core/integrations/user.service';
 import { wppApi } from 'src/lib/axios';
 
 @Injectable()
 export class EventService {
+  constructor(private userService: UserService) {}
   @Logger()
   async sendMessageTemplate(phoneNumber: string, modelName: string) {
     const template = {

@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
+import { ThreadService } from 'src/thread/thread.service';
 import { ConversationService } from '../core/integrations/conversation.service';
 import { UserService } from '../core/integrations/user.service';
 import { ReplyService } from '../core/replyes/reply.service';
+import { EventService } from '../events/event.service';
 import { ContratosAgrariosService } from './contratos/agrario/contratos.agrarios.service';
 import { ContratosCivisService } from './contratos/civil/contratos.civis.service';
 import { ContratosCulturaisService } from './contratos/cultural/contratos.culturais.service';
@@ -9,7 +11,9 @@ import { ContratosEmpresariaisService } from './contratos/empresarial/contratos.
 import { FluxoContratoService } from './contratos/fluxo.contratos.service';
 import { ContratosImobiliariosService } from './contratos/imobiliario/contratos.imobiliarios.service';
 import { ContratosInstrumentosAdvocaticiosService } from './contratos/instrumentosAdvocacia/contratos.instrumentos.service';
+import { DocumentoService } from './documentos/documentos.service';
 import { FluxoDocumentoService } from './documentos/fluxo.documento.service';
+import { MenuService } from './menu.service';
 import { PeticaoInicialAdministrativoService } from './pecas/direitos/administrativo/peticao.inicial.administrativo.service';
 import { PeticaoIntermediariaAdministrativoService } from './pecas/direitos/administrativo/peticao.intermed.administrativo.service';
 import { RecursosAdministrativoService } from './pecas/direitos/administrativo/recurso.administrativo.service';
@@ -39,9 +43,6 @@ import { FluxoDireitoPecaService } from './pecas/fluxo.direito.peca.service';
 import { PeticaoInicialService } from './pecas/menus/inicial/fluxo.peticao.inicial.service';
 import { PeticaoIntermediariaService } from './pecas/menus/intermediaria/fluxo.peticao.intermed.service';
 import { RecursoService } from './pecas/menus/recurso/fluxo.recurso.service';
-import { MenuService } from './menu.service';
-import { ThreadService } from 'src/thread/thread.service';
-import { DocumentoService } from './documentos/documentos.service';
 
 @Module({
   providers: [
@@ -87,8 +88,9 @@ import { DocumentoService } from './documentos/documentos.service';
     ContratosInstrumentosAdvocaticiosService,
     FluxoDocumentoService,
     ThreadService,
-    DocumentoService
+    DocumentoService,
+    EventService,
   ],
   controllers: [],
 })
-export class FluxoModule { }
+export class FluxoModule {}

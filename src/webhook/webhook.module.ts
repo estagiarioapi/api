@@ -1,10 +1,14 @@
 import { Module } from '@nestjs/common';
+import { DocumentoService } from 'src/menu/documentos/documentos.service';
+import { FluxoDocumentoService } from 'src/menu/documentos/fluxo.documento.service';
 import { FluxoDireitoPecaService } from 'src/menu/pecas/fluxo.direito.peca.service';
 import { PeticaoInicialService } from 'src/menu/pecas/menus/inicial/fluxo.peticao.inicial.service';
 import { RecursoService } from 'src/menu/pecas/menus/recurso/fluxo.recurso.service';
+import { ThreadService } from 'src/thread/thread.service';
 import { ConversationService } from '../core/integrations/conversation.service';
 import { UserService } from '../core/integrations/user.service';
 import { ReplyService } from '../core/replyes/reply.service';
+import { EventService } from '../events/event.service';
 import { ContratosAgrariosService } from '../menu/contratos/agrario/contratos.agrarios.service';
 import { ContratosCivisService } from '../menu/contratos/civil/contratos.civis.service';
 import { ContratosCulturaisService } from '../menu/contratos/cultural/contratos.culturais.service';
@@ -41,9 +45,6 @@ import { RecursosTributariosService } from '../menu/pecas/direitos/tributario/re
 import { PeticaoIntermediariaService } from '../menu/pecas/menus/intermediaria/fluxo.peticao.intermed.service';
 import { WebhookController } from './webhook.controller';
 import { WebhookService } from './webhook.service';
-import { FluxoDocumentoService } from 'src/menu/documentos/fluxo.documento.service';
-import { ThreadService } from 'src/thread/thread.service';
-import { DocumentoService } from 'src/menu/documentos/documentos.service';
 
 @Module({
   imports: [],
@@ -92,7 +93,8 @@ import { DocumentoService } from 'src/menu/documentos/documentos.service';
     ContratosInstrumentosAdvocaticiosService,
     FluxoDocumentoService,
     ThreadService,
-    DocumentoService
+    DocumentoService,
+    EventService,
   ],
 })
-export class WebhookModule { }
+export class WebhookModule {}
