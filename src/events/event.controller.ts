@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { EventService } from './event.service';
 import { Logger } from 'src/core/utils/logger';
+import { EventService } from './event.service';
 
 @Controller('event')
 export class EventController {
@@ -13,5 +13,10 @@ export class EventController {
     { phoneNumber, modelName }: { phoneNumber: string; modelName: string },
   ) {
     return this.service.sendMessageTemplate(phoneNumber, modelName);
+  }
+
+  @Post('sendTimeoutMessage')
+  async sendTimeoutMessage(@Body() phoneNumber: string) {
+    return this.service.sendTimeoutMessage(phoneNumber);
   }
 }
