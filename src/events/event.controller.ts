@@ -1,4 +1,10 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Param,
+  Post,
+} from '@nestjs/common';
 import { Logger } from 'src/core/utils/logger';
 import { EventService } from './event.service';
 
@@ -23,8 +29,11 @@ export class EventController {
     return this.service.sendMessageTemplate(phoneNumber, modelName, parameters);
   }
 
-  @Post('sendTimeoutMessage')
-  async sendTimeoutMessage(@Body() phoneNumber: string) {
-    return this.service.sendTimeoutMessage(phoneNumber);
+  @Post('sendTimeoutMessage/:phoneNumber')
+  async sendTimeoutMessage(@Param('phoneNumber') phoneNumber: string) {
+    if (!phoneNumber) {
+      throw new BadRequestException('Favor fornecer o número do usuário');
+    }
+    return await this.service.sendTimeoutMessage(phoneNumber);
   }
 }

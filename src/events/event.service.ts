@@ -55,8 +55,11 @@ export class EventService {
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
+    console.log(phoneNumber);
     const user = await this.userService.findUser(phoneNumber);
-    const openedConversation = await this.conversationService.findOpenedConversation(user.id);
+    console.log(user);
+    const openedConversation =
+      await this.conversationService.findOpenedConversation(user.id);
     if (openedConversation) {
       const ccvs = await this.conversationService.desactiveLastConversation(
         openedConversation.id,
