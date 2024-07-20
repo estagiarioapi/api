@@ -13,13 +13,23 @@ export class EventService {
     private conversationService: ConversationService,
   ) {}
   @Logger()
-  async sendMessageTemplate(phoneNumber: string, modelName: string) {
+  async sendMessageTemplate(
+    phoneNumber: string,
+    modelName: string,
+    parameters?: any,
+  ) {
     const template = {
       language: {
         code: 'pt_BR',
       },
       name: modelName,
     };
+
+    if (parameters) {
+      template['components'] = Array.isArray(parameters)
+        ? parameters
+        : [parameters];
+    }
 
     const payload = {
       messaging_product: 'whatsapp',
