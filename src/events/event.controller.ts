@@ -10,8 +10,16 @@ export class EventController {
   @Logger()
   async sendMessageTemplate(
     @Body()
-    { phoneNumber, modelName }: { phoneNumber: string; modelName: string },
+    {
+      phoneNumber,
+      modelName,
+      parameters,
+    }: {
+      phoneNumber: string;
+      modelName: string;
+      parameters: any;
+    },
   ) {
-    return this.service.sendMessageTemplate(phoneNumber, modelName);
+    return this.service.sendMessageTemplate(phoneNumber, modelName, parameters);
   }
 }

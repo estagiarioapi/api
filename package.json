@@ -18,13 +18,14 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "sls:deploy": "npm run build && serverless deploy"
+    "sls:deploy": "$env:NODE_ENV='production' && npm run build"
   },
   "dependencies": {
     "@codegenie/serverless-express": "^4.14.1",
     "@nestjs/axios": "^3.0.2",
     "@nestjs/cache-manager": "^2.2.2",
     "@nestjs/common": "^10.0.0",
+    "@nestjs/config": "^3.2.3",
     "@nestjs/core": "^10.0.0",
     "@nestjs/platform-express": "^10.3.9",
     "aws-lambda": "^1.0.7",
@@ -42,7 +43,7 @@
     "@types/aws-lambda": "^8.10.140",
     "@types/express": "^4.17.17",
     "@types/jest": "^29.5.2",
-    "@types/node": "^20.14.9",
+    "@types/node": "^20.14.10",
     "@types/supertest": "^6.0.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
@@ -53,6 +54,7 @@
     "plugin": "^0.3.3",
     "prettier": "^3.0.0",
     "prisma": "^5.16.1",
+    "serverless-dotenv-plugin": "^6.0.0",
     "serverless-offline": "^13.6.0",
     "serverless-plugin-optimize": "^4.2.1-rc.1",
     "serverless-plugin-typescript": "^2.1.5",
