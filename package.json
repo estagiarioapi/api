@@ -18,7 +18,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "sls:deploy": "$env:NODE_ENV='production' && npm run build"
+    "sls:deploy": "dotenv -e .env && npm run build && serverless deploy"
   },
   "dependencies": {
     "@codegenie/serverless-express": "^4.14.1",
@@ -32,6 +32,7 @@
     "aws-serverless-express": "^3.4.0",
     "axios": "^1.7.2",
     "cache-manager": "^5.7.3",
+    "dotenv-cli": "^7.4.2",
     "express": "^4.19.2",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1"

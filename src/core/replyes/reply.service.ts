@@ -475,19 +475,6 @@ export class ReplyService {
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
-<<<<<<< HEAD
-    const headers = {
-      Authorization: process.env.ACCESS_TOKEN,
-      'Content-Type': 'application/json',
-    };
-    const messagePayload = {
-      messaging_product: 'whatsapp',
-      recipient_type: 'individual',
-      to: phoneNumber,
-      type: 'text',
-      text: {
-        body: 'Estaremos liberando três convites que você poderá enviar para colegas (profissionais jurídicos), possibilitando adiantar sua posição na fila a cada novo cadastro pelo seu link. \nSegue abaixo o link com seu convite. Estaremos te atualizando sobre o seu avanço na fila de espera \n*Obrigado desde já! Seja bem vindo ao futuro da advocacia. \nEssa promoção possui validade de 48 horas.*',
-=======
 
     const inviter = (await this.cacheManager.get<any>(phoneNumber)).lead;
 
@@ -500,7 +487,6 @@ export class ReplyService {
           preview_url: true,
           body: `https://estagiarioia.com.br?incode=${inviter.inviteCode}`,
         },
->>>>>>> 17643501229b523d939c05cdd522491cbcff7a27
       },
     ];
 
