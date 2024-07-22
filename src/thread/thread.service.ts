@@ -133,27 +133,50 @@ export class ThreadService {
   }
 
   async handleThreadMessages(conversationUpdatedOpened, text, sender) {
-    let respostaGpt = await this.conversationService.getMessages(
-      conversationUpdatedOpened.threadId,
-    );
+    let respostaGpt;
     let tentativa = 0;
-    while (!respostaGpt && tentativa < 5) {
-      tentativa++;
-      respostaGpt = await this.conversationService.getMessages(
-        conversationUpdatedOpened.threadId,
+
+    try {
+      while (!respostaGpt && tentativa < 5) {
+        tentativa++;
+        respostaGpt = await this.conversationService.getMessages(
+          conversationUpdatedOpened.threadId,
+        );
+      }
+
+      if (respostaGpt && respostaGpt.data.response != text) {
+        await this.saveGptResponse(
+          respostaGpt.data.response,
+          conversationUpdatedOpened.id,
+        );
+      }
+
+      await this.sendGptResponse(
+        respostaGpt ? respostaGpt.data.response : '',
+        sender,
+        conversationUpdatedOpened.assistantId,
       );
-    }
-    if (respostaGpt.data.response != text) {
-      await this.saveGptResponse(
-        respostaGpt.data.response,
-        conversationUpdatedOpened.id,
+      return {
+        statusCode: 200,
+        body: JSON.stringify({
+          message: 'Message processed successfully',
+        }),
+      };
+    } catch (error) {
+      console.error('Error processing thread messages:', error);
+      await this.sendGptResponse(
+        'Error occurred while processing your message.',
+        sender,
+        conversationUpdatedOpened.assistantId,
       );
+      return {
+        statusCode: 200,
+        body: JSON.stringify({
+          message: 'Message processed with errors',
+          error: error.message,
+        }),
+      };
     }
-    return await this.sendGptResponse(
-      respostaGpt.data.response,
-      sender,
-      conversationUpdatedOpened.assistantId,
-    );
   }
 
   async saveGptResponse(response, conversationId) {
