@@ -95,6 +95,7 @@ export class ConversationService {
 
     try {
       const response = await axios.get(url, { headers });
+      console.log(response.data);
       return response.data[0];
     } catch (error) {
       console.error(error);

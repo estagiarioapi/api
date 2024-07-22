@@ -4,6 +4,7 @@ import axios from 'axios';
 import { UserService } from '../integrations/user.service';
 import { WhatsappService } from '../integrations/whatsapp/whatsapp.service';
 import { Assertion } from '../utils/assertionConcern';
+import { contratosAssistants } from '../utils/cache';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 
 @Injectable()
@@ -302,7 +303,7 @@ export class ReplyService {
     return true;
   }
 
-  async replyAfterEditOptionSelected(phoneNumber: string) {
+  async replyAfterEditPecaOptionSelected(phoneNumber: string) {
     if (!phoneNumber) {
       throw new BadRequestException('Favor fornecer o numero do usuário');
     }
@@ -317,6 +318,34 @@ export class ReplyService {
       type: 'text',
       text: {
         body: '👍 Entendido, chefe! O que gostaria que eu editasse, aprimorasse ou corrigisse na peça? \n Indique a alteração em uma única mensagem.',
+      },
+    };
+    try {
+      const response = await axios.post(url, messagePayload, { headers });
+      if (response.status !== 200) throw new Error('Failed to send message');
+    } catch (error) {
+      console.error('Error sending message:', error);
+      return false;
+    }
+
+    return true;
+  }
+
+  async replyAfterEditContratoOptionSelected(phoneNumber: string) {
+    if (!phoneNumber) {
+      throw new BadRequestException('Favor fornecer o numero do usuário');
+    }
+    const headers = {
+      Authorization: process.env.ACCESS_TOKEN,
+      'Content-Type': 'application/json',
+    };
+    const messagePayload = {
+      messaging_product: 'whatsapp',
+      recipient_type: 'individual',
+      to: phoneNumber,
+      type: 'text',
+      text: {
+        body: '👍 Entendido, chefe! O que gostaria que eu editasse, aprimorasse ou corrigisse no Contrato? \n Indique a alteração em uma única mensagem.',
       },
     };
     try {
@@ -533,5 +562,17 @@ export class ReplyService {
     }
 
     return true;
+  }
+
+  async replyMessageBasedOnAssistant(assistantId: string, sender: string) {
+    if (contratosAssistants.includes(assistantId)) {
+      await this.replyMessageContrato(sender);
+    } else if (assistantId === 'asst_PnosQim2RndvcNgW0yQiKx1M') {
+      await this.replyMessageAuxiliar(sender);
+    } else if (assistantId === 'asst_OshFRCvLJUIO7b5nkGodEq7H') {
+      await this.replyMessageNotificacao(sender);
+    } else {
+      await this.replyMessagePeca(sender);
+    }
   }
 }

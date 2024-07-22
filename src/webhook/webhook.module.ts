@@ -16,7 +16,6 @@ import { ContratosEmpresariaisService } from '../menu/contratos/empresarial/cont
 import { FluxoContratoService } from '../menu/contratos/fluxo.contratos.service';
 import { ContratosImobiliariosService } from '../menu/contratos/imobiliario/contratos.imobiliarios.service';
 import { ContratosInstrumentosAdvocaticiosService } from '../menu/contratos/instrumentosAdvocacia/contratos.instrumentos.service';
-import { MenuService } from '../menu/menu.service';
 import { PeticaoInicialAdministrativoService } from '../menu/pecas/direitos/administrativo/peticao.inicial.administrativo.service';
 import { PeticaoIntermediariaAdministrativoService } from '../menu/pecas/direitos/administrativo/peticao.intermed.administrativo.service';
 import { RecursosAdministrativoService } from '../menu/pecas/direitos/administrativo/recurso.administrativo.service';
@@ -43,6 +42,7 @@ import { PeticaoInicialTributarioService } from '../menu/pecas/direitos/tributar
 import { PeticaoIntermediariaTributarioService } from '../menu/pecas/direitos/tributario/peticao.intermed.tributario.service';
 import { RecursosTributariosService } from '../menu/pecas/direitos/tributario/recurso.tributario.service';
 import { PeticaoIntermediariaService } from '../menu/pecas/menus/intermediaria/fluxo.peticao.intermed.service';
+import { MenuService } from '../thread/menu.service';
 import { WebhookController } from './webhook.controller';
 import { WebhookService } from './webhook.service';
 

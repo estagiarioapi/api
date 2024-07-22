@@ -4,6 +4,7 @@ import { ConversationService } from '../core/integrations/conversation.service';
 import { UserService } from '../core/integrations/user.service';
 import { ReplyService } from '../core/replyes/reply.service';
 import { EventService } from '../events/event.service';
+import { MenuService } from '../thread/menu.service';
 import { ContratosAgrariosService } from './contratos/agrario/contratos.agrarios.service';
 import { ContratosCivisService } from './contratos/civil/contratos.civis.service';
 import { ContratosCulturaisService } from './contratos/cultural/contratos.culturais.service';
@@ -13,7 +14,6 @@ import { ContratosImobiliariosService } from './contratos/imobiliario/contratos.
 import { ContratosInstrumentosAdvocaticiosService } from './contratos/instrumentosAdvocacia/contratos.instrumentos.service';
 import { DocumentoService } from './documentos/documentos.service';
 import { FluxoDocumentoService } from './documentos/fluxo.documento.service';
-import { MenuService } from './menu.service';
 import { PeticaoInicialAdministrativoService } from './pecas/direitos/administrativo/peticao.inicial.administrativo.service';
 import { PeticaoIntermediariaAdministrativoService } from './pecas/direitos/administrativo/peticao.intermed.administrativo.service';
 import { RecursosAdministrativoService } from './pecas/direitos/administrativo/recurso.administrativo.service';

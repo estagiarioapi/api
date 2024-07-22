@@ -10,12 +10,20 @@ export class WebhookController {
   async handle(@Req() req: Request, @Res() res: Response) {
     console.log('controller:', req.body);
     const response = await this.webhookService.handler(req.body);
-    return res.json(response);
+    return res.status(200).json(response);
   }
 
   @Post()
   async handler(@Req() req: Request, @Res() res: Response) {
-    const response = await this.webhookService.handler(req.body);
-    return res.json(response);
+    try {
+      const response = await this.webhookService.handler(req.body);
+      return res.status(200).json(response);
+    } catch (error) {
+      console.error('Erro ao processar webhook:', error);
+      return res.status(500).json({
+        message: 'Erro ao processar webhook',
+        error: error.message,
+      });
+    }
   }
 }

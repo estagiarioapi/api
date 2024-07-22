@@ -208,7 +208,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverless-estagiario/dev/1721515253805-2024-07-20T22:40:53.805Z/serverless-estagiario.zip"
+          "S3Key": "serverless/serverless-estagiario/dev/1721630485085-2024-07-22T06:41:25.085Z/serverless-estagiario.zip"
         },
         "Handler": "s_main.handler",
         "Runtime": "nodejs20.x",
@@ -218,7 +218,7 @@
         "Environment": {
           "Variables": {
             "ACCESS_TOKEN": "Bearer EAARMCGe1MUcBOw1h2brAYouZCUvEDiJ3ZB7JedFoOxcb62NrGPrdiXzyUMmGUllFbUvjbl5CXJvW6BdZCD2fK8NXZCj5xohSz3ZCX7WZAx8UuZCx72QaZCMAesIzPMoLR3YVj4L0oGJKlPy5FZBVq9OWxKTJwG5LaKuyGJaLh9bZAtrTLRbKDFikLbN0zGMRiUkPCh",
-            "OPENAI_KEY": "Bearer sk-proj-Az96Q8yXAonC8lEBq0mLT3BlbkFJcWClrLaidIdCQYJiBpZA"
+            "OPENAI_KEY": "Bearer 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"
           }
         },
         "Role": {
@@ -232,14 +232,14 @@
         "MainLogGroup"
       ]
     },
-    "MainLambdaVersionl973mjqGn7SQTkFBeiJWtswLqP3TOCAYr0otV3N4E": {
+    "MainLambdaVersion0Fc5Vec4n8CNpfxwdjoFZmgMUatD98IPXvJqEo0TQw": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "MainLambdaFunction"
         },
-        "CodeSha256": "b1j5jmX1o5f9Uo/zty258BCCJoPWE5+wNdNad+GZVNw="
+        "CodeSha256": "dmaSKhCUZ/078v+KbRhF8rKvMcfaf6w1cgkDUGnqZQk="
       }
     },
     "ApiGatewayRestApi": {
@@ -471,7 +471,7 @@
         "MainLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1721515226824": {
+    "ApiGatewayDeployment1721630456332": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -547,7 +547,7 @@
     "MainLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "MainLambdaVersionl973mjqGn7SQTkFBeiJWtswLqP3TOCAYr0otV3N4E"
+        "Ref": "MainLambdaVersion0Fc5Vec4n8CNpfxwdjoFZmgMUatD98IPXvJqEo0TQw"
       },
       "Export": {
         "Name": "sls-serverless-estagiario-dev-MainLambdaFunctionQualifiedArn"

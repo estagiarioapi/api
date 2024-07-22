@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import axios from 'axios';
 import {
   contratos,
+  contratosAssistants,
   documentosMenus,
   menuPeticaoInicial,
   menuPeticaoIntermed,
@@ -15,13 +16,13 @@ import {
 import { ConversationService } from '../core/integrations/conversation.service';
 import { UserService } from '../core/integrations/user.service';
 import { ReplyService } from '../core/replyes/reply.service';
-import { FluxoContratoService } from './contratos/fluxo.contratos.service';
-import { FluxoDocumentoService } from './documentos/fluxo.documento.service';
-import { PecasDireitosService } from './pecas/direitos/pecas.direitos.service';
-import { FluxoDireitoPecaService } from './pecas/fluxo.direito.peca.service';
-import { PeticaoInicialService } from './pecas/menus/inicial/fluxo.peticao.inicial.service';
-import { PeticaoIntermediariaService } from './pecas/menus/intermediaria/fluxo.peticao.intermed.service';
-import { RecursoService } from './pecas/menus/recurso/fluxo.recurso.service';
+import { FluxoContratoService } from '../menu/contratos/fluxo.contratos.service';
+import { FluxoDocumentoService } from '../menu/documentos/fluxo.documento.service';
+import { PecasDireitosService } from '../menu/pecas/direitos/pecas.direitos.service';
+import { FluxoDireitoPecaService } from '../menu/pecas/fluxo.direito.peca.service';
+import { PeticaoInicialService } from '../menu/pecas/menus/inicial/fluxo.peticao.inicial.service';
+import { PeticaoIntermediariaService } from '../menu/pecas/menus/intermediaria/fluxo.peticao.intermed.service';
+import { RecursoService } from '../menu/pecas/menus/recurso/fluxo.recurso.service';
 const url = 'https://graph.facebook.com/v19.0/374765715711006/messages';
 
 @Injectable()
@@ -152,7 +153,16 @@ export class MenuService {
     } else if (contratos.includes(menuId)) {
       return this.fluxoContratoService.sendCadaContrato(phoneNumber, menuId);
     } else if (menuId === '1020') {
-      return this.replyService.replyAfterEditOptionSelected(phoneNumber);
+      const user = await this.userService.findUser(phoneNumber);
+      const openedConversation =
+        await this.conversationService.findOpenedConversation(user.id);
+      if (contratosAssistants.includes(openedConversation.assistantId)) {
+        return this.replyService.replyAfterEditContratoOptionSelected(
+          phoneNumber,
+        );
+      } else {
+        return this.replyService.replyAfterEditPecaOptionSelected(phoneNumber);
+      }
     } else if (menuId === '1021') {
       const user = await this.userService.findUser(phoneNumber);
       const openedConversation =
